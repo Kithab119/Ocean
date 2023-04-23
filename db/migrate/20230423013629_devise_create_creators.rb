@@ -1,8 +1,18 @@
 # frozen_string_literal: true
 
 class DeviseCreateCreators < ActiveRecord::Migration[6.1]
+
   def change
     create_table :creators do |t|
+
+      t.string :name, null: false
+      t.text :profile, null: false
+      t.string :postal_code, null: false
+      t.string :address, null: false
+      t.string :telephone_number, null: false
+      t.boolean :is_deleted, null: false, default: false
+
+
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
@@ -41,4 +51,5 @@ class DeviseCreateCreators < ActiveRecord::Migration[6.1]
     # add_index :creators, :confirmation_token,   unique: true
     # add_index :creators, :unlock_token,         unique: true
   end
+
 end

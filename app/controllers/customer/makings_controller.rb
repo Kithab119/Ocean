@@ -1,2 +1,2 @@
-class MakingsController < ApplicationController
+class Customer::MakingsController < ApplicationController
 end
