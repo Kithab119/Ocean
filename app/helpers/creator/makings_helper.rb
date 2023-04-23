@@ -1,0 +1,2 @@
+module Creator::MakingsHelper
+end
