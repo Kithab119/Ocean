@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   scope module: :customer do
     root to: "homes#top"
+    get "/about" => "homes#about"
     resources :creators, only: [:index, :show]
     resources :items, only: [:index, :show]
     get "/customers/out" => "customers#out"
@@ -32,11 +33,10 @@ Rails.application.routes.draw do
 
   namespace :creator do
     root to: "homes#top"
-    get "/about" => "homes#about"
     resources :items
     get "/creators/out" => "creators#out"
     patch "/creators/out_check" => "creators#out_check"
-    resources :creators, only: [:show, :edit, :update]
+    resource :creators, only: [:show, :edit, :update]
     resources :makings, only: [:index, :show, :edit, :update]
   end
 
