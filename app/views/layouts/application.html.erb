@@ -22,7 +22,7 @@
             <li><%= link_to "ジャンル", admin_genres_path %></li>
             <li><%= link_to "スタイル", admin_styles_path %></li>
             <li><%= link_to "注文一覧", admin_orders_path %></li>
-            <li><%= link_to "ログアウト", destroy_admin_session_path %></li>
+            <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete  %></li>
           </ul>
         <% elsif creator_signed_in? %>
           <ul>
@@ -33,7 +33,7 @@
             <li><%= link_to "商品一覧", creator_items_path %></li>
             <li><%= link_to "マイページ", creator_creators_path %></li>
             <li><%= link_to "オーダー情報", creator_makings_path %></li>
-            <li><%= link_to "ログアウト", destroy_creator_session_path %></li>
+            <li><%= link_to "ログアウト", destroy_creator_session_path, method: :delete %></li>
           </ul>
         <% elsif customer_signed_in? %>
           <ul>
@@ -48,7 +48,7 @@
             <li><%= link_to "注文一覧", orders_path %></li>
             <li><%= link_to "配送先", addresses_path %></li>
             <li><%= link_to "オーダー情報", makings_path %></li>
-            <li><%= link_to "ログアウト", destroy_customer_session_path %></li>
+            <li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></li>
           </ul>
         <% else %>
           <ul>
