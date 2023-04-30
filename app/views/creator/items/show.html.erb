@@ -1,0 +1,19 @@
+<h2>作品情報</h2>
+
+<div><%= image_tag @item.image, :size => '300x300' %></div>
+<div><%= @item.name %></div>
+<div><%= @item.introduction %></div>
+<div><%= @item.color.name %></div>
+<div><%= @item.size.large %></div>
+<div><%= @item.genre.theme %></div>
+<div><%= @item.style.where %></div>
+<div><%= @item.price %></div>
+<div>
+  <% if @item.is_active == true %>
+    <span>販売中</span>
+  <% else %>
+    <span>未販売</span>
+  <% end %>
+</div>
+<div><%= link_to "編集する", edit_creator_item_path(@item.id) %></div>
+<div><%= link_to "削除する", creator_item_path(@item.id), method: :delete %></div>

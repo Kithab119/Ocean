@@ -1,5 +1,7 @@
 class Item < ApplicationRecord
 
+  has_one_attached :image
+
   belongs_to :creator
   belongs_to :color
   belongs_to :size
