@@ -1,1 +1,28 @@
 <h2>作家一覧</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>名前</th>
+      <th>メールアドレス</th>
+      <th>退会ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <% @creators.each do |creator| %>
+        <td><%= creator.id %></td>
+        <td><%= link_to creator.name, admin_creator_path(creator.id) %></td>
+        <td><%= creator.email %></td>
+        <td>
+          <% if creator.is_deleted == false %>
+            <p>有効</p>
+          <% else %>
+            <p>退会</p>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>

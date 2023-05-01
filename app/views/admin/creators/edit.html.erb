@@ -1,14 +1,14 @@
-<h2><%= @customer.last_name %> <%= @customer.first_name %>さんの顧客情報編集</h2>
+<h2><%= @creator.name %>さんの作家情報編集</h2>
 
-<%= form_with model: @customer, url: admin_customer_path(@customer.id), method: :patch do |f| %>
+<%= form_with model: @creator, url: admin_creator_path(@creator.id), method: :patch do |f| %>
   <table>
     <tr>
       <th>名前</th>
-      <td><%= f.text_field :last_name %> <%= f.text_field :first_name %></td>
+      <td><%= f.text_field :name %></td>
     </tr>
     <tr>
-      <th>名前（カナ）</th>
-      <td><%= f.text_field :last_name_kana %> <%= f.text_field :first_name_kana %></td>
+      <th>プロフィール</th>
+      <td><%= f.text_area :profile %></td>
     </tr>
     <tr>
       <th>郵便番号</th>

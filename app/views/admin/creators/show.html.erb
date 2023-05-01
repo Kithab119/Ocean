@@ -1,0 +1,39 @@
+<h2>作家情報</h2>
+
+<table>
+  <tr>
+    <th>名前</th>
+    <td><%= @creator.name %></td>
+  </tr>
+  <tr>
+    <th>プロフィール</th>
+    <td><%= @creator.profile %></td>
+  </tr>
+  <tr>
+    <th>郵便番号</th>
+    <td><%= @creator.postal_code %></td>
+  </tr>
+  <tr>
+    <th>住所</th>
+    <td><%= @creator.address %></td>
+  </tr>
+  <tr>
+    <th>電話番号</th>
+    <td><%= @creator.telephone_number %></td>
+  </tr>
+  <tr>
+    <th>メールアドレス</th>
+    <td><%= @creator.email %></td>
+  </tr>
+  <tr>
+    <th>退会ステータス</th>
+    <td>
+      <% if @creator.is_deleted == false %>
+        <p>有効</p>
+      <% else %>
+        <p>退会</p>
+      <% end %>
+    </td>
+  </tr>
+</table>
+<div><%= link_to "編集する", edit_admin_creator_path(@creator.id) %></div>
