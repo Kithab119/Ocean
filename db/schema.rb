@@ -170,7 +170,7 @@ ActiveRecord::Schema.define(version: 2023_04_30_140845) do
   end
 
   create_table "sizes", force: :cascade do |t|
-    t.integer "large", null: false
+    t.string "large", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

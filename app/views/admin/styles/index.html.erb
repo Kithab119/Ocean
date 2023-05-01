@@ -1,1 +1,24 @@
 <h2>スタイル</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>スタイル</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @styles.each do |style| %>
+      <tr>
+        <td><%= style.id %></td>
+        <td><%= style.where %></td>
+        <td><%= link_to "削除", admin_style_path(style.id), method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= form_with model: @style, url: admin_styles_path, method: :post do |f| %>
+  <div>新規登録 <%= f.text_field :where %></div>
+  <div><%=f.submit "登録する" %></div>
+<% end %>

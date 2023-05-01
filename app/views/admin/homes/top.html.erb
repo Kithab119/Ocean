@@ -10,8 +10,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <% @creators.each do |creator| %>
+    <% @creators.each do |creator| %>
+      <tr>
         <td><%= creator.id %></td>
         <td><%= link_to creator.name, admin_creator_path(creator.id) %></td>
         <td><%= creator.email %></td>
@@ -22,7 +22,7 @@
             <p>退会</p>
           <% end %>
         </td>
-      <% end %>
-    </tr>
+      </tr>
+    <% end %>
   </tbody>
 </table>

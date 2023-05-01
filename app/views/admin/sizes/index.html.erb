@@ -1,1 +1,24 @@
 <h2>サイズ</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>サイズ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sizes.each do |size| %>
+      <tr>
+        <td><%= size.id %></td>
+        <td><%= size.large %></td>
+        <td><%= link_to "削除", admin_size_path(size.id), method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= form_with model: @size, url: admin_sizes_path, method: :post do |f| %>
+  <div>新規登録 <%= f.text_field :large %></div>
+  <div><%=f.submit "登録する" %></div>
+<% end %>

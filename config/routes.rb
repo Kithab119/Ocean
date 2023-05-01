@@ -44,10 +44,10 @@ Rails.application.routes.draw do
     root to: "homes#top"
     resources :customers, only: [:index, :show, :edit, :update]
     resources :creators, only: [:show, :edit, :update]
-    resources :colors, only: [:create, :index, :edit, :update]
-    resources :sizes, only: [:create, :index, :edit, :update]
-    resources :genres, only: [:create, :index, :edit, :update]
-    resources :styles, only: [:create, :index, :edit, :update]
+    resources :colors, only: [:create, :index, :destroy]
+    resources :sizes, only: [:create, :index, :destroy]
+    resources :genres, only: [:create, :index, :destroy]
+    resources :styles, only: [:create, :index, :destroy]
     resources :orders , only: [:index, :show]
   end
 

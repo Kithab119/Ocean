@@ -1,1 +1,24 @@
 <h2>カラー</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>カラー</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @colors.each do |color| %>
+      <tr>
+        <td><%= color.id %></td>
+        <td><%= color.name %></td>
+        <td><%= link_to "削除", admin_color_path(color.id), method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= form_with model: @color, url: admin_colors_path, method: :post do |f| %>
+  <div>新規登録 <%= f.text_field :name %></div>
+  <div><%=f.submit "登録する" %></div>
+<% end %>
