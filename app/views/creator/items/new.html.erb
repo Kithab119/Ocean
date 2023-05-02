@@ -1,6 +1,6 @@
 <h2>出品</h2>
 
-<%= form_with model: @item, url: creator_items_path, method: :post do |f| %>
+<%= form_with model: @item, url: creator_items_path(@item.id), method: :post do |f| %>
   <table>
     <tr>
       <th>作品イメージ</th>

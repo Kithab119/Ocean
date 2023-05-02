@@ -1,6 +1,6 @@
 <h2>作品情報編集</h2>
 
-<%= form_with model: @item, url: creator_item_path, method: :patch do |f| %>
+<%= form_with model: @item, url: creator_item_path(@item.id), method: :patch do |f| %>
   <table>
     <tr>
       <th>作品イメージ</th>
