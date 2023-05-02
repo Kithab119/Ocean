@@ -1,0 +1,7 @@
+<h2>退会しますか？</h2>
+
+<p>退会すると今までご利用いただいた情報は閲覧できなくなりますが、<br>
+本当によろしいでしょうか？</p>
+
+<div><%= link_to "いいえ", creator_creators_path %></div>
+<div><%= link_to "はい", creator_creators_out_check_path, method: :patch, "data_confirm" => "退会します" %></div>

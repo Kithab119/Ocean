@@ -11,7 +11,7 @@ class Creator::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.save
-    redirect_to creator_item_path(@item.id)
+    redirect_to creator_items_path
   end
 
   def index
@@ -41,7 +41,7 @@ class Creator::ItemsController < ApplicationController
 
 private
   def item_params
-    params.require(:item).permit(:creator_id, :color_id, :size_id, :genre_id, :style_id, :name, :introduction, :price, :is_active)
+    params.require(:item).permit(:image, :creator_id, :color_id, :size_id, :genre_id, :style_id, :name, :introduction, :price, :is_active)
   end
 
 end
