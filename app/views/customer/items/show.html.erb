@@ -1,0 +1,37 @@
+<h2><%= @item.name %></h2>
+
+<div><%= image_tag @item.image, :size => '300x300' %></div>
+<h3>作品情報</h3>
+<div><%= @item.introduction %></div>
+<table>
+  <thead>
+    <tr>
+      <th>カラー</th>
+      <th>サイズ</th>
+      <th>ジャンル</th>
+      <th>スタイル</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @item.color.name %></td>
+      <td><%= @item.size.large %></td>
+      <td><%= @item.genre.theme %></td>
+      <td><%= @item.style.where %></td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <tr>
+    <th>価格（税抜き）</th>
+    <td><%= @item.price %></td>
+  </tr>
+  <tr>
+    <th>販売情報</th>
+    <% if @item.is_active == true %>
+      <td>販売中</td>
+    <% else %>
+      <td>未販売</td>
+    <% end %>
+  </tr>
+</table>
