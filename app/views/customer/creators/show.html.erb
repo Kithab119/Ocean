@@ -3,6 +3,32 @@
 <table>
   <tr>
     <th>プロフィール</th>
-    <td><%= @customer.profile %></td>
+    <td><%= @creator.profile %></td>
   </tr>
 </table>
+
+<% @creator.items.each do |item| %>
+  <div>
+    <%= link_to item_path(item.id) do %>
+      <%= image_tag item.image, :size => '100x100' %>
+    <% end %>
+  </div>
+  <table>
+    <tr>
+      <th>作品名</th>
+      <td><%= link_to item.name, item_path(item.id) %></td>
+    </tr>
+    <tr>
+      <th>価格（税抜き）</th>
+      <td><%= item.price %></td>
+    </tr>
+    <tr>
+      <th>販売情報</th>
+      <% if item.is_active == true %>
+        <td>販売中</td>
+      <% else %>
+        <td>未販売</td>
+      <% end %>
+    </tr>
+  </table>
+<% end %>
