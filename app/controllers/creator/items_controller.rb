@@ -10,6 +10,7 @@ class Creator::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    @item.creator_id = current_creator.id
     @item.save
     redirect_to creator_item_path(@item.id)
   end
@@ -24,6 +25,10 @@ class Creator::ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+    @colors = Color.all
+    @sizes = Size.all
+    @genres = Genre.all
+    @styles = Style.all
   end
 
   def update
@@ -41,7 +46,7 @@ class Creator::ItemsController < ApplicationController
 
 private
   def item_params
-    params.require(:item).permit(:image, :creator_id, :color_id, :size_id, :genre_id, :style_id, :name, :introduction, :price, :is_active)
+    params.require(:item).permit(:image, :color_id, :size_id, :genre_id, :style_id, :name, :introduction, :price, :is_active)
   end
 
 end

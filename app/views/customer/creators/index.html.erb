@@ -1,1 +1,18 @@
 <h2>作家一覧</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>作家名</th>
+      <th>プロフィール</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @creators.each do |creator| %>
+      <tr>
+        <td><%= link_to creator.name, creator_path(creator.id) %></td>
+        <td><%= creator.profile %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
