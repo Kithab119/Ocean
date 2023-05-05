@@ -1,5 +1,7 @@
 class Admin::SizesController < ApplicationController
 
+  before_action :authenticate_admin!
+
   def index
     @sizes = Size.all
     @size = Size.new

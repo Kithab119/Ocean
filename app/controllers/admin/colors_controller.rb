@@ -1,5 +1,7 @@
 class Admin::ColorsController < ApplicationController
 
+  before_action :authenticate_admin!
+
   def index
     @colors = Color.all
     @color = Color.new
@@ -16,8 +18,8 @@ class Admin::ColorsController < ApplicationController
     @color.destroy
     redirect_to admin_colors_path
   end
-  
-  
+
+
 private
   def color_params
     params.require(:color).permit(:name)

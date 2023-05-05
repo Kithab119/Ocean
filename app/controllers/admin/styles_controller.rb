@@ -1,5 +1,7 @@
 class Admin::StylesController < ApplicationController
 
+  before_action :authenticate_admin!
+
   def index
     @styles = Style.all
     @style = Style.new

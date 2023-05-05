@@ -1,5 +1,7 @@
 class Customer::CreatorsController < ApplicationController
 
+  before_action :authenticate_customer!
+
   def index
     @creators = Creator.all
   end

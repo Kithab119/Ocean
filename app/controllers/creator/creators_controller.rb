@@ -1,5 +1,7 @@
 class Creator::CreatorsController < ApplicationController
 
+  before_action :authenticate_creator!
+
   def show
     @creator = current_creator
   end

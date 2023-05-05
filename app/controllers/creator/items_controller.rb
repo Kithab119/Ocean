@@ -1,5 +1,7 @@
 class Creator::ItemsController < ApplicationController
 
+  before_action :authenticate_creator!
+
   def new
     @item = Item.new
     @colors = Color.all

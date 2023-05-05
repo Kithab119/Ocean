@@ -1,5 +1,7 @@
 class Admin::CreatorsController < ApplicationController
 
+  before_action :authenticate_admin!
+
   def show
     @creator = Creator.find(params[:id])
   end
