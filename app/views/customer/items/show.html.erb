@@ -35,3 +35,9 @@
     <% end %>
   </tr>
 </table>
+
+<%= form_with model: @cart_item, url: cart_items_path(@cart_item.id), method: :post do |f| %>
+  <%= f.hidden_field :customer_id, :value => current_customer.id %>
+  <%= f.hidden_field :item_id, :value => @item.id %>
+  <div><%= f.submit "カートに入れる" %></div>
+<% end %>
