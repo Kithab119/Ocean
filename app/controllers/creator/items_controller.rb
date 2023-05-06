@@ -18,7 +18,7 @@ class Creator::ItemsController < ApplicationController
   end
 
   def index
-    @items = Item.all
+    @items = current_creator.items
   end
 
   def show

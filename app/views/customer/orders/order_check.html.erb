@@ -1,0 +1,52 @@
+<h2>注文情報確認</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>イメージ</th>
+      <th>作品名</th>
+      <th>価格（税抜き）</th>
+      <th>販売情報</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cart_items.each do |cart_item| %>
+      <tr>
+        <td><%= image_tag cart_item.image, :size => '100x100' %></td>
+        <td><%= cart_item.name %></td>
+        <td><%= cart_item.price %></td>
+        <% if cart_item.is_active == true %>
+          <td>販売中</td>
+        <% else %>
+          <td>未販売</td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<table>
+  <tr>
+    <th>送料</th>
+    <td>800</td>
+  </tr>
+  <tr>
+    <th>合計金額</th>
+    <td><%= @sum + 800 %></td>
+  </tr>
+</table>
+
+<div>
+  <p>〒<%= @order.shipping_postal_code %></p>
+  <p><%= @order.shipping_address %></p>
+  <p><%= @order.shipping_name %></p>
+</div>
+
+<%= form_with model: @order, url: orders_path, method: :post do |f| %>
+  <%= f.hidden_field :shipping_postal_code, :value => @order.shipping_postal_code %>
+  <%= f.hidden_field :shipping_address, :value => @order.shipping_address %>
+  <%= f.hidden_field :shipping_name, :value => @order.shipping_name %>
+  <%= f.hidden_field :total_price, :value => (@sum + 800) %>
+  <%= f.hidden_field :payment, :value => @order.payment %>
+  <div><%= f.submit "注文確定" %></div>
+<% end %>

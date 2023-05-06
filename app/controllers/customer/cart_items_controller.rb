@@ -11,7 +11,7 @@ class Customer::CartItemsController < ApplicationController
   end
 
   def index
-    @cart_items = CartItem.all
+    @cart_items = CartItem.where(customer_id: current_customer.id)
   end
 
   def destroy
