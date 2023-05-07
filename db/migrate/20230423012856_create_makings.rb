@@ -5,7 +5,7 @@ class CreateMakings < ActiveRecord::Migration[6.1]
       t.integer :customer_id, null: false
       t.integer :creator_id, null: false
       t.string :color
-      t.integer :size
+      t.string :size
       t.string :genre
       t.string :style
       t.text :request, null: false

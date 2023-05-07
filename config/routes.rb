@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   scope module: :customer do
     root to: "homes#top"
     get "/about" => "homes#about"
-    resources :creators, only: [:index, :show]
+    resources :creators, only: [:index, :show] do
+      resources :makings, only: [:new, :create, :index, :show]
+    end
     resources :items, only: [:index, :show]
     get "/customers/out" => "customers#out"
     patch "/customers/out_check" => "customers#out_check"
@@ -28,7 +30,6 @@ Rails.application.routes.draw do
     get "orders/order_finish" => "orders#order_finish"
     resources :orders, only: [:new, :create, :index, :show]
     resources :addresses, only: [:create, :index, :edit, :update, :destroy]
-    resources :makings, only: [:new, :create, :index, :show]
   end
 
   namespace :creator do

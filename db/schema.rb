@@ -136,7 +136,7 @@ ActiveRecord::Schema.define(version: 2023_04_30_140845) do
     t.integer "customer_id", null: false
     t.integer "creator_id", null: false
     t.string "color"
-    t.integer "size"
+    t.string "size"
     t.string "genre"
     t.string "style"
     t.text "request", null: false
