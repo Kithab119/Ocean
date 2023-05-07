@@ -1,3 +1,28 @@
-<h2>注文一覧</h2>
+<h2>注文履歴一覧</h2>
 
-<
+<table>
+  <thead>
+    <tr>
+      <th>注文日</th>
+      <th>配送先住所</th>
+      <th>宛名</th>
+      <th>支払方法</th>
+      <th>注文状況</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.created_at.strftime("%Y/%m/%d") %></td>
+        <td>
+          〒<%= order.shipping_postal_code %><br>
+          <%= order.shipping_address %>
+        </td>
+        <td><%= order.shipping_name %></td>
+        <td><%= order.payment %></td>
+        <td><%= order.is_receive %></td>
+        <td><%= link_to "詳細へ", order_path(order.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

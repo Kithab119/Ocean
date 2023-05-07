@@ -1,1 +1,57 @@
 <h2>注文詳細</h2>
+
+<t3>注文内容</t3>
+<table>
+  <thead>
+    <tr>
+      <th>イメージ</th>
+      <th>作品名</th>
+      <th>作品情報</th>
+      <th>価格（税抜き）</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @order.order_details.each do |order_detail| %>
+      <tr>
+        <td><%= image_tag order_detail.item.image, :size => '100x100' %></td>
+        <td><%= order_detail.item.name %></td>
+        <td><%= order_detail.item.introduction %></td>
+        <td><%= order_detail.purchase %></td>
+        <% @sum += order_detail.purchase %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<table>
+  <tr>
+    <th>送料</th>
+    <td>800</td>
+  </tr>
+  <tr>
+    <th>合計金額</th>
+    <td><%= @sum + 800 %></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th>配送先住所</th>
+    <td>
+      〒<%= @order.shipping_postal_code %><br>
+      <%= @order.shipping_address %>
+    </td>
+  </tr>
+  <tr>
+    <th>宛名</th>
+    <td><%= @order.shipping_name %></td>
+  </tr>
+  <tr>
+    <th>支払方法</th>
+    <td><%= @order.payment %></td>
+  </tr>
+  <tr>
+    <th>注文状況</th>
+    <td><%= @order.is_receive %></td>
+  </tr>
+</table>

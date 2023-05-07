@@ -9,6 +9,7 @@ class Customer::OrdersController < ApplicationController
 
   def order_check
     @cart_items = current_customer.cart_items
+    @sum = 0
     @order = Order.new(order_params)
     if params[:order][:select_address] == "0"
       @order.shipping_postal_code = current_customer.postal_code
@@ -27,6 +28,15 @@ class Customer::OrdersController < ApplicationController
     @order.customer_id = current_customer.id
     @order.postage = 800
     @order.save
+    @cart_items = current_customer.cart_items
+    @cart_items.each do |cart_item|
+      @order_detail = OrderDetail.new
+      @order_detail.item_id = cart_item.item_id
+      @order_detail.order_id = @order.id
+      @order_detail.purchase = cart_item.item.price
+      @order_detail.save
+    end
+    @cart_items.destroy_all
     redirect_to orders_order_finish_path
   end
 
@@ -39,6 +49,7 @@ class Customer::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @sum = 0
   end
 
 

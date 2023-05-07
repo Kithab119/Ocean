@@ -12,14 +12,15 @@
   <tbody>
     <% @cart_items.each do |cart_item| %>
       <tr>
-        <td><%= image_tag cart_item.image, :size => '100x100' %></td>
-        <td><%= cart_item.name %></td>
-        <td><%= cart_item.price %></td>
-        <% if cart_item.is_active == true %>
+        <td><%= image_tag cart_item.item.image, :size => '100x100' %></td>
+        <td><%= cart_item.item.name %></td>
+        <td><%= cart_item.item.price %></td>
+        <% if cart_item.item.is_active == true %>
           <td>販売中</td>
         <% else %>
           <td>未販売</td>
         <% end %>
+        <% @sum += cart_item.item.price %>
       </tr>
     <% end %>
   </tbody>
