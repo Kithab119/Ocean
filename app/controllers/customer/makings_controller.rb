@@ -16,7 +16,7 @@ class Customer::MakingsController < ApplicationController
       @making.size = "#{params[:making][:size_y]}x#{params[:making][:size_x]}(mm)"
     end
     @making.save
-    redirect_to creator_makings_path(@making.creator_id)
+    redirect_to makings_path
   end
 
   def index

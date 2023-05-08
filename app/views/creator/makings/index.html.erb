@@ -1,1 +1,23 @@
-<h2>オーダー情報</h2>
+<h2>オーダー情報一覧</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>注文日</th>
+      <th>要望</th>
+      <th>希望価格</th>
+      <th>制作状況</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @makings.each do |making| %>
+      <tr>
+        <td><%= making.created_at.strftime("%Y/%m/%d") %></td>
+        <td><%= making.request %></td>
+        <td><%= making.price %></td>
+        <td><%= making.is_product %></td>
+        <td><%= link_to "詳細へ", making_path(making.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

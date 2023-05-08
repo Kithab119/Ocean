@@ -10,13 +10,13 @@
     </tr>
   </thead>
   <tbody>
-    <% @making.each do |making| %>
+    <% @makings.each do |making| %>
       <tr>
-        <td><%= making.created_at.strftime("%Y%m%d") %></td>
+        <td><%= making.created_at.strftime("%Y/%m/%d") %></td>
         <td><%= making.request %></td>
         <td><%= making.price %></td>
         <td><%= making.is_product %></td>
-        <td><%= link_to "詳細へ", creator_makings_path(making.id) %></td>
+        <td><%= link_to "詳細へ", making_path(making.id) %></td>
       </tr>
     <% end %>
   </tbody>

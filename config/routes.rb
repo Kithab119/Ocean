@@ -18,8 +18,9 @@ Rails.application.routes.draw do
     root to: "homes#top"
     get "/about" => "homes#about"
     resources :creators, only: [:index, :show] do
-      resources :makings, only: [:new, :create, :index, :show]
+      resources :makings, only: [:new, :create]
     end
+    resources :makings, only: [:index, :show]
     resources :items, only: [:index, :show]
     get "/customers/out" => "customers#out"
     patch "/customers/out_check" => "customers#out_check"
