@@ -1,0 +1,7 @@
+ja:
+  enums:
+    making:
+      is_product:
+        waiting: "制作待ち"
+        product: "制作中"
+        complete: "制作完了"

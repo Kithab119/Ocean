@@ -40,8 +40,7 @@ Rails.application.routes.draw do
     patch "/creators/out_check" => "creators#out_check"
     resource :creators, only: [:show, :edit, :update]
     get "/makings" => "makings#index", as: "creators_makings"
-    get "/makings/:id" => "makings#show", as: "creators_making"
-    resources :makings, only: [:edit, :update]
+    resources :makings, only: [:show, :update]
   end
 
   namespace :admin do

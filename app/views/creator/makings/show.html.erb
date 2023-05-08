@@ -1,0 +1,38 @@
+<h2>オーダー情報詳細</h2>
+
+<div>
+  <h3>制作状況</h3>
+  <%= form_with model: @making, url: creator_making_path, method: :patch  do |f| %>
+    <span><%= f.select :is_product, [["制作待ち", "waiting"], ["制作中", "product"], ["制作完了", "complete"]] %></span>
+    <span><%= f.submit "更新する" %></span>
+  <% end %>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>カラー</th>
+      <th>サイズ</th>
+      <th>ジャンル</th>
+      <th>スタイル</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @making.color %></td>
+      <td><%= @making.size %></td>
+      <td><%= @making.genre %></td>
+      <td><%= @making.style %></td>
+    </tr>
+  </tbody>
+</table>
+
+<div>
+  <h3>要望</h3>
+  <p><%= @making.request %></p>
+</div>
+
+<div>
+  <h3>希望価格</h3>
+  <p><%= @making.price %></p>
+</div>
