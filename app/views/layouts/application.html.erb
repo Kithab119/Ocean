@@ -12,8 +12,8 @@
 
   <body>
     <header>
-      <nav>
-        <% if admin_signed_in? %>
+      <% if admin_signed_in? %>
+        <nav>
           <ul>
             <li><%= link_to "作家一覧", admin_root_path %></li>
             <li><%= link_to "顧客一覧", admin_customers_path %></li>
@@ -24,7 +24,9 @@
             <li><%= link_to "注文一覧", admin_orders_path %></li>
             <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete  %></li>
           </ul>
-        <% elsif creator_signed_in? %>
+        </nav>
+      <% elsif creator_signed_in? %>
+        <nav>
           <ul>
             <li><%= link_to "Ocean", creator_root_path %></li>
           </ul>
@@ -35,7 +37,9 @@
             <li><%= link_to "オーダー情報", creator_creators_makings_path %></li>
             <li><%= link_to "ログアウト", destroy_creator_session_path, method: :delete %></li>
           </ul>
-        <% elsif customer_signed_in? %>
+        </nav>
+      <% elsif customer_signed_in? %>
+        <nav>
           <ul>
             <li><%= link_to "Ocean", root_path %></li>
           </ul>
@@ -50,7 +54,9 @@
             <li><%#= link_to "オーダー情報", creator_makings_path %></li>
             <li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></li>
           </ul>
-        <% else %>
+        </nav>
+      <% else %>
+        <nav>
           <ul>
             <li><%= link_to "Ocean", root_path %></li>
           </ul>
@@ -61,8 +67,8 @@
             <li><%= link_to "作家ログイン", new_creator_session_path %></li>
             <li><%= link_to "作家登録", new_creator_registration_path %></li>
           </ul>
-        <% end %>
-      </nav>
+        </nav>
+      <% end %>
     </header>
     <%= yield %>
   </body>
