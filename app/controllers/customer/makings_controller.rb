@@ -13,7 +13,7 @@ class Customer::MakingsController < ApplicationController
     if params[:making][:size_select] == "0"
       @making.size = "#{params[:making][:size_option1]}#{params[:making][:size_option2]}号"
     else
-      @making.size = "#{params[:making][:size_y]}x#{params[:making][:size_x]}"
+      @making.size = "#{params[:making][:size_y]}x#{params[:making][:size_x]}(mm)"
     end
     @making.save
     redirect_to creator_makings_path(@making.creator_id)
