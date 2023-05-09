@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   scope module: :customer do
     root to: "homes#top"
     get "/about" => "homes#about"
-    resources :creators, only: [:index, :show] do
+    resources :creators, only: [:index, :show, :update] do
       resources :makings, only: [:new, :create]
     end
     resources :makings, only: [:index, :show]

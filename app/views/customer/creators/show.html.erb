@@ -1,5 +1,26 @@
 <h2><%= @creator.name %></h2>
 
+<div><%#= image_tag @creator.profile_image, :size => '200x200' %></div>
+
+<%= form_with model: @creator, url: creator_path, method: :patch do |f| %>
+  <div>
+    <%= f.label :star, "評価" %>
+    <%= f.hidden_field :star, id: :review_star %>
+　</div>
+　<script>
+　  $(document).ready(function() {
+      $('#star-rating').raty({
+        score: 3, // デフォルトの評価を設定
+        path: 'images/', // 星の画像が保存されているフォルダのパス
+        half: true, // 半分の星も使用するかどうか
+        click: function(score, evt) {
+          alert('You rated this ' + score + ' stars!');
+        }
+      });
+    });
+　</script>
+<% end %>
+
 <table>
   <tr>
     <th>プロフィール</th>
