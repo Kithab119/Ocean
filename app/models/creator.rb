@@ -8,4 +8,6 @@ class Creator < ApplicationRecord
   has_many :items
   has_many :makings
 
+  has_one_attached :profile_image
+
 end
