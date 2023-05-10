@@ -4,17 +4,19 @@ class Customer::CreatorsController < ApplicationController
 
   def index
     @creators = Creator.all
+    #byebug
   end
 
   def show
     @creator = Creator.find(params[:id])
+    @review = Review.new
   end
 
-  def update
-    @creator = Creator.find(params[:id])
-    @creator.update(creator_params)
-    redirect_to creator_path(@creator.id)
-  end
+  # def update
+  #   @creator = Creator.find(params[:id])
+  #   @creator.update(creator_params)
+  #   redirect_to creator_path(@creator.id)
+  # end
 
 
 private

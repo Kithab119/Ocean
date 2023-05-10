@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     get "/about" => "homes#about"
     resources :creators, only: [:index, :show, :update] do
       resources :makings, only: [:new, :create]
+      resources :reviews, only: [:create]
     end
     resources :makings, only: [:index, :show]
     resources :items, only: [:index, :show]
