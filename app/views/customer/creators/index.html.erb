@@ -13,6 +13,20 @@
         <td><%= link_to creator.name, creator_path(creator.id) %></td>
         <td><%= creator.profile %></td>
       </tr>
+      <td>
+        <div id="star-rate<%= creator.id %>"></div>
+        <script>
+          $('#star-rate<%= creator.id %>').empty();
+          $('#star-rate<%= creator.id %>').raty({
+            size      : 36,
+            starOff   : '<%= asset_path('star-off.png') %>',
+            starOn    : '<%= asset_path('star-on.png') %>',
+            half      : false,
+            readOnly: true,
+            score: <%= creator.star %> //stars.sum / stars.count
+          });
+        </script>
+      </td>
     <% end %>
   </tbody>
 </table>
