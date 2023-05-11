@@ -14,7 +14,7 @@ class Customer::ReviewsController < ApplicationController
 
 private
   def review_params
-    params.require(:review).permit(:star)
+    params.require(:review).permit(:star, :comment)
   end
-  
+
 end

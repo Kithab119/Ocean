@@ -1,10 +1,10 @@
 <h2><%= @creator.name %></h2>
 
-<div><%#= image_tag @creator.profile_image, :size => '200x200' %></div>
+<div><%= image_tag @creator.get_profile_image(300, 300) %></div>
 
 <%= form_with model: @review, url: creator_reviews_path(creator_id: @creator.id), method: :post do |f| %>
-  <div class="form-group row" id="star">
-    <%= f.label :star,'評価 ', class:'col-md-3 col-form-label' %>
+  <div id="star">
+    <%= f.label :star, "評価" %>
     <%= f.hidden_field :star, id: :review_star %>
 　</div>
 　  <%= f.submit "評価する" %>

@@ -3,31 +3,38 @@
 <table>
   <thead>
     <tr>
+      <th>イメージ</th>
       <th>作家名</th>
       <th>プロフィール</th>
+      <th>レビュー</th>
     </tr>
   </thead>
   <tbody>
     <% @creators.each do |creator| %>
       <tr>
+        <td>
+          <%= link_to creator_path(creator.id) do %>
+            <%= image_tag creator.get_profile_image(100, 100) %>
+          <% end %>
+        </td>
         <td><%= link_to creator.name, creator_path(creator.id) %></td>
         <td><%= creator.profile %></td>
+        <td>
+          <div id="star-rate<%= creator.id %>"></div>
+          <script>
+            $('#star-rate<%= creator.id %>').empty();
+            $('#star-rate<%= creator.id %>').raty({
+              size      : 36,
+              starOff   : '<%= asset_path('star-off.png') %>',
+              starOn    : '<%= asset_path('star-on.png') %>',
+              starHalf: '<%= asset_path('star-half.png') %>',
+              half      : true,
+              readOnly: true,
+              score: <%= creator.reviews.average(:star).to_f.round(1) %>
+            });
+          </script>
+        </td>
       </tr>
-      <td>
-        <div id="star-rate<%= creator.id %>"></div>
-        <script>
-          $('#star-rate<%= creator.id %>').empty();
-          $('#star-rate<%= creator.id %>').raty({
-            size      : 36,
-            starOff   : '<%= asset_path('star-off.png') %>',
-            starOn    : '<%= asset_path('star-on.png') %>',
-            starHalf: '<%= asset_path('star-half.png') %>',
-            half      : true,
-            readOnly: true,
-            score: <%= creator.reviews.average(:star).to_f.round(1) %>
-          });
-        </script>
-      </td>
     <% end %>
   </tbody>
 </table>
