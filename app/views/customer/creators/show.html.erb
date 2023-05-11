@@ -2,23 +2,37 @@
 
 <div><%= image_tag @creator.get_profile_image(300, 300) %></div>
 
-<%= form_with model: @review, url: creator_reviews_path(creator_id: @creator.id), method: :post do |f| %>
-  <div id="star">
-    <%= f.label :star, "評価" %>
-    <%= f.hidden_field :star, id: :review_star %>
-　</div>
-　  <%= f.submit "評価する" %>
+<%= link_to new_creator_review_path(@creator.id) do %>
+  <div id="star-rate<%= @creator.id %>"></div>
   <script>
-　　$('#star').empty();
-    $('#star').raty({
-      size     : 36,
-      starOff:  '<%= asset_path('star-off.png') %>',
-      starOn : '<%= asset_path('star-on.png') %>',
-      scoreName : 'review[star]',
-      half: false
+    $('#star-rate<%= @creator.id %>').empty();
+    $('#star-rate<%= @creator.id %>').raty({
+      size      : 36,
+      starOff   : '<%= asset_path('star-off.png') %>',
+      starOn    : '<%= asset_path('star-on.png') %>',
+      starHalf: '<%= asset_path('star-half.png') %>',
+      half      : true,
+      readOnly: true,
+      score: <%= @creator.reviews.average(:star).to_f.round(1) %>
     });
   </script>
 <% end %>
+
+  <table>
+    <thead>
+      <tr>
+        <th>評価コメント</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @creator.reviews.each do |review| %>
+        <tr>
+          <td>匿名</td>
+          <td><%= review.comment %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
 <table>
   <tr>

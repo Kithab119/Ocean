@@ -1,5 +1,9 @@
 class Customer::ReviewsController < ApplicationController
 
+  def new
+    @review = Review.new
+  end
+
   def create
     @review = Review.new(review_params)
     @review.customer_id = current_customer.id
@@ -7,7 +11,7 @@ class Customer::ReviewsController < ApplicationController
     if @review.save
       redirect_to creator_path(params[:creator_id])
     else
-      redirect_to root_path
+      redirect_to creator_path(params[:creator_id])
     end
   end
 

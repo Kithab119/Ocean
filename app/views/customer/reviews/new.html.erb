@@ -1,0 +1,25 @@
+<h2>レビュー</h2>
+
+<%= form_with model: @review, url: creator_reviews_path, method: :post do |f| %>
+  <div id="star">
+    <%= f.label :star, "評価" %>
+    <%= f.hidden_field :star, id: :review_star %>
+　</div>
+  <script>
+　　$('#star').empty();
+    $('#star').raty({
+      size     : 36,
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      scoreName : 'review[star]',
+      half: false
+    });
+  </script>
+  <table>
+    <tr>
+      <th>コメントを書く</th>
+      <td><%= f.text_area :comment %></td>
+    </tr>
+  </table>
+  <%= f.submit "評価する" %>
+<% end %>
