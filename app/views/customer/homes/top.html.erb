@@ -1,3 +1,20 @@
-<h2>Welcome to Ocean</h2>
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <h2 class="text-info mt-5 mb-3">Welcome to Ocean</h2>
 
-<div><%= render 'customer/items/serch' %></div>
+      <div class="col-3"><%= render 'customer/items/serch' %></div>
+
+      <div class="col-9">
+        <% @items.each do |item| %>
+          <div>
+            <div><%= image_tag item.image, :size => '250x250' %></div>
+            <p><%= item.name %></p>
+            <p>¥<%= item.price %></p>
+            <p><%= item.is_active %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,53 +1,26 @@
-<table>
-  <thead>
-    <tr>
-      <th>作品検索</th>
-      <th>
-        <%= form_with url: items_path, method: :get do |f| %>
-          <p><%= f.text_field :word %><%= f.submit "検索" %></p>
-        <% end %>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>カラー</th>
-    </tr>
-    <% @colors.each do |color| %>
-      <tr>
-        <th></th>
-        <td><%= link_to color.name, items_path(color_id: color.id) %></td>
-      </tr>
-    <% end %>
-    <tr>
-      <th>サイズ</th>
-    </th>
-    <% @sizes.each do |size| %>
-      <tr>
-        <th></th>
-        <td><%= link_to size.large, items_path(size_id: size.id) %></td>
-      </tr>
-    <% end %>
-    </tr>
-    <tr>
-      <th>ジャンル</th>
-    <tr>
-    <% @genres.each do |genre| %>
-      <tr>
-        <th></th>
-        <td><%= link_to genre.theme, items_path(genre_id: genre.id) %></td>
-      </tr>
-    <% end %>
-    </tr>
-    <tr>
-      <th>スタイル</th>
-    </tr>
-    <% @styles.each do |style| %>
-      <tr>
-        <th></th>
-        <td><%= link_to style.where, items_path(style_id: style.id) %></td>
-      </tr>
-    <% end %>
-    </tr>
-  </tbody>
-</table>
+<div class="border">
+  <p><strong>作品検索</strong></p>
+  <%= form_with url: items_path, method: :get do |f| %>
+    <p><%= f.text_field :word %> <%= f.submit "検索", class: "btn btn-info btn-sm" %></p>
+  <% end %>
+
+  <p><strong>カラー</strong></p>
+  <% @colors.each do |color| %>
+    <p><%= link_to color.name, items_path(color_id: color.id), class: "text-info" %></p>
+  <% end %>
+
+  <p><strong>サイズ</strong></p>
+  <% @sizes.each do |size| %>
+    <p><%= link_to size.large, items_path(size_id: size.id), class: "text-info" %></p>
+  <% end %>
+
+  <p></strong>ジャンル</strong></p>
+  <% @genres.each do |genre| %>
+    <p><%= link_to genre.theme, items_path(genre_id: genre.id), class: "text-info" %></p>
+  <% end %>
+
+  <p><strong>スタイル</strong></p>
+  <% @styles.each do |style| %>
+    <p><%= link_to style.where, items_path(style_id: style.id), class: "text-info" %></p>
+  <% end %>
+</div>
