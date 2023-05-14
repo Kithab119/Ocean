@@ -2,6 +2,8 @@
 
 <div><%= image_tag @creator.get_profile_image(300, 300) %></div>
 
+<div><%= link_to "フォローする", follows_path(creator_id: @creator.id), method: :post %></div>
+
 <%= link_to new_creator_review_path(@creator.id) do %>
   <div id="star-rate<%= @creator.id %>"></div>
   <script>

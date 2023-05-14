@@ -1,0 +1,40 @@
+<h2>フォロー作家一覧</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>イメージ</th>
+      <th>作家名</th>
+      <th>プロフィール</th>
+      <th>レビュー</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @follows.each do |follow| %>
+      <tr>
+        <td>
+          <%= link_to creator_path(follow.creator_id) do %>
+            <%= image_tag follow.creator.get_profile_image(100, 100) %>
+          <% end %>
+        </td>
+        <td><%= link_to follow.creator.name, creator_path(follow.creator_id) %></td>
+        <td><%= follow.creator.profile %></td>
+        <td>
+          <div id="star-rate<%= follow.creator_id %>"></div>
+          <script>
+            $('#star-rate<%= follow.creator_id %>').empty();
+            $('#star-rate<%= follow.creator_id %>').raty({
+              size      : 36,
+              starOff   : '<%= asset_path('star-off.png') %>',
+              starOn    : '<%= asset_path('star-on.png') %>',
+              starHalf: '<%= asset_path('star-half.png') %>',
+              half      : true,
+              readOnly: true,
+              score: <%= follow.creator.reviews.average(:star).to_f.round(1) %>
+            });
+          </script>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

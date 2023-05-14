@@ -10,5 +10,6 @@ class Customer < ApplicationRecord
   has_many :addresses, dependent: :destroy
   has_many :makings
   has_many :reviews
+  has_many :follows
 
 end
