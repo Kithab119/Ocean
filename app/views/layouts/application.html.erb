@@ -67,6 +67,7 @@
             <li class="nav-item ml-3"><%= link_to "新規登録", new_customer_registration_path, class: "nav-link btn btn-light" %></li>
             <li class="nav-item ml-3"><%= link_to "作家ログイン", new_creator_session_path, class: "nav-link btn btn-light" %></li>
             <li class="nav-item ml-3"><%= link_to "作家登録", new_creator_registration_path, class: "nav-link btn btn-light" %></li>
+            <li class="nav-item ml-3"><%= link_to "ゲストログイン", customer_guest_sign_in_path, method: :post, class: "nav-link btn btn-info" %></li>
           </ul>
         </nav>
       <% end %>

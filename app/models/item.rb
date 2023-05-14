@@ -10,7 +10,7 @@ class Item < ApplicationRecord
   has_many :cart_items
   has_many :order_details
 
-  def Item.looks(word)
+  def self.looks(word)
     return Item.all unless word
     Item.where('name LIKE ?', "%#{word}%")
   end
