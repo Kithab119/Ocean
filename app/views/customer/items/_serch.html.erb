@@ -1,23 +1,29 @@
 <div class="border">
   <p><strong>作品検索</strong></p>
-  <%= form_with url: items_path, method: :get do |f| %>
-    <p><%= f.text_field :word %> <%= f.submit "検索", class: "btn btn-info btn-sm" %></p>
-  <% end %>
+  <div class="mb-5">
+    <%= form_with url: items_path, method: :get do |f| %>
+      <span><%= f.text_field :word %> <%= f.submit "検索", class: "btn btn-info btn-sm" %></spanp>
+    <% end %>
+  </div>
 
   <p><strong>カラー</strong></p>
-  <% @colors.each do |color| %>
-    <p><%= link_to color.name, items_path(color_id: color.id), class: "text-info" %></p>
-  <% end %>
+  <div class="mx-auto mb-3">
+    <% @colors.each do |color| %>
+      <span><%= link_to color.name, items_path(color_id: color.id), class: "text-info mx-2" %></span>
+    <% end %>
+  </div>
 
   <p><strong>サイズ</strong></p>
   <% @sizes.each do |size| %>
     <p><%= link_to size.large, items_path(size_id: size.id), class: "text-info" %></p>
   <% end %>
 
-  <p></strong>ジャンル</strong></p>
-  <% @genres.each do |genre| %>
-    <p><%= link_to genre.theme, items_path(genre_id: genre.id), class: "text-info" %></p>
-  <% end %>
+  <p><strong>ジャンル</strong></p>
+  <div class="mx-auto w-50">
+    <% @genres.each do |genre| %>
+      <p><%= link_to genre.theme, items_path(genre_id: genre.id), class: "text-info mx-5" %></p>
+    <% end %>
+  </div>
 
   <p><strong>スタイル</strong></p>
   <% @styles.each do |style| %>

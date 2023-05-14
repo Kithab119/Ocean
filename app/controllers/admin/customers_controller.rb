@@ -3,7 +3,7 @@ class Admin::CustomersController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @customers = Customer.where.not(email: 'guest@example.com')
+    @customers = Customer.where.not(email: "guest@example.com")
   end
 
   def show
