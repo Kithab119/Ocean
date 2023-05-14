@@ -33,7 +33,7 @@ class Customer::AddressesController < ApplicationController
 
 private
   def address_params
-    params.require(:address).permit(:shipping_postal_code, :shipping_address, :shipping_name)
+    params.require(:address).permit(:postal_code, :address, :name)
   end
 
 end

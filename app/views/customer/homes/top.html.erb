@@ -8,10 +8,18 @@
       <div class="col-9">
         <% @items.each do |item| %>
           <div>
-            <div><%= image_tag item.image, :size => '250x250' %></div>
-            <p><%= item.name %></p>
+            <div>
+              <%= link_to item_path(item.id) do %>
+                <%= image_tag item.image, :size => '250x250' %>
+              <% end %>
+            </div>
+            <p><%= link_to item.name, item_path(item.id) %></p>
             <p>¥<%= item.price %></p>
-            <p><%= item.is_active %></p>
+            <% if item.is_active == true %>
+              <p>販売中</p>
+            <% else %>
+              <p>未販売</p>
+            <% end %>
           </div>
         <% end %>
       </div>

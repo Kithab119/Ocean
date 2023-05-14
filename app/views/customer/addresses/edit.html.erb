@@ -1,19 +1,20 @@
-<h2>配送先編集</h2>
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <h2 class="mt-5 mb-5">配送先編集</h2>
 
-<%= form_with model: @address, url: address_path(@address.id), method: :patch do |f| %>
-  <table>
-    <tr>
-      <th>郵便番号</th>
-      <td><%= f.text_field :shipping_postal_code %></td>
-    </tr>
-    <tr>
-      <th>住所</th>
-      <td><%= f.text_field :shipping_address %></td>
-    </tr>
-    <tr>
-      <th>宛名</th>
-      <td><%= f.text_field :shipping_name %></td>
-    </tr>
-  </table>
-  <div><%= f.submit "更新する" %></div>
-<% end %>
+      <%= form_with model: @address, url: address_path(@address.id), method: :patch do |f| %>
+        <div class="mb-3">
+          郵便番号（ハイフンなし）　<%= f.text_field :postal_code %>
+        </div>
+        <div class="mb-3">
+          住所　<%= f.text_field :address %>
+        </div>
+        <div class="mb-3">
+          宛名　<%= f.text_field :name %>
+        </div>
+        <div><%= f.submit "更新する", class: "btn btn-outline-info" %></div>
+      <% end %>
+    </div>
+  </div>
+</div>
