@@ -1,32 +1,34 @@
 <div class="border">
-  <p><strong>作品検索</strong></p>
-  <div class="mb-5">
-    <%= form_with url: items_path, method: :get do |f| %>
-      <span><%= f.text_field :word %> <%= f.submit "検索", class: "btn btn-info btn-sm" %></spanp>
-    <% end %>
-  </div>
+  <p class="text-center mt-2"><strong>作品検索</strong></p>
+  <%= form_with url: items_path, method: :get do |f| %>
+    <div class="ml-2"><%= f.text_field :word %> <%= f.submit "検索", class: "btn btn-info btn-sm" %></div>
+  <% end %>
 
-  <p><strong>カラー</strong></p>
-  <div class="mx-auto mb-3">
+  <p class="text-center mt-5"><strong>カラー</strong></p>
+  <div class="mx-auto w-75">
     <% @colors.each do |color| %>
       <span><%= link_to color.name, items_path(color_id: color.id), class: "text-info mx-2" %></span>
     <% end %>
   </div>
 
-  <p><strong>サイズ</strong></p>
-  <% @sizes.each do |size| %>
-    <p><%= link_to size.large, items_path(size_id: size.id), class: "text-info" %></p>
-  <% end %>
-
-  <p><strong>ジャンル</strong></p>
-  <div class="mx-auto w-50">
-    <% @genres.each do |genre| %>
-      <p><%= link_to genre.theme, items_path(genre_id: genre.id), class: "text-info mx-5" %></p>
+  <p class="text-center mt-5"><strong>サイズ</strong></p>
+  <div class="mx-auto w-75">
+    <% @sizes.each do |size| %>
+      <span><%= link_to size.large, items_path(size_id: size.id), class: "text-info mx-2" %></span>
     <% end %>
   </div>
 
-  <p><strong>スタイル</strong></p>
-  <% @styles.each do |style| %>
-    <p><%= link_to style.where, items_path(style_id: style.id), class: "text-info" %></p>
-  <% end %>
+  <p class="text-center mt-5"><strong>ジャンル</strong></p>
+  <div class="mx-auto w-75">
+    <% @genres.each do |genre| %>
+      <p class="text-center"><%= link_to genre.theme, items_path(genre_id: genre.id), class: "text-info mx-2" %></p>
+    <% end %>
+  </div>
+
+  <p class="text-center mt-5"><strong>スタイル</strong></p>
+  <div class="mx-auto w-75">
+    <% @styles.each do |style| %>
+      <p class="text-center"><%= link_to style.where, items_path(style_id: style.id), class: "text-info mx-2" %></p>
+    <% end %>
+  </div>
 </div>

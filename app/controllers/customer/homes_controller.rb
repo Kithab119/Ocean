@@ -1,7 +1,7 @@
 class Customer::HomesController < ApplicationController
 
   def top
-    @items = Item.all
+    @items = Item.all.first(6)
     @creators = Creator.all
     @colors = Color.all
     @sizes = Size.all
