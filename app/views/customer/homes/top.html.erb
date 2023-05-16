@@ -12,11 +12,11 @@
               <% end %>
               <table>
                 <tr>
-                  <th>作品名</th>
+                  <th class="font-weight-lighter">作品名</th>
                   <td>「<strong><%= link_to item.name, item_path(item.id), class: "text-info" %></strong>」</td>
                 </tr>
                 <tr>
-                  <th>価格</th>
+                  <th class="font-weight-lighter">価格</th>
                   <td><strong>¥<%= (item.price * 1.1).floor.to_s(:delimited) %></strong></td>
                 </tr>
                 <tr>

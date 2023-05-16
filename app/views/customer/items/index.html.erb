@@ -1,36 +1,37 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h2 class="text-center mt-5 mb-3">作品一覧</h2>
-
+      <h2 class="text-info mt-5 mb-3">作品一覧</h2>
       <div class="row">
         <div class="col-3"><%= render 'customer/items/serch' %></div>
         <div class="col-9 row">
           <% @items.each do |item| %>
-            <div class="col-4 h-50 mb-3 text-center">
+            <div class="col-4 h-50 mb-3">
               <%= link_to item_path(item.id) do %>
-                <%= image_tag item.image, class: "mw-100 mh-100" %>
+                <%= image_tag item.image, class: "mw-100 mh-100 mb-3" %>
               <% end %>
-              <table class="mx-auto">
+              <table>
                 <tr>
-                  <th>作品名</th>
-                  <td><%= link_to item.name, item_path(item.id) %></td>
+                  <th class="font-weight-lighter">作品名</th>
+                  <td>「<strong><%= link_to item.name, item_path(item.id), class: "text-info" %></strong>」</td>
                 </tr>
                 <tr>
-                  <th>価格（税抜き）</th>
-                  <td><%= item.price %></td>
+                  <th class="font-weight-lighter">価格</th>
+                  <td><strong>¥<%= (item.price * 1.1).floor.to_s(:delimited) %></strong></td>
                 </tr>
                 <tr>
-                  <th>販売情報</th>
                   <% if item.is_active == true %>
-                    <td>販売中</td>
+                    <th class="text-info"><strong>販売中</strong></td>
                   <% else %>
-                    <td>未販売</td>
+                    <th class="text-danger"><strong>未販売</strong></td>
                   <% end %>
                 </tr>
               </table>
             </div>
           <% end %>
+          <div class="mx-auto">
+            <%= paginate @items %>
+          </div>
         </div>
       </div>
     </div>

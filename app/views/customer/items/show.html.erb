@@ -1,43 +1,46 @@
-<h2><%= @item.name %></h2>
-
-<div><%= image_tag @item.image, :size => '300x300' %></div>
-<h3>作品情報</h3>
-<div><%= @item.introduction %></div>
-<table>
-  <thead>
-    <tr>
-      <th>カラー</th>
-      <th>サイズ</th>
-      <th>ジャンル</th>
-      <th>スタイル</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= @item.color.name %></td>
-      <td><%= @item.size.large %></td>
-      <td><%= @item.genre.theme %></td>
-      <td><%= @item.style.where %></td>
-    </tr>
-  </tbody>
-</table>
-<table>
-  <tr>
-    <th>価格（税抜き）</th>
-    <td><%= @item.price %></td>
-  </tr>
-  <tr>
-    <th>販売情報</th>
-    <% if @item.is_active == true %>
-      <td>販売中</td>
-    <% else %>
-      <td>未販売</td>
-    <% end %>
-  </tr>
-</table>
-
-<%= form_with model: @cart_item, url: cart_items_path(@cart_item.id), method: :post do |f| %>
-  <%= f.hidden_field :customer_id, :value => current_customer.id %>
-  <%= f.hidden_field :item_id, :value => @item.id %>
-  <div><%= f.submit "カートに入れる" %></div>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2 class="text-center text-info mt-5 mb-3"><strong>「<%= @item.name %>」</strong></h2>
+      <div class="text-center">
+        <div><%= image_tag @item.image, :size => '300x300' %></div>
+        <h3 class="text-info mt-5 mb-3">作品情報</h3>
+        <p class="mb-5"><strong><%= @item.introduction %></strong></p>
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="font-weight-lighter">カラー</th>
+              <th class="font-weight-lighter">サイズ</th>
+              <th class="font-weight-lighter">ジャンル</th>
+              <th class="font-weight-lighter">スタイル</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-info"><strong><%= @item.color.name %></strong></td>
+              <td class="text-info"><strong><%= @item.size.large %></strong></td>
+              <td class="text-info"><strong><%= @item.genre.theme %></strong></td>
+              <td class="text-info"><strong><%= @item.style.where %></strong></td>
+            </tr>
+          </tbody>
+        </table>
+        <table>
+          <tr>
+            <th>価格（税抜き）</th>
+            <td><%= @item.price %></td>
+          </tr>
+          <tr>
+            <th>販売情報</th>
+            <% if @item.is_active == true %>
+              <td>販売中</td>
+            <% else %>
+              <td>未販売</td>
+            <% end %>
+          </tr>
+        </table>
+        <%= form_with model: @cart_item, url: cart_items_path(@cart_item.id), method: :post do |f| %>
+          <%= f.hidden_field :customer_id, :value => current_customer.id %>
+          <%= f.hidden_field :item_id, :value => @item.id %>
+          <div class="text-center"><%= f.submit "カートに入れる", class: "btn btn-outline-info" %></div>
+        <% end %>
+      </div>
