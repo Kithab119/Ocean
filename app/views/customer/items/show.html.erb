@@ -26,15 +26,14 @@
         </table>
         <table>
           <tr>
-            <th>価格（税抜き）</th>
-            <td><%= @item.price %></td>
+            <th class="font-weight-lighter">価格</th>
+            <td><strong>¥<%= (@item.price * 1.1).floor.to_s(:delimited) %></strong></td>
           </tr>
           <tr>
-            <th>販売情報</th>
             <% if @item.is_active == true %>
-              <td>販売中</td>
+              <td class="text-info"><strong>販売中</strong></td>
             <% else %>
-              <td>未販売</td>
+              <td class="text-danger"><strong>未販売</strong></td>
             <% end %>
           </tr>
         </table>

@@ -63,3 +63,9 @@ gem 'enum_help'
 gem 'image_processing'
 
 gem 'kaminari','~> 1.2.1'
+
+gem 'gmaps4rails'
+gem 'geocoder'
+
+gem 'cocoon'
+gem "jquery-rails"

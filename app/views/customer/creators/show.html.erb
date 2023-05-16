@@ -1,72 +1,96 @@
-<h2><%= @creator.name %></h2>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2 class="text-info mt-5 mb-3"><%= @creator.name %></h2>
+      <div class="row">
+        <div class="col-3">
+          <div class="mw-100 mh-100"><%= image_tag @creator.get_profile_image(300, 300) %></div>
+          <div><%= link_to "フォローする", follows_path(creator_id: @creator.id), method: :post %></div>
+          <%= link_to new_creator_review_path(@creator.id) do %>
+            <div id="star-rate<%= @creator.id %>"></div>
+            <script>
+              $('#star-rate<%= @creator.id %>').empty();
+              $('#star-rate<%= @creator.id %>').raty({
+                size      : 36,
+                starOff   : '<%= asset_path('star-off.png') %>',
+                starOn    : '<%= asset_path('star-on.png') %>',
+                starHalf: '<%= asset_path('star-half.png') %>',
+                half      : true,
+                readOnly: true,
+                score: <%= @creator.reviews.average(:star).to_f.round(1) %>
+              });
+            </script>
+          <% end %>
+          <table>
+            <thead>
+              <tr>
+                <th>評価コメント</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @creator.reviews.each do |review| %>
+                <tr>
+                  <td>匿名</td>
+                  <td><%= review.comment %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <table>
+            <tr>
+              <th>プロフィール</th>
+              <td><%= @creator.profile %></td>
+            </tr>
+          </table>
+        </div>
 
-<div><%= image_tag @creator.get_profile_image(300, 300) %></div>
-
-<div><%= link_to "フォローする", follows_path(creator_id: @creator.id), method: :post %></div>
-
-<%= link_to new_creator_review_path(@creator.id) do %>
-  <div id="star-rate<%= @creator.id %>"></div>
-  <script>
-    $('#star-rate<%= @creator.id %>').empty();
-    $('#star-rate<%= @creator.id %>').raty({
-      size      : 36,
-      starOff   : '<%= asset_path('star-off.png') %>',
-      starOn    : '<%= asset_path('star-on.png') %>',
-      starHalf: '<%= asset_path('star-half.png') %>',
-      half      : true,
-      readOnly: true,
-      score: <%= @creator.reviews.average(:star).to_f.round(1) %>
-    });
-  </script>
-<% end %>
-
-  <table>
-    <thead>
-      <tr>
-        <th>評価コメント</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @creator.reviews.each do |review| %>
-        <tr>
-          <td>匿名</td>
-          <td><%= review.comment %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-<table>
-  <tr>
-    <th>プロフィール</th>
-    <td><%= @creator.profile %></td>
-  </tr>
-</table>
-
-<% @creator.items.each do |item| %>
-  <div>
-    <%= link_to item_path(item.id) do %>
-      <%= image_tag item.image, :size => '100x100' %>
-    <% end %>
+        <div class="col-9 row">
+          <% @creator.items.each do |item| %>
+            <div class="col-4 h-50 mb-3">
+              <%= link_to item_path(item.id) do %>
+                <%= image_tag item.image, :size => '100x100' %>
+              <% end %>
+            </div>
+            <table>
+              <tr>
+                <th>作品名</th>
+                <td><%= link_to item.name, item_path(item.id) %></td>
+              </tr>
+              <tr>
+                <th>価格（税抜き）</th>
+                <td><%= item.price %></td>
+              </tr>
+              <tr>
+                <th>販売情報</th>
+                <% if item.is_active == true %>
+                  <td>販売中</td>
+                <% else %>
+                  <td>未販売</td>
+                <% end %>
+              </tr>
+            </table>
+          <% end %>
+        </div>
+      </div>
+      <div><%= link_to "オーダーを送る", new_creator_making_path(@creator.id) %></div>
+    </div>
   </div>
-  <table>
-    <tr>
-      <th>作品名</th>
-      <td><%= link_to item.name, item_path(item.id) %></td>
-    </tr>
-    <tr>
-      <th>価格（税抜き）</th>
-      <td><%= item.price %></td>
-    </tr>
-    <tr>
-      <th>販売情報</th>
-      <% if item.is_active == true %>
-        <td>販売中</td>
-      <% else %>
-        <td>未販売</td>
-      <% end %>
-    </tr>
-  </table>
-<% end %>
+</div>
 
-<div><%= link_to "オーダーを送る", new_creator_making_path(@creator.id) %></div>
+
+<h3>釣行場所</h3>
+<div class="map">
+  <div id="map">
+  </div>
+</div>
+
+<div type="text/javascript">
+  <script>
+    function initMap(){
+      let map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: <%= @post.latitude %>, lng: <%= @post.longitude %> },
+      zoom: 15
+      });
+    }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
