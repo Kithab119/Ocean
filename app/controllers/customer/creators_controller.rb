@@ -8,6 +8,8 @@ class Customer::CreatorsController < ApplicationController
 
   def show
     @creator = Creator.find(params[:id])
+    @map = @creator.maps.last
+    #byebug
   end
 
 end

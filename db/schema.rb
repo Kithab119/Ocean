@@ -154,6 +154,7 @@ ActiveRecord::Schema.define(version: 2023_05_16_141747) do
   end
 
   create_table "maps", force: :cascade do |t|
+    t.integer "creator_id"
     t.string "address"
     t.float "latitude"
     t.float "longitude"
