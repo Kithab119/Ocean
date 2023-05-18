@@ -1,7 +1,7 @@
-<h2>退会しますか？</h2>
+<h2 class="text-center text-danger mt-5 mb-3">退会しますか？</h2>
 
-<p>退会すると今までご利用いただいた情報は閲覧できなくなりますが、<br>
-本当によろしいでしょうか？</p>
+<p class="text-center"><strong>退会すると今までご利用いただいた情報は閲覧できなくなりますが、<br>
+本当によろしいでしょうか？</strong></p>
 
-<div><%= link_to "いいえ", customers_path %></div>
-<div><%= link_to "はい", customers_out_check_path, method: :patch, "data_confirm" => "退会します" %></div>
+<div class="text-center mb-5"><%= link_to "いいえ", customers_path, class: "btn btn-outline-info" %></div>
+<div class="text-center"><%= link_to "はい", customers_out_check_path, method: :patch, "data_confirm" => "退会します", class: "btn btn-danger" %></div>

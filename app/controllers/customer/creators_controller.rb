@@ -8,8 +8,8 @@ class Customer::CreatorsController < ApplicationController
 
   def show
     @creator = Creator.find(params[:id])
+    @items = @creator.items.page(params[:page])
     @map = @creator.maps.last
-    #byebug
   end
 
 end
