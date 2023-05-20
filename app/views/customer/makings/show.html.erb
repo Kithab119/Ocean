@@ -1,38 +1,28 @@
-<h2>オーダー情報詳細</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="text-center text-info mt-5 mb-5">オーダー情報詳細</h2>
+    </div>
 
-<div>
-  <h3>制作状況</h3>
-  <p><%= @making.is_product %></p>
+    <div class="col-12">
+      <div class="border text-center w-25 mx-auto mb-5">
+        <p class="mt-2">制作状況</p>
+        <h4 class="text-info"><%= @making.is_product_i18n %></h4>
+      </div>
+
+      <div class="border w-50 mx-auto">
+        <h4 class="text-info mt-2 mx-2 mb-3">-request-</h4>
+        <p class="mx-3 mb-5"><strong><%= @making.request %></strong></p>
+        <p class="ml-2">カラー　　　<span class="text-info"><strong><%= @making.color %></strong></span></p>
+        <p class="ml-2">サイズ　　　<span class="text-info"><strong><%= @making.size %></strong></span></p>
+        <p class="ml-2">ジャンル　　<span class="text-info"><strong><%= @making.genre %></strong></span></p>
+        <p class="ml-2">スタイル　　<span class="text-info"><strong><%= @making.style %></strong></span></p>
+        <p class="border-bottom w-50 mt-5 ml-2"><span class="text-info">希望価格（税抜き）　　　　　</span><span><strong>¥<%= @making.price.to_s(:delimited) %></strong></span></p>
+      </div>
+
+      <% if @making.is_product == 1 %>
+        <div><%= link_to "注文する", new_order_path %></div>
+      <% end %>
+    </div>
+  </div>
 </div>
-
-<table>
-  <thead>
-    <tr>
-      <th>カラー</th>
-      <th>サイズ</th>
-      <th>ジャンル</th>
-      <th>スタイル</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= @making.color %></td>
-      <td><%= @making.size %></td>
-      <td><%= @making.genre %></td>
-      <td><%= @making.style %></td>
-    </tr>
-  </tbody>
-</table>
-
-<div>
-  <h3>要望</h3>
-  <p><%= @making.request %></p>
-</div>
-
-<div>
-  <h3>希望価格</h3>
-  <p><%= @making.price %></p>
-</div>
-
-
-<div><%= link_to "注文する", new_order_path %></div>

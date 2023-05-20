@@ -1,28 +1,31 @@
-<h2>注文履歴一覧</h2>
+<div class="container">
+  <h2 class="text-info ml-3 mt-5 mb-3">注文履歴一覧</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>注文日</th>
-      <th>配送先住所</th>
-      <th>宛名</th>
-      <th>支払方法</th>
-      <th>注文状況</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @orders.each do |order| %>
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= order.created_at.strftime("%Y/%m/%d") %></td>
-        <td>
-          〒<%= order.shipping_postal_code %><br>
-          <%= order.shipping_address %>
-        </td>
-        <td><%= order.shipping_name %></td>
-        <td><%= order.payment %></td>
-        <td><%= order.is_receive %></td>
-        <td><%= link_to "詳細へ", order_path(order.id) %></td>
+        <th class="text-info font-weight-lighter">注文日</th>
+        <th class="text-info font-weight-lighter">配送先住所</th>
+        <th class="text-info font-weight-lighter">宛名</th>
+        <th class="text-info font-weight-lighter">支払方法</th>
+        <th class="text-info font-weight-lighter">注文状況</th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><strong><%= order.created_at.strftime("%Y/%m/%d") %></strong></td>
+          <td>
+            <strong>〒<%= order.shipping_postal_code %><br>
+            <%= order.shipping_address %></strong>
+          </td>
+          <td><strong><%= order.shipping_name %></strong></td>
+          <td><strong><%= order.payment_i18n %></strong></td>
+          <td><strong><%= order.is_receive_i18n %></strong></td>
+          <td><%= link_to "詳細へ", order_path(order.id), class: "btn btn-outline-info" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

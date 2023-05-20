@@ -1,39 +1,55 @@
-<h2>オーダー情報入力</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="text-center text-info mt-5 mb-3">オーダー情報入力</h2>
+    </div>
 
-<%= form_with model: @making, url: creator_makings_path, method: :post do |f| %>
-  <table>
-    <tr>
-      <th>カラー</th>
-      <td><%= f.select :color, options_for_select(["赤", "オレンジ", "黄", "緑", "青", "紫", "ピンク", "茶", "白", "グレー", "黒"]) %></td>
-    </tr>
-    <tr>
-      <th>サイズ</th>
-      <td>
-        <%= f.radio_button :size_select, "0" %>
-          <%= f.select :size_option1, options_for_select(["F", "P", "M", "S"]) %>サイズ
-          <%= f.select :size_option2, options_for_select(["0", "1", "SM", "2", "3", "4", "5", "6", "8", "10", "12", "15", "20", "25", "30", "40", "50", "60", "80", "100", "120", "130", "150", "200", "300", "500"]) %>号
-      </td>
-      <td>
-        <%= f.radio_button :size_select, "1" %>
-          (縦)<%= f.text_field :size_y %>mm x (横)<%= f.text_field :size_x %>mm
-      </td>
-    </tr>
-    <tr>
-      <th>ジャンル</th>
-      <td><%= f.select :genre, options_for_select(["風景画", "静物画", "肖像画", "博物画", "デフォルメ", "かっこいい", "かわいい", "シンプル", "アカデミック"]) %></td>
-    </tr>
-    <tr>
-      <th>スタイル</th>
-      <td><%= f.select :style, options_for_select(["玄関", "寝室", "テレビ台", "リビング", "階段", "廊下"]) %></td>
-    </tr>
-    <tr>
-      <th>要望</th>
-      <td><%= f.text_area :request %></td>
-    </tr>
-    <tr>
-      <th>希望価格</th>
-      <td><%= f.text_field :price %></td>
-    </tr>
-  </table>
-  <div><%= f.submit "オーダーを確定する" %></div>
-<% end %>
+    <div class="col-12">
+      <%= form_with model: @making, url: creator_makings_path, method: :post do |f| %>
+
+        <div class="w-75 mx-auto mb-5">
+          <span class="text-info"><strong>カラー</strong>　　　</span>
+          <span><%= f.select :color, options_for_select(["赤", "オレンジ", "黄", "緑", "青", "紫", "ピンク", "茶", "白", "グレー", "黒"]) %></span>
+        </div>
+
+        <div class="w-75 mx-auto mb-5">
+          <span class="text-info"><strong>サイズ</strong></span>
+          <br>
+          <span>
+            <span>　　　　　　</span><%= f.radio_button :size_select, "0" %>
+              <%= f.select :size_option1, options_for_select(["F", "P", "M", "S"]) %>サイズ
+              <%= f.select :size_option2, options_for_select(["0", "1", "SM", "2", "3", "4", "5", "6", "8", "10", "12", "15", "20", "25", "30", "40", "50", "60", "80", "100", "120", "130", "150", "200", "300", "500"]) %>号
+          </span>
+          <br></br>
+          <span>
+            <span>　　　　　　</span><%= f.radio_button :size_select, "1" %>
+              (縦)<%= f.text_field :size_y %>mm x (横)<%= f.text_field :size_x %>mm
+          </span>
+        </div>
+
+        <div class="w-75 mx-auto mb-5">
+          <span class="text-info"><strong>ジャンル</strong>　　</span>
+          <span><%= f.select :genre, options_for_select(["風景画", "静物画", "肖像画", "博物画", "デフォルメ", "かっこいい", "かわいい", "シンプル", "アカデミック"]) %></span>
+        </div>
+
+        <div class="w-75 mx-auto mb-5">
+          <span class="text-info"><strong>スタイル</strong>　　</span>
+          <span><%= f.select :style, options_for_select(["玄関", "寝室", "テレビ台", "リビング", "階段", "廊下"]) %></span>
+        </div>
+
+        <div class="w-75 mx-auto mb-5">
+          <span class="text-info"><strong>要望</strong>　　　　</span>
+          <span><%= f.text_area :request %></span>
+        </div>
+
+        <div class="w-75 mx-auto">
+          <span class="text-info"><strong>希望価格</strong>　　</span>
+          <span><%= f.text_field :price %></span>
+        </div>
+
+        <div class="text-center mt-5"><%= f.submit "オーダーを確定する", class: "btn btn-outline-info" %></div>
+
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,20 @@
 ja:
   enums:
+    order:
+      payment:
+        credit_card: "クレジットカード"
+        transfer: "銀行振込"
+
+      is_receive:
+        waiting_payment: "入金待ち"
+        check_payment: "入金確認"
+        preparation: "発送準備中"
+        shipping: "発送済み"
+
     making:
       is_product:
-        waiting: "制作待ち"
+        confirm: "承認待ち"
+        approved: "承認済み"
+        product_waiting: "制作待ち"
         product: "制作中"
         complete: "制作完了"
