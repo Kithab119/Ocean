@@ -15,8 +15,7 @@ class Customer::MakingsController < ApplicationController
     else
       @making.size = "#{params[:making][:size_y]}x#{params[:making][:size_x]}(mm)"
     end
-    byebug
-    @making.save!
+    @making.save
     redirect_to makings_path
   end
 
