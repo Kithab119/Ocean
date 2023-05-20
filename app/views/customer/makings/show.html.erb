@@ -20,8 +20,8 @@
         <p class="border-bottom w-50 mt-5 ml-2"><span class="text-info">希望価格（税抜き）　　　　　</span><span><strong>¥<%= @making.price.to_s(:delimited) %></strong></span></p>
       </div>
 
-      <% if @making.is_product == 1 %>
-        <div><%= link_to "注文する", new_order_path %></div>
+      <% if @making.is_product == "approved" %>
+        <div><%= link_to "注文する", new_order_path, class: "btn btn-outline-info" %></div>
       <% end %>
     </div>
   </div>

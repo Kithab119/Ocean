@@ -142,6 +142,7 @@ ActiveRecord::Schema.define(version: 2023_05_16_141747) do
   create_table "makings", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.integer "creator_id", null: false
+    t.integer "order_id", null: false
     t.string "color"
     t.string "size"
     t.string "genre"
