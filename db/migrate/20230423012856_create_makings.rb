@@ -4,7 +4,7 @@ class CreateMakings < ActiveRecord::Migration[6.1]
     create_table :makings do |t|
       t.integer :customer_id, null: false
       t.integer :creator_id, null: false
-      t.integer :order_id, null: false
+      t.integer :order_id
       t.string :color
       t.string :size
       t.string :genre

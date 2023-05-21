@@ -3,7 +3,7 @@
 <div>
   <h3>制作状況</h3>
   <%= form_with model: @making, url: creator_making_path, method: :patch  do |f| %>
-    <span><%= f.select :is_product, [["制作待ち", "waiting"], ["制作中", "product"], ["制作完了", "complete"]] %></span>
+    <span><%= f.select :is_product, [["承認待ち", "confirm"], ["承認済み", "approved"], ["制作待ち", "waiting"], ["制作中", "product"], ["制作完了", "complete"]] %></span>
     <span><%= f.submit "更新する" %></span>
   <% end %>
 </div>

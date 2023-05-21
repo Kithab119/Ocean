@@ -4,25 +4,23 @@
       <h2 class="text-center text-info mt-5 mb-5">注文情報入力</h2>
     </div>
 
-    <%= form_with model: @order, url: orders_order_check_path, method: :post do |f| %>
-      <div class="col-6">
-        <div>
+    <div class="col-12">
+      <%= form_with model: @order, url: orders_order_check_path, method: :post do |f| %>
+        <div class="w-50 mx-auto mb-5">
           <h4>支払い方法</h4>
           <div>
             <%= f.radio_button :payment, "credit_card" %> <%= f.label :payment_credit_card, "クレジットカード" %><br>
             <%= f.radio_button :payment, "transfer" %> <%= f.label :payment_transfer, "銀行振込" %>
           </div>
         </div>
-      </div>
 
-      <div class="col-6">
-        <div>
+        <div class="w-50 mx-auto">
           <h4>お届け先</h4>
-          <div>
+          <div class="border">
             <%= f.radio_button :select_address, "0" %> <%= f.label :select_address_0, "ご自身の住所" %>
-            <p>〒<%= current_customer.postal_code %><br>
-              <%= current_customer.address %><br>
-              <%= current_customer.last_name %> <%= current_customer.first_name %></p>
+            <p class="ml-3">郵便番号　　 〒<%= current_customer.postal_code %><br>
+              住所　　　　 <%= current_customer.address %><br>
+              宛名　　　　 <%= current_customer.last_name %> <%= current_customer.first_name %></p>
           </div>
           <div>
             <%= f.radio_button :select_address, "1" %> <%= f.label :select_address_1, "登録済み住所から選択" %>
@@ -46,8 +44,8 @@
             </table>
           </div>
         </div>
-      </div>
-      <div><%= f.submit "確認画面に進む" %></div>
-    <% end %>
+        <div class="text-center mt-5"><%= f.submit "確認画面に進む", class: "btn btn-outline-info" %></div>
+      <% end %>
+    </div>
   </div>
 </div>

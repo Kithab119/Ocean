@@ -11,7 +11,7 @@
       </div>
 
       <div class="border w-50 mx-auto">
-        <h4 class="text-info mt-2 mx-2 mb-3">-request-</h4>
+        <h4 class="text-info text-center mt-2 mx-2 mb-3">-request-</h4>
         <p class="mx-3 mb-5"><strong><%= @making.request %></strong></p>
         <p class="ml-2">カラー　　　<span class="text-info"><strong><%= @making.color %></strong></span></p>
         <p class="ml-2">サイズ　　　<span class="text-info"><strong><%= @making.size %></strong></span></p>
@@ -21,7 +21,7 @@
       </div>
 
       <% if @making.is_product == "approved" %>
-        <div><%= link_to "注文する", new_order_path, class: "btn btn-outline-info" %></div>
+        <div class="col-12 text-center mt-4"><%= link_to "注文する", new_order_path, class: "btn btn-outline-info" %></div>
       <% end %>
     </div>
   </div>
