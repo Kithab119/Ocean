@@ -9,6 +9,7 @@ class Customer::OrdersController < ApplicationController
 
   def order_check
     @cart_items = current_customer.cart_items
+    @makings = current_customer.makings
     @sum = 0
     @order = Order.new(order_params)
     if params[:order][:select_address] == "0"

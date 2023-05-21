@@ -1,41 +1,68 @@
 <h2>注文情報確認</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>イメージ</th>
-      <th>作品名</th>
-      <th>価格（税抜き）</th>
-      <th>販売情報</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @cart_items.each do |cart_item| %>
+<% if @cart_items.present? %>
+  <table>
+    <thead>
       <tr>
-        <td><%= image_tag cart_item.item.image, :size => '100x100' %></td>
-        <td><%= cart_item.item.name %></td>
-        <td><%= cart_item.item.price %></td>
-        <% if cart_item.item.is_active == true %>
-          <td>販売中</td>
-        <% else %>
-          <td>未販売</td>
-        <% end %>
-        <% @sum += cart_item.item.price %>
+        <th>イメージ</th>
+        <th>作品名</th>
+        <th>価格</th>
+        <th>販売情報</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @cart_items.each do |cart_item| %>
+        <tr>
+          <td><%= image_tag cart_item.item.image, :size => '100x100' %></td>
+          <td><%= cart_item.item.name %></td>
+          <td><%= (cart_item.item.price * 1.1).floor.to_s(:delimited) %></td>
+          <% if cart_item.item.is_active == true %>
+            <td>販売中</td>
+          <% else %>
+            <td>未販売</td>
+          <% end %>
+          <% @sum += cart_item.item.price %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<table>
-  <tr>
-    <th>送料</th>
-    <td>800</td>
-  </tr>
-  <tr>
-    <th>合計金額</th>
-    <td><%= @sum + 800 %></td>
-  </tr>
-</table>
+  <table>
+    <tr>
+      <th>送料</th>
+      <td>800</td>
+    </tr>
+    <tr>
+      <th>合計金額</th>
+      <td><%= @sum + 800 %></td>
+    </tr>
+  </table>
+<% else %>
+  <table>
+    <thead>
+      <tr>
+        <th>カラー</th>
+        <th>サイズ</th>
+        <th>ジャンル</th>
+        <th>スタイル</th>
+        <th>要望</th>
+        <th>希望価格</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @makings.each do |making| %>
+        <tr>
+          <td><%= making.color %></td>
+          <td><%= making.size %></td>
+          <td><%= making.genre %></td>
+          <td><%= making.style %></td>
+          <td><%= making.request %></td>
+          <td><%= (making.price * 1.1).floor.to_s(:delimited) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
 
 <div>
   <p>〒<%= @order.shipping_postal_code %></p>
