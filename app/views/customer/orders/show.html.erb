@@ -1,57 +1,78 @@
-<h2>注文詳細</h2>
+<div class="container">
+  <div class="row">
+    <h2 class="text-info mt-5 mb-3">注文詳細</h2>
+  </div>
 
-<t3>注文内容</t3>
-<table>
-  <thead>
-    <tr>
-      <th>イメージ</th>
-      <th>作品名</th>
-      <th>作品情報</th>
-      <th>価格（税抜き）</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @order.order_details.each do |order_detail| %>
-      <tr>
-        <td><%= image_tag order_detail.item.image, :size => '100x100' %></td>
-        <td><%= order_detail.item.name %></td>
-        <td><%= order_detail.item.introduction %></td>
-        <td><%= order_detail.purchase %></td>
-        <% @sum += order_detail.purchase %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <div class="row">
+    <h3 class="text-info ml-2 mb-3">注文内容</h3>
+  </div>
 
-<table>
-  <tr>
-    <th>送料</th>
-    <td>800</td>
-  </tr>
-  <tr>
-    <th>合計金額</th>
-    <td><%= @sum + 800 %></td>
-  </tr>
-</table>
+  <% if @order.making.present? %>
+    <th>カラー</th>
+    <th>サイズ</th>
+    <th>ジャンル</th>
+    <th>スタイル</th>
+    <th>要望</th>
+    <th>希望価格</th>
+    <td><%= @order.making.color %></td>
+    <td><%= @order.making.size %></td>
+    <td><%= @order.making.genre %></td>
+    <td><%= @order.making.style %></td>
+    <td><%= @order.making.request %></td>
+    <td><%= (@order.making.price * 1.1).floor.to_s(:delimited) %></td>
 
-<table>
-  <tr>
-    <th>配送先住所</th>
-    <td>
-      〒<%= @order.shipping_postal_code %><br>
-      <%= @order.shipping_address %>
-    </td>
-  </tr>
-  <tr>
-    <th>宛名</th>
-    <td><%= @order.shipping_name %></td>
-  </tr>
-  <tr>
-    <th>支払方法</th>
-    <td><%= @order.payment %></td>
-  </tr>
-  <tr>
-    <th>注文状況</th>
-    <td><%= @order.is_receive %></td>
-  </tr>
-</table>
+  <% else %>
+    <div class="col-12 row">
+      <% @order.order_details.each do |order_detail| %>
+        <div class="col-4 h-50">
+          <div><%= image_tag order_detail.item.image, class: "mw-100 mh-100" %></div>
+
+          <div class="col-12 mt-3">
+            <span>作品名</span>
+            <span class="text-info">「<strong><%= order_detail.item.name %></strong>」</span>
+          </div>
+
+          <div class="col-12 border mt-3">
+            <div class="text-info mt-2">-作品情報-</div>
+            <div class="mt-2 mb-2"><strong><%= order_detail.item.introduction %></strong></div>
+          </div>
+
+          <div class="col-6 mt-3 border-bottom">
+            <span class="mr-2">価格</span>
+            <span><strong>¥<%= (order_detail.purchase * 1.1).floor.to_s(:delimited) %></strong><span>
+          </div>
+          <% @sum += order_detail.purchase %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="col-12 w-25 ml-auto border border-info mt-5">
+      <div class="w-50 mt-2 border-bottom">
+        <span>送料</span>
+        <span><strong>¥800</strong></span>
+      </div>
+
+      <div class="w-50 ml-auto">
+        <div class="text-info mt-3">合計金額</div>
+        <div class="mb-2"><strong>¥<%= (@sum + 800).to_s(:delimited) %></strong></div>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="col-6 border mt-5">
+    <p class="ml-2 mt-2 mb-2">配送先住所</p>
+    <p class="ml-2">
+      <strong>〒<%= @order.shipping_postal_code.insert(3, "-") %><br>
+      <%= @order.shipping_address %></strong>
+    </p>
+
+    <p class="ml-2 mb-2">宛名</p>
+    <p class="ml-2"><strong><%= @order.shipping_name %></strong></p>
+
+    <p class="ml-2 mb-2">支払方法</p>
+    <p class="text-info ml-2"><strong><%= @order.payment_i18n %></strong></p>
+
+    <p class="ml-2 mb-2">注文状況</p>
+    <p class="text-info ml-2"><strong><%= @order.is_receive_i18n %></strong></p>
+  </div>
+</div>

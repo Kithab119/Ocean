@@ -1,6 +1,29 @@
 <h2>注文情報確認</h2>
 
-<% if @cart_items.present? %>
+<% if @making_id.present? %>
+  <table>
+    <thead>
+      <tr>
+        <th>カラー</th>
+        <th>サイズ</th>
+        <th>ジャンル</th>
+        <th>スタイル</th>
+        <th>要望</th>
+        <th>希望価格</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @making.color %></td>
+        <td><%= @making.size %></td>
+        <td><%= @making.genre %></td>
+        <td><%= @making.style %></td>
+        <td><%= @making.request %></td>
+        <td><%= (@making.price * 1.1).floor.to_s(:delimited) %></td>
+      </tr>
+    </tbody>
+  </table>
+<% else %>
   <table>
     <thead>
       <tr>
@@ -37,32 +60,8 @@
       <td><%= @sum + 800 %></td>
     </tr>
   </table>
-<% else %>
-  <table>
-    <thead>
-      <tr>
-        <th>カラー</th>
-        <th>サイズ</th>
-        <th>ジャンル</th>
-        <th>スタイル</th>
-        <th>要望</th>
-        <th>希望価格</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @makings.each do |making| %>
-        <tr>
-          <td><%= making.color %></td>
-          <td><%= making.size %></td>
-          <td><%= making.genre %></td>
-          <td><%= making.style %></td>
-          <td><%= making.request %></td>
-          <td><%= (making.price * 1.1).floor.to_s(:delimited) %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
 <% end %>
+
 
 <div>
   <p>〒<%= @order.shipping_postal_code %></p>
@@ -76,5 +75,6 @@
   <%= f.hidden_field :shipping_name, :value => @order.shipping_name %>
   <%= f.hidden_field :total_price, :value => (@sum + 800) %>
   <%= f.hidden_field :payment, :value => @order.payment %>
+  <%= f.hidden_field :making_id, :value => @making_id %>
   <div><%= f.submit "注文確定" %></div>
 <% end %>

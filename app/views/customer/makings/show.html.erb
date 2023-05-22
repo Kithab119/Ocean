@@ -21,7 +21,7 @@
       </div>
 
       <% if @making.is_product == "approved" %>
-        <div class="col-12 text-center mt-4"><%= link_to "注文する", new_order_path, class: "btn btn-outline-info" %></div>
+        <div class="col-12 text-center mt-4"><%= link_to "注文する", new_order_path(making_id: @making.id), class: "btn btn-outline-info" %></div>
       <% end %>
     </div>
   </div>

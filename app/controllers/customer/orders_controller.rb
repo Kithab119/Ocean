@@ -9,7 +9,10 @@ class Customer::OrdersController < ApplicationController
 
   def order_check
     @cart_items = current_customer.cart_items
-    @makings = current_customer.makings
+    unless params[:order][:making_id] == ""
+      @making_id = params[:order][:making_id]
+      @making = Making.find(@making_id)
+    end
     @sum = 0
     @order = Order.new(order_params)
     if params[:order][:select_address] == "0"
@@ -29,15 +32,22 @@ class Customer::OrdersController < ApplicationController
     @order.customer_id = current_customer.id
     @order.postage = 800
     @order.save
-    @cart_items = current_customer.cart_items
-    @cart_items.each do |cart_item|
-      @order_detail = OrderDetail.new
-      @order_detail.item_id = cart_item.item_id
-      @order_detail.order_id = @order.id
-      @order_detail.purchase = cart_item.item.price
-      @order_detail.save
+    unless params[:order][:making_id] == ""
+      @making = Making.find(params[:order][:making_id])
+      if @making.is_product == "approved"
+        @making.update(order_id: @order.id, is_product: "product_waiting")
+      end
+    else
+      @cart_items = current_customer.cart_items
+      @cart_items.each do |cart_item|
+        @order_detail = OrderDetail.new
+        @order_detail.item_id = cart_item.item_id
+        @order_detail.order_id = @order.id
+        @order_detail.purchase = cart_item.item.price
+        @order_detail.save
+      end
+      @cart_items.destroy_all
     end
-    @cart_items.destroy_all
     redirect_to orders_order_finish_path
   end
 
