@@ -47,6 +47,7 @@ Rails.application.routes.draw do
     resource :creators, only: [:show, :edit, :update]
     get "/makings" => "makings#index", as: "creators_makings"
     resources :makings, only: [:show, :update]
+    resources :maps, only: [:new, :create]
   end
 
   namespace :admin do

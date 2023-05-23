@@ -1,0 +1,9 @@
+<%= form_with model: @map, local: true, url: creator_maps_path, method: :post do |f| %>
+
+  <div class="form-group">
+   <%= f.label :address, '場所' %>
+   <%= f.text_field :address, class: 'form-control' %>
+  </div>
+  <%= f.submit '投稿する', class: 'btn btn-primary btn-block' %>
+
+<% end %>
