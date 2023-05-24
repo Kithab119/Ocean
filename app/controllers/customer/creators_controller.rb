@@ -9,7 +9,7 @@ class Customer::CreatorsController < ApplicationController
   def show
     @creator = Creator.find(params[:id])
     @items = @creator.items.page(params[:page])
-    @map = @creator.maps.last
+    @gallery = @creator.galleries.last
   end
 
 end

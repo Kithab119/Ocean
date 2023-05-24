@@ -1,4 +1,4 @@
-class Map < ApplicationRecord
+class Gallery < ApplicationRecord
 
   belongs_to :creator
 

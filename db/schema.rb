@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_16_141747) do
+ActiveRecord::Schema.define(version: 2023_05_24_103111) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -119,6 +119,17 @@ ActiveRecord::Schema.define(version: 2023_05_16_141747) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "galleries", force: :cascade do |t|
+    t.integer "creator_id", null: false
+    t.string "name", null: false
+    t.string "overview", null: false
+    t.string "address", null: false
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "genres", force: :cascade do |t|
     t.string "theme", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -150,15 +161,6 @@ ActiveRecord::Schema.define(version: 2023_05_16_141747) do
     t.text "request", null: false
     t.integer "price", null: false
     t.integer "is_product", default: 0, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "maps", force: :cascade do |t|
-    t.integer "creator_id"
-    t.string "address"
-    t.float "latitude"
-    t.float "longitude"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

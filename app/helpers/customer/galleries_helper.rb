@@ -1,0 +1,2 @@
+module Customer::GalleriesHelper
+end

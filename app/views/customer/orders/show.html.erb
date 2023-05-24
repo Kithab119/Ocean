@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <h2 class="text-info mt-5 mb-3">注文詳細</h2>
+    <h2 class="text-info mt-5 mb-5">注文詳細</h2>
   </div>
 
   <div class="row">
@@ -8,19 +8,40 @@
   </div>
 
   <% if @order.making.present? %>
-    <th>カラー</th>
-    <th>サイズ</th>
-    <th>ジャンル</th>
-    <th>スタイル</th>
-    <th>要望</th>
-    <th>希望価格</th>
-    <td><%= @order.making.color %></td>
-    <td><%= @order.making.size %></td>
-    <td><%= @order.making.genre %></td>
-    <td><%= @order.making.style %></td>
-    <td><%= @order.making.request %></td>
-    <td><%= (@order.making.price * 1.1).floor.to_s(:delimited) %></td>
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="font-weight-lighter">カラー</th>
+        <th class="font-weight-lighter">サイズ</th>
+        <th class="font-weight-lighter">ジャンル</th>
+        <th class="font-weight-lighter">スタイル</th>
+        <th class="font-weight-lighter">要望</th>
+        <th class="font-weight-lighter">希望価格</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="text-info"><strong><%= @order.making.color %></strong></td>
+        <td class="text-info"><strong><%= @order.making.size %></strong></td>
+        <td class="text-info"><strong><%= @order.making.genre %></strong></td>
+        <td class="text-info"><strong><%= @order.making.style %></strong></td>
+        <td><strong><%= @order.making.request %></strong></td>
+        <td><strong>¥<%= @order.making.price.to_s(:delimited) %></strong></td>
+      </tr>
+    </tbody>
+  </table>
 
+  <div class="col-12 w-25 ml-auto border border-info mt-5">
+    <div class="w-50 mt-2 border-bottom">
+      <span>送料</span>
+      <span><strong>¥800</strong></span>
+    </div>
+
+    <div class="w-75 ml-auto">
+      <div class="text-info mt-3">合計金額（税込）</div>
+      <div class="mb-2"><strong>¥<%= (@order.making.price * 1.1 + 800).floor.to_s(:delimited) %></strong></div>
+    </div>
+  </div>
   <% else %>
     <div class="col-12 row">
       <% @order.order_details.each do |order_detail| %>

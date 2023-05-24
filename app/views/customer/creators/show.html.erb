@@ -54,23 +54,24 @@
         </div>
       </div>
 
+
       <div class="row">
         <h3 class="text-info"><strong>個展情報</strong></h3>
-        
+
         <div id="map">
           <!--ここにmapが入る-->
         </div>
-        <div type="text/javascript">
-          <script>
-            function initMap(){
-              let map = new google.maps.Map(document.getElementById('map'), {
-              center: {lat: <%= @map.latitude %>, lng: <%= @map.longitude %> },
-              zoom: 15
-              });
-            }
-          </script>
-          <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
-        </div>
+        <script>
+          function initMap(){
+            let map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: <%= @gallery.latitude %>, lng: <%= @gallery.longitude %> },
+            zoom: 15
+            });
+          }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
       </div>
+      
+      
     </div>
   </div>

@@ -1,80 +1,103 @@
-<h2>注文情報確認</h2>
+<div class="container">
+  <div class="row">
+    <h2 class="text-info mt-5 mb-5">注文情報確認</h2>
+  </div>
 
-<% if @making_id.present? %>
-  <table>
-    <thead>
-      <tr>
-        <th>カラー</th>
-        <th>サイズ</th>
-        <th>ジャンル</th>
-        <th>スタイル</th>
-        <th>要望</th>
-        <th>希望価格</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><%= @making.color %></td>
-        <td><%= @making.size %></td>
-        <td><%= @making.genre %></td>
-        <td><%= @making.style %></td>
-        <td><%= @making.request %></td>
-        <td><%= (@making.price * 1.1).floor.to_s(:delimited) %></td>
-      </tr>
-    </tbody>
-  </table>
-<% else %>
-  <table>
-    <thead>
-      <tr>
-        <th>イメージ</th>
-        <th>作品名</th>
-        <th>価格</th>
-        <th>販売情報</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @cart_items.each do |cart_item| %>
+  <% if @making_id.present? %>
+    <table class="table">
+      <thead>
         <tr>
-          <td><%= image_tag cart_item.item.image, :size => '100x100' %></td>
-          <td><%= cart_item.item.name %></td>
-          <td><%= (cart_item.item.price * 1.1).floor.to_s(:delimited) %></td>
-          <% if cart_item.item.is_active == true %>
-            <td>販売中</td>
-          <% else %>
-            <td>未販売</td>
-          <% end %>
-          <% @sum += cart_item.item.price %>
+          <th class="font-weight-lighter">カラー</th>
+          <th class="font-weight-lighter">サイズ</th>
+          <th class="font-weight-lighter">ジャンル</th>
+          <th class="font-weight-lighter">スタイル</th>
+          <th class="font-weight-lighter">要望</th>
+          <th class="font-weight-lighter">希望価格</th>
         </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-info"><strong><%= @making.color %></strong></td>
+          <td class="text-info"><strong><%= @making.size %></strong></td>
+          <td class="text-info"><strong><%= @making.genre %></strong></td>
+          <td class="text-info"><strong><%= @making.style %></strong></td>
+          <td><strong><%= @making.request %></strong></td>
+          <td><strong>¥<%= @making.price.to_s(:delimited) %></strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="col-12 w-25 ml-auto border border-info mt-5">
+      <div class="w-50 mt-2 border-bottom">
+        <span>送料</span>
+        <span><strong>¥800</strong></span>
+      </div>
+
+      <div class="w-75 ml-auto">
+        <div class="text-info mt-3">合計金額（税込）</div>
+        <div class="mb-2"><strong>¥<%= (@making.price * 1.1 + 800).floor.to_s(:delimited) %></strong></div>
+      </div>
+    </div>
+  <% else %>
+     <div class="col-12 row">
+      <% @cart_items.each do |cart_item| %>
+        <div class="col-4 h-50">
+          <div><%= image_tag cart_item.item.image, class: "mw-100 mh-100" %></div>
+
+          <div class="col-12 mt-3">
+            <span>作品名</span>
+            <span class="text-info">「<strong><%= cart_item.item.name %></strong>」</span>
+          </div>
+
+          <div class="col-12 border mt-3">
+            <div class="text-info mt-2">-作品情報-</div>
+            <div class="mt-2 mb-2"><strong><%= cart_item.item.introduction %></strong></div>
+          </div>
+
+          <div class="col-6 mt-3 border-bottom">
+            <span class="mr-2">価格</span>
+            <span><strong>¥<%= (cart_item.item.price * 1.1).floor.to_s(:delimited) %></strong><span>
+          </div>
+          <% @sum += cart_item.item.price %>
+        </div>
       <% end %>
-    </tbody>
-  </table>
+    </div>
 
-  <table>
-    <tr>
-      <th>送料</th>
-      <td>800</td>
-    </tr>
-    <tr>
-      <th>合計金額</th>
-      <td><%= @sum + 800 %></td>
-    </tr>
-  </table>
-<% end %>
+    <div class="col-12 w-25 ml-auto border border-info mt-5">
+      <div class="w-50 mt-2 border-bottom">
+        <span>送料</span>
+        <span><strong>¥800</strong></span>
+      </div>
 
+      <div class="w-50 ml-auto">
+        <div class="text-info mt-3">合計金額</div>
+        <div class="mb-2"><strong>¥<%= (@sum * 1.1 + 800).floor.to_s(:delimited) %></strong></div>
+      </div>
+    </div>
+  <% end %>
 
-<div>
-  <p>〒<%= @order.shipping_postal_code %></p>
-  <p><%= @order.shipping_address %></p>
-  <p><%= @order.shipping_name %></p>
+  <div class="col-6 border mt-5">
+    <p class="ml-2 mt-2 mb-2">配送先住所</p>
+    <p class="ml-2">
+      <strong>〒<%= @order.shipping_postal_code.insert(3, "-") %><br>
+      <%= @order.shipping_address %></strong>
+    </p>
+
+    <p class="ml-2 mb-2">宛名</p>
+    <p class="ml-2"><strong><%= @order.shipping_name %></strong></p>
+
+    <p class="ml-2 mb-2">支払方法</p>
+    <p class="text-info ml-2"><strong><%= @order.payment_i18n %></strong></p>
+
+  </div>
+
+  <%= form_with model: @order, url: orders_path, method: :post do |f| %>
+    <%= f.hidden_field :shipping_postal_code, :value => @order.shipping_postal_code %>
+    <%= f.hidden_field :shipping_address, :value => @order.shipping_address %>
+    <%= f.hidden_field :shipping_name, :value => @order.shipping_name %>
+    <%= f.hidden_field :total_price, :value => (@sum + 800) %>
+    <%= f.hidden_field :payment, :value => @order.payment %>
+    <%= f.hidden_field :making_id, :value => @making_id %>
+    <div class="mt-5 text-center"><%= f.submit "注文確定", class: "btn btn-info" %></div>
+  <% end %>
 </div>
-
-<%= form_with model: @order, url: orders_path, method: :post do |f| %>
-  <%= f.hidden_field :shipping_postal_code, :value => @order.shipping_postal_code %>
-  <%= f.hidden_field :shipping_address, :value => @order.shipping_address %>
-  <%= f.hidden_field :shipping_name, :value => @order.shipping_name %>
-  <%= f.hidden_field :total_price, :value => (@sum + 800) %>
-  <%= f.hidden_field :payment, :value => @order.payment %>
-  <%= f.hidden_field :making_id, :value => @making_id %>
-  <div><%= f.submit "注文確定" %></div>
-<% end %>

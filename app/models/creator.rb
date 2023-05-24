@@ -9,7 +9,7 @@ class Creator < ApplicationRecord
   has_many :makings
   has_many :reviews
   has_many :follows
-  has_many :maps
+  has_many :galleries
 
   has_one_attached :profile_image
 
