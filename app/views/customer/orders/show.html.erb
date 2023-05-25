@@ -46,7 +46,7 @@
     <div class="col-12 row">
       <% @order.order_details.each do |order_detail| %>
         <div class="col-4 h-50">
-          <div><%= image_tag order_detail.item.image, class: "mw-100 mh-100" %></div>
+          <div><%= image_tag order_detail.item.get_image, class: "mw-100 mh-100" %></div>
 
           <div class="col-12 mt-3">
             <span>作品名</span>

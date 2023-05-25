@@ -17,7 +17,7 @@
           <tbody>
             <% @cart_items.each do |cart_item| %>
               <tr>
-                <td><%= image_tag cart_item.item.image, :size => '100x100' %></td>
+                <td><%= image_tag cart_item.item.get_image, :size => '100x100' %></td>
                 <td class="text-info"><strong>「<%= cart_item.item.name %>」</strong></td>
                 <td><strong>¥<%= (cart_item.item.price * 1.1).floor.to_s(:delimited) %></strong></td>
                 <% if cart_item.item.is_active == true %>

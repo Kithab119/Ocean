@@ -29,7 +29,7 @@ class Creator::CreatorsController < ApplicationController
 
 private
   def creator_params
-    params.require(:creator).permit(:name, :profile, :postal_code, :address, :telephone_number, :email)
+    params.require(:creator).permit(:name, :profile, :postal_code, :address, :telephone_number, :email, :profile_image)
   end
 
 end

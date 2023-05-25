@@ -1,7 +1,12 @@
 class Customer::GalleriesController < ApplicationController
-  
-  def show
-    @gallery = 
+
+  def index
+    @creator = Creator.find(params[:creator_id])
+    @galleries = @creator.galleries
   end
-  
+
+  def show
+    @gallery = Gallery.find(params[:id])
+  end
+
 end

@@ -10,7 +10,7 @@
       <% @items.each do |item| %>
         <div class="col-md-4 col-sm-12 h-50 mb-3">
           <%= link_to item_path(item.id) do %>
-            <%= image_tag item.image, class: "mw-100 mh-100 mb-3" %>
+            <%= image_tag item.get_image, class: "mw-100 mh-100 mb-3" %>
           <% end %>
 
           <p class="mb-1">作品名<span>「<%= link_to item.name, item_path(item.id), class: "text-info" %>」</span></p>

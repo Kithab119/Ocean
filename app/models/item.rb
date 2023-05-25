@@ -15,4 +15,12 @@ class Item < ApplicationRecord
     Item.where('name LIKE ?', "%#{word}%")
   end
 
+  def get_image
+    unless image.attached?
+      file_path = Rails.root.join('app/assets/images/no-image.jpeg')
+      image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+    end
+    image.variant(gravity: :center, resize:"768x1024^", crop:"768x1024+0+0").processed
+  end
+
 end
