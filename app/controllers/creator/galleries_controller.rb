@@ -8,7 +8,21 @@ class Creator::GalleriesController < ApplicationController
     @gallery = Gallery.new(gallery_params)
     @gallery.creator_id = current_creator.id
     @gallery.save
-    redirect_to creator_creators_path(current_creator.id)
+    redirect_to creator_galleries_path
+  end
+
+  def index
+    @galleries = current_creator.galleries
+  end
+
+  def show
+    @gallery = Gallery.find(params[:id])
+  end
+
+  def destroy
+    @gallery = Gallery.find(params[:id])
+    @gallery.destroy
+    redirect_to creator_galleries_path
   end
 
 

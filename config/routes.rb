@@ -37,7 +37,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:new, :create, :index, :show]
     resources :addresses, only: [:create, :index, :edit, :update, :destroy]
     resources :follows, only: [:create, :index]
-    resources :galleries, only: [:index]
+    resources :galleries, only: [:index, :show]
   end
 
   namespace :creator do
@@ -48,7 +48,7 @@ Rails.application.routes.draw do
     resource :creators, only: [:show, :edit, :update]
     get "/makings" => "makings#index", as: "creators_makings"
     resources :makings, only: [:show, :update]
-    resources :galleries, only: [:new, :create, :index, :destroy]
+    resources :galleries, only: [:new, :create, :index, :show, :destroy]
   end
 
   namespace :admin do

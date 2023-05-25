@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <h2 class="text-info mt-5 mb-3">個展情報一覧</h2>
+  </div>
+
+  <% @galleries.each do |gallery| %>
+    <div class="row mb-3">
+      <div class="border col-4">
+        <p class="mt-2 border-bottom"><strong><%= link_to gallery.name, creator_gallery_path(gallery.id), class: "text-info" %></strong></p>
+        <p><%= gallery.overview %></p>
+      </div>
+      <div class="col-3"><%= link_to "削除する", creator_gallery_path(gallery.id), method: :delete, class: "btn btn-outline-danger" %></div>
+    </div>
+  <% end %>
+
+  <div class="mt-5"><%= link_to "個展情報を載せる", new_creator_gallery_path, class: "btn btn-outline-info" %></div>
+</div>

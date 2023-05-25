@@ -1,13 +1,22 @@
-<h2>個展情報登録</h2>
+<div class="container">
+  <div class="row">
+    <h2 class="text-center text-info mt-5 mb-3">個展情報登録</h2>
+  </div>
 
   <%= form_with model: @gallery, url: creator_galleries_path, method: :post do |f| %>
 
-    <div><%=f.text_field :name %></div>
-    <div><%= f.text_area :overview %></div>
-    <div>
-     <%= f.label :address, "場所" %>
-     <%= f.text_field :address, class: "form-control" %>
+    <div class="row mb-3">
+      <div class="col-3"><strong>個展名</strong></div>
+      <div class="col-9"><%=f.text_field :name %></div>
     </div>
-    <%= f.submit "投稿する", class: "btn btn-info" %>
+    <div class="row mb-3">
+      <div class="col-3"><strong>概要</strong></div>
+      <div class="col-9"><%= f.text_area :overview %></div>
+    </div>
+    <div class="row">
+      <div class="col-3"><strong>住所</strong></div>
+      <div class="col-9"><%= f.text_field :address, class: "form-control" %></div>
+    </div>
+    <div class="text-center mt-3"><%= f.submit "投稿する", class: "btn btn-outline-info" %></div>
 
   <% end %>
