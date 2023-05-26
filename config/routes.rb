@@ -36,7 +36,7 @@ Rails.application.routes.draw do
     get "orders/order_finish" => "orders#order_finish"
     resources :orders, only: [:new, :create, :index, :show]
     resources :addresses, only: [:create, :index, :edit, :update, :destroy]
-    resources :follows, only: [:create, :index]
+    resources :follows, only: [:create, :index, :destroy]
     resources :galleries, only: [:index, :show]
   end
 

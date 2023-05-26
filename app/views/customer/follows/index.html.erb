@@ -1,47 +1,35 @@
 <div class="container">
   <div class="row">
-    <div class="col">
-      <h2 class="text-center text-info mt-5 mb-5">フォロー作家一覧</h2>
-      <div class="text-center">
-        <table class="table">
-          <thead>
-            <tr>
-              <th class="font-weight-lighter">イメージ</th>
-              <th class="font-weight-lighter">作家名</th>
-              <th class="font-weight-lighter">プロフィール</th>
-              <th class="font-weight-lighter">レビュー</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @follows.each do |follow| %>
-              <tr>
-                <td>
-                  <%= link_to creator_path(follow.creator_id) do %>
-                    <%= image_tag follow.creator.get_profile_image(100, 100) %>
-                  <% end %>
-                </td>
-                <td><strong><%= link_to follow.creator.name, creator_path(follow.creator_id), class: "text-info" %></strong></td>
-                <td><%= follow.creator.profile %></td>
-                <td>
-                  <div id="star-rate<%= follow.creator_id %>"></div>
-                  <script>
-                    $('#star-rate<%= follow.creator_id %>').empty();
-                    $('#star-rate<%= follow.creator_id %>').raty({
-                      size      : 36,
-                      starOff   : '<%= asset_path('star-off.png') %>',
-                      starOn    : '<%= asset_path('star-on.png') %>',
-                      starHalf: '<%= asset_path('star-half.png') %>',
-                      half      : true,
-                      readOnly: true,
-                      score: <%= follow.creator.reviews.average(:star).to_f.round(1) %>
-                    });
-                  </script>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+    <h2 class="text-center text-info mt-5 mb-3">フォロー作家一覧</h2>
+  </div>
+
+  <div class="row">
+    <% @follows.each do |follow| %>
+      <div class="col-4">
+        <div class="card">
+          <div class="row">
+            <div class="col-4 mb-2"><%= image_tag follow.creator.get_profile_image(100, 100) %></div>
+            <div class="col-7 mt-5 text-right"><%= link_to "フォロー解除", follow_path(follow.id), method: :delete, data: { confirm: "フォローを解除しますか?" }, class: "btn btn-outline-danger" %></div>
+          </div>
+          <div id="star-rate<%= follow.creator.id %>", class="ml-2"></div>
+            <script>
+              $('#star-rate<%= follow.creator.id %>').empty();
+              $('#star-rate<%= follow.creator.id %>').raty({
+                size      : 36,
+                starOff   : '<%= asset_path('star-off.png') %>',
+                starOn    : '<%= asset_path('star-on.png') %>',
+                starHalf: '<%= asset_path('star-half.png') %>',
+                half      : true,
+                readOnly: true,
+                score: <%= follow.creator.reviews.average(:star).to_f.round(1) %>
+              });
+            </script>
+          <div class="card-body">
+            <h5 class="card-title"><strong><%= link_to follow.creator.name, creator_path(follow.creator.id), class: "text-info" %></strong></h5>
+            <p class="card-text"><%= follow.creator.profile.truncate(20) %></p>
+          </div>
+        </div>
       </div>
-    </div>
+    <% end %>
   </div>
 </div>
