@@ -1,9 +1,11 @@
 <div class="container">
   <div class="row">
 
-    <div class="col-12">
-      <h4 class="text-success"><%= flash[:notice] %></h4>
-    </div>
+    <% if flash[:notice] %>
+      <div class="col-12">
+        <h4 class="text-success"><%= flash[:notice] %></h4>
+      </div>
+    <% end %>
 
     <div class="col-12">
       <h2 class="text-info mt-5 mb-3"><%= @creator.name %></h2>

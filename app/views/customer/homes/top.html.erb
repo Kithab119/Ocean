@@ -24,4 +24,39 @@
       <% end %>
     </div>
   </div>
+
+  <div class="row mt-5">
+
+    <div class="col-3"></div>
+
+    <div class="col-9 row">
+      <div class="col-12 mb-3">
+        <h3 class="text-info">作家<span class="text-danger">New!</span></h3>
+      </div>
+      <% @creators.each do |creator| %>
+        <div class="col-4 mb-3">
+          <div class="card">
+            <div class="mb-2"><%= image_tag creator.get_profile_image(100, 100) %></div>
+            <div id="star-rate<%= creator.id %>", class="ml-2"></div>
+              <script>
+                $('#star-rate<%= creator.id %>').empty();
+                $('#star-rate<%= creator.id %>').raty({
+                  size      : 36,
+                  starOff   : '<%= asset_path('star-off.png') %>',
+                  starOn    : '<%= asset_path('star-on.png') %>',
+                  starHalf: '<%= asset_path('star-half.png') %>',
+                  half      : true,
+                  readOnly: true,
+                  score: <%= creator.reviews.average(:star).to_f.round(1) %>
+                });
+              </script>
+            <div class="card-body">
+              <h5 class="card-title"><strong><%= link_to creator.name, creator_path(creator.id), class: "text-info" %></strong></h5>
+              <p class="card-text"><%= creator.profile.truncate(10) %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

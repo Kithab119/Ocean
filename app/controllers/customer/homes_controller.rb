@@ -2,7 +2,7 @@ class Customer::HomesController < ApplicationController
 
   def top
     @items = Item.all.order(created_at: :desc).limit(6)
-    @creators = Creator.all
+    @creators = Creator.all.order(created_at: :desc).limit(6)
     @colors = Color.all
     @sizes = Size.all
     @genres = Genre.all
