@@ -17,7 +17,7 @@
         <tr>
           <td><strong><%= order.created_at.strftime("%Y/%m/%d") %></strong></td>
           <td>
-            <strong>〒<%= order.shipping_postal_code.insert(3, "-") %><br>
+            <strong>〒<%= order.shipping_postal_code %><br>
             <%= order.shipping_address.truncate(5) %></strong>
           </td>
           <td><strong><%= order.shipping_name %></strong></td>

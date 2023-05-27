@@ -1,35 +1,38 @@
-<h2><%= @creator.name %>さんの作家情報編集</h2>
+<div class="container">
+  <h2 class="text-info mt-5 mb-3"><%= @creator.name %>さんの作家情報編集</h2>
 
-<%= form_with model: @creator, url: admin_creator_path(@creator.id), method: :patch do |f| %>
-  <table>
-    <tr>
-      <th>名前</th>
-      <td><%= f.text_field :name %></td>
-    </tr>
-    <tr>
-      <th>プロフィール</th>
-      <td><%= f.text_area :profile %></td>
-    </tr>
-    <tr>
-      <th>郵便番号</th>
-      <td><%= f.text_field :postal_code %></td>
-    </tr>
-    <tr>
-      <th>住所</th>
-      <td><%= f.text_field :address %></td>
-    </tr>
-    <tr>
-      <th>電話番号</th>
-      <td><%= f.text_field :telephone_number %></td>
-    </tr>
-    <tr>
-      <th>メールアドレス</th>
-      <td><%= f.email_field :email %></td>
-    </tr>
-    <tr>
-      <th>退会ステータス</th>
-      <td><%= f.radio_button :is_deleted, :false %><%= f.label :is_deleted_false, "有効" %> <%= f.radio_button :is_deleted, :true %><%= f.label :is_deleted_true, "退会" %></td>
-    </tr>
-  </table>
-  <div><%= f.submit "更新する" %></div>
-<% end %>
+  <%= form_with model: @creator, url: admin_creator_path(@creator.id), method: :patch do |f| %>
+    <table class="table">
+      <tr>
+        <th>名前</th>
+        <td><%= f.text_field :name %></td>
+      </tr>
+      <tr>
+        <th>プロフィール</th>
+        <td><%= f.text_area :profile %></td>
+      </tr>
+      <tr>
+        <th>郵便番号（ハイフンなし）</th>
+        <td><%= f.text_field :postal_code %></td>
+      </tr>
+      <tr>
+        <th>住所</th>
+        <td><%= f.text_field :address %></td>
+      </tr>
+      <tr>
+        <th>電話番号（ハイフンなし）</th>
+        <td><%= f.text_field :telephone_number %></td>
+      </tr>
+      <tr>
+        <th>メールアドレス</th>
+        <td><%= f.email_field :email %></td>
+      </tr>
+      <tr>
+        <th>退会ステータス</th>
+        <td><%= f.radio_button :is_deleted, :false %><%= f.label :is_deleted_false, "有効" %> <%= f.radio_button :is_deleted, :true %><%= f.label :is_deleted_true, "退会" %></td>
+      </tr>
+    </table>
+
+    <div><%= f.submit "更新する", class: "btn btn-outline-info" %></div>
+  <% end %>
+</div>

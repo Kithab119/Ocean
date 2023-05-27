@@ -31,7 +31,7 @@
           </tbody>
         </table>
       </div>
-      <div class="text-center mt-5 mb-3"><%= link_to "他の作品も見る", root_path, class: "btn btn-outline-dark" %></div>
+      <div class="text-center mt-5 mb-3"><%= link_to "他の作品も見る", items_path, class: "btn btn-outline-dark" %></div>
       <% if !@cart_items.empty? %>
         <div class="text-center"><%= link_to "情報入力に進む", new_order_path, class: "btn btn-outline-info" %></div>
       <% end %>

@@ -5,7 +5,7 @@
 
   <div class="row">
     <% @creators.each do |creator| %>
-      <div class="col-4">
+      <div class="col-4 mb-3">
         <div class="card">
           <div class="mb-2"><%= image_tag creator.get_profile_image(100, 100) %></div>
           <div id="star-rate<%= creator.id %>", class="ml-2"></div>

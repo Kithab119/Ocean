@@ -75,7 +75,7 @@
 
       <div class="w-50 ml-auto">
         <div class="text-info mt-3">合計金額</div>
-        <div class="mb-2"><strong>¥<%= (@sum + 800).to_s(:delimited) %></strong></div>
+        <div class="mb-2"><strong>¥<%= (@sum * 1.1 + 800).floor.to_s(:delimited) %></strong></div>
       </div>
     </div>
   <% end %>
@@ -83,7 +83,7 @@
   <div class="col-6 border mt-5">
     <p class="ml-2 mt-2 mb-2">配送先住所</p>
     <p class="ml-2">
-      <strong>〒<%= @order.shipping_postal_code.insert(3, "-") %><br>
+      <strong>〒<%= @order.shipping_postal_code %><br>
       <%= @order.shipping_address %></strong>
     </p>
 

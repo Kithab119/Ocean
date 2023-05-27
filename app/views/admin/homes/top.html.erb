@@ -1,28 +1,32 @@
-<h2>作家一覧</h2>
+<div class="container">
+  <div class="row">
+    <h2 class="text-info mt-5 mb-3">作家一覧</h2>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>名前</th>
-      <th>メールアドレス</th>
-      <th>退会ステータス</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @creators.each do |creator| %>
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= creator.id %></td>
-        <td><%= link_to creator.name, admin_creator_path(creator.id) %></td>
-        <td><%= creator.email %></td>
-        <td>
-          <% if creator.is_deleted == false %>
-            <p>有効</p>
-          <% else %>
-            <p>退会</p>
-          <% end %>
-        </td>
+        <th>ID</th>
+        <th>名前</th>
+        <th>メールアドレス</th>
+        <th>退会ステータス</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @creators.each do |creator| %>
+        <tr>
+          <td><%= creator.id %></td>
+          <td><%= link_to creator.name, admin_creator_path(creator.id), class: "text-info" %></td>
+          <td><%= creator.email %></td>
+          <td>
+            <% if creator.is_deleted == false %>
+              <p>有効</p>
+            <% else %>
+              <p>退会</p>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
