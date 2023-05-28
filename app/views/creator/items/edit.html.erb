@@ -1,45 +1,71 @@
-<h2>作品情報編集</h2>
+<div class="container">
+  <h2 class="text-info mt-5 mb-3">作品情報編集</h2>
 
-<%= form_with model: @item, url: creator_item_path(@item.id), method: :patch do |f| %>
-  <table>
-    <tr>
-      <th>作品イメージ</th>
-      <td><%= f.file_field :image, accept: "image/*" %></td>
-    </tr>
-    <tr>
-      <th>作品名</th>
-      <td><%= f.text_field :name %></td>
-    </tr>
-    <tr>
-      <th>作品紹介</th>
-      <td><%= f.text_area :introduction %></td>
-    </tr>
-    <tr>
-      <th>カラー</th>
-      <td><%= f.collection_select :color_id, @colors, :id, :name %></td>
-    </tr>
-    <tr>
-      <th>サイズ</th>
-      <td><%= f.collection_select :size_id, @sizes, :id, :large %></td>
-    </tr>
-    <tr>
-      <th>ジャンル</th>
-      <td><%= f.collection_select :genre_id, @genres, :id, :theme %></td>
-    </tr>
-    <tr>
-      <th>スタイル</th>
-      <td><%= f.collection_select :style_id, @styles, :id, :where %></td>
-    </tr>
-    <tr>
-      <th>価格（税抜き）</th>
-      <td><%= f.text_field :price %></td>
-    </tr>
-    <tr>
-      <th>販売ステータス</th>
-      <td><%= f.radio_button :is_active, :true %><%= f.label :is_active_true, "販売中" %>　<%= f.radio_button :is_active, :false %><%= f.label :is_active_false, "未販売" %></td>
-    </tr>
-  </table>
-  <div>
-    <%= f.submit "更新する" %>
-  </div>
-<% end %>
+  <%= form_with model: @item, url: creator_item_path(@item.id), method: :patch do |f| %>
+    <div class="row">
+      <div class="col-2">
+        <p><strong>作品イメージ</strong></p>
+      </div>
+      <div class="col-10">
+        <p><%= f.file_field :image, accept: "image/*" %></p>
+      </div>
+
+      <div class="col-2">
+        <p><strong>作品名</strong></p>
+      </div>
+      <div class="col-10">
+        <p><%= f.text_field :name %></p>
+      </div>
+
+      <div class="col-2">
+        <p><strong>作品紹介</strong></p>
+      </div>
+      <div class="col-10">
+        <p><%= f.text_area :introduction %></p>
+      </div>
+
+      <div class="col-2">
+        <p><strong>カラー</strong></p>
+      </div>
+      <div class="col-10">
+        <p><%= f.collection_select :color_id, @colors, :id, :name %></p>
+      </div>
+
+      <div class="col-2">
+        <p><strong>サイズ</strong></p>
+      </div>
+      <div class="col-10">
+        <p><%= f.collection_select :size_id, @sizes, :id, :large %></p>
+      </div>
+
+      <div class="col-2">
+        <p><strong>ジャンル</strong></p>
+      </div>
+      <div class="col-10">
+        <p><%= f.collection_select :genre_id, @genres, :id, :theme %></p>
+      </div>
+
+      <div class="col-2">
+        <p><strong>スタイル</strong></p>
+      </div>
+      <div class="col-10">
+        <p><%= f.collection_select :style_id, @styles, :id, :where %></p>
+      </div>
+
+      <div class="col-2">
+        <p><strong>価格（税抜き）</strong></p>
+      </div>
+      <div class="col-10">
+        <p><%= f.text_field :price %></p>
+      </div>
+
+      <div class="col-2">
+        <p><strong>販売ステータス</strong></p>
+      </div>
+      <div class="col-10">
+        <p><%= f.radio_button :is_active, :true %><%= f.label :is_active_true, "販売中" %>　<%= f.radio_button :is_active, :false %><%= f.label :is_active_false, "未販売" %></p>
+      </div>
+    </div>
+
+    <div><%= f.submit "更新する", class: "btn btn-outline-info" %></div>
+  <% end %>

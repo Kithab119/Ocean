@@ -1,38 +1,48 @@
-<h2>オーダー情報詳細</h2>
+<div class="container">
+<h2 class="text-info mt-5 mb-3">オーダー情報詳細</h2>
 
-<div>
-  <h3>制作状況</h3>
-  <%= form_with model: @making, url: creator_making_path, method: :patch  do |f| %>
-    <span><%= f.select :is_product, [["承認待ち", "confirm"], ["承認済み", "approved"], ["制作待ち", "waiting"], ["制作中", "product"], ["制作完了", "complete"]] %></span>
-    <span><%= f.submit "更新する" %></span>
+<div class="mb-5">
+  <h4 class="text-info mb-2">制作状況</h4>
+  <% if @making.is_product == "confirm" || @making.is_product == "approved" %>
+    <%= form_with model: @making, url: creator_making_path, method: :patch  do |f| %>
+      <span class="mr-3"><%= f.select :is_product, [["承認待ち", "confirm"], ["承認済み", "approved"]] %></span>
+      <span><%= f.submit "更新する", data: { confirm: "更新しますか？" }, class: "btn btn-outline-info" %></span>
+    <% end %>
+  <% elsif @making.is_product == "complete" %>
+    <p class="text-success ml-2"><strong>制作完了</strong></p>
+  <% else %>
+    <%= form_with model: @making, url: creator_making_path, method: :patch  do |f| %>
+      <span class="mr-3"><%= f.select :is_product, [["制作待ち", "product_waiting"], ["制作中", "product"], ["制作完了", "complete"]] %></span>
+      <span><%= f.submit "更新する", data: { confirm: "更新しますか？" }, class: "btn btn-outline-info" %></span>
+    <% end %>
   <% end %>
 </div>
 
-<table>
+<table class="table mb-5">
   <thead>
     <tr>
-      <th>カラー</th>
-      <th>サイズ</th>
-      <th>ジャンル</th>
-      <th>スタイル</th>
+      <th class="font-weight-lighter">カラー</th>
+      <th class="font-weight-lighter">サイズ</th>
+      <th class="font-weight-lighter">ジャンル</th>
+      <th class="font-weight-lighter">スタイル</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><%= @making.color %></td>
-      <td><%= @making.size %></td>
-      <td><%= @making.genre %></td>
-      <td><%= @making.style %></td>
+      <td class="text-info"><strong><%= @making.color %></strong></td>
+      <td class="text-info"><strong><%= @making.size %></strong></td>
+      <td class="text-info"><strong><%= @making.genre %></strong></td>
+      <td class="text-info"><strong><%= @making.style %></strong></td>
     </tr>
   </tbody>
 </table>
 
-<div>
-  <h3>要望</h3>
-  <p><%= @making.request %></p>
+<div class="border mb-5">
+  <h4 class="text-info mt-2 ml-2">要望</h4>
+  <p class="mx-3"><strong><%= @making.request %></strong></p>
 </div>
 
-<div>
-  <h3>希望価格</h3>
-  <p><%= @making.price %></p>
+<div class="col-4 border">
+  <h4 class="text-info mt-2">希望価格</h4>
+  <h5 class="ml-3"><strong>¥<%= @making.price.to_s(:delimited) %></strong></h5>
 </div>

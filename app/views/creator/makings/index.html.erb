@@ -1,22 +1,24 @@
-<h2>オーダー情報一覧</h2>
+<div class="container">
+<h2 class="text-info mt-5 mb-3">オーダー情報一覧</h2>
 
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>注文日</th>
-      <th>注文者</th>
-      <th>希望価格</th>
-      <th>制作状況</th>
+      <th class="font-weight-lighter">注文日</th>
+      <th class="font-weight-lighter">注文者</th>
+      <th class="font-weight-lighter">希望価格</th>
+      <th class="font-weight-lighter">制作状況</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <% @makings.each do |making| %>
       <tr>
-        <td><%= making.created_at.strftime("%Y/%m/%d") %></td>
-        <td><%= making.customer.last_name %> <%= making.customer.first_name %></td>
-        <td><%= making.price %></td>
-        <td><%= making.is_product_i18n %></td>
-        <td><%= link_to "詳細へ", creator_making_path(making.id) %></td>
+        <td><strong><%= making.created_at.strftime("%Y/%m/%d") %></strong></td>
+        <td><strong><%= making.customer.last_name %> <%= making.customer.first_name %></strong></td>
+        <td><strong>¥<%= making.price.to_s(:delimited) %></strong></td>
+        <td class="text-info"><strong><%= making.is_product_i18n %></strong></td>
+        <td><%= link_to "詳細へ", creator_making_path(making.id), class: "btn btn-outline-info" %></td>
       </tr>
     <% end %>
   </tbody>

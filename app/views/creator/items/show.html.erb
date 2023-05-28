@@ -1,45 +1,41 @@
-<h2>作品情報</h2>
+<div class="container">
 
-<div><%= image_tag @item.image, :size => '300x300' %></div>
+  <div class="row">
+    <div class="col">
+      <h2 class="text-info mt-5 mb-3">「<strong><%= @item.name %></strong>」</h2>
+    </div>
+  </div>
 
-<table>
-  <tr>
-    <th>作品名</th>
-    <td><%= @item.name %></td>
-  </tr>
-  <tr>
-    <th>作品情報</th>
-    <td><%= @item.introduction %></td>
-  </tr>
-  <tr>
-    <th>カラー</th>
-    <td><%= @item.color.name %></td>
-  </tr>
-  <tr>
-    <th>サイズ</th>
-    <td><%= @item.size.large %></td>
-  </tr>
-  <tr>
-    <th>ジャンル</th>
-    <td><%= @item.genre.theme %></td>
-  </tr>
-  <tr>
-    <th>スタイル</th>
-    <td><%= @item.style.where %></td>
-  </tr>
-  <tr>
-    <th>価格（税抜き）</th>
-    <td><%= @item.price %></td>
-  </tr>
-  <tr>
-    <th>販売情報</th>
-    <% if @item.is_active == true %>
-      <td>販売中</td>
-    <% else %>
-      <td>未販売</td>
-    <% end %>
-  </tr>
-</table>
+  <div class="row">
+    <div class="col-6">
+      <div class="mb-3"><%= image_tag @item.get_image, class: "w-50 mh-100" %></div>
+      <div class="border w-50">
+        <h3 class="text-info mx-3 mb-3">-Status-</h3>
+        <p class="ml-5">カラー　　<span class="text-info"><strong><%= @item.color.name %></strong></span></p>
+        <p class="ml-5">サイズ　　<span class="text-info"><strong><%= @item.size.large %></strong></span></p>
+        <p class="ml-5">ジャンル　<span class="text-info"><strong><%= @item.genre.theme %></strong></span></p>
+        <p class="ml-5">スタイル　<span class="text-info"><strong><%= @item.style.where %></strong></span></p>
+      </div>
+    </div>
 
-<div><%= link_to "編集する", edit_creator_item_path(@item.id) %></div>
-<div><%= link_to "削除する", creator_item_path(@item.id), method: :delete %></div>
+    <div class="col-6">
+      <div class="border mb-5">
+        <h3 class="text-info mx-3 mt-3">-introduction-</h3>
+        <p class="mx-3"><strong><%= @item.introduction %></strong></p>
+      </div>
+      <div>
+        <p>価格<span class="ml-2"><strong>¥<%= (@item.price * 1.1).floor.to_s(:delimited) %></strong></span></p>
+        <% if @item.is_active == true %>
+          <p class="text-info"><strong>販売中</strong></p>
+        <% else %>
+          <p class="text-danger"><strong>未販売</strong></p>
+        <% end %>
+      </div>
+
+      <span class="mr-2"><%= link_to "編集する", edit_creator_item_path(@item.id), class: "btn btn-outline-info" %></span>
+      <span><%= link_to "削除する", creator_item_path(@item.id), method: :delete, data: { confirm: "削除しますか？" }, class: "btn btn-outline-danger" %></span>
+    </div>
+  </div>
+</div>
+
+

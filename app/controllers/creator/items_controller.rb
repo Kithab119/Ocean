@@ -18,7 +18,7 @@ class Creator::ItemsController < ApplicationController
   end
 
   def index
-    @items = current_creator.items
+    @items = current_creator.items.page(params[:page])
   end
 
   def show
