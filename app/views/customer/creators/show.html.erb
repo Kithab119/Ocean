@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
 
-    <% if flash[:notice] %>
+    <% if flash[:follow] %>
       <div class="col-12">
-        <h4 class="text-success"><%= flash[:notice] %></h4>
+        <h4 class="text-success"><%= flash[:follow] %></h4>
       </div>
     <% end %>
 
@@ -53,8 +53,8 @@
               <%= image_tag item.get_image, class: "mw-100 mh-100 mb-3" %>
             <% end %>
 
-            <p class="mb-1">作品名<span>「<%= link_to item.name, item_path(item.id), class: "text-info" %>」</span></p>
-            <p class="mb-1">価格<span>　 ¥<%= (item.price * 1.1).floor.to_s(:delimited) %></span></p>
+            <p class="mb-1">作品名<span>「<strong><%= link_to item.name, item_path(item.id), class: "text-info" %></strong>」</span></p>
+            <p class="mb-1">価格<span class="ml-2"><strong>¥<%= (item.price * 1.1).floor.to_s(:delimited) %></strong></span></p>
             <% if item.is_active == true %>
               <p class="text-info"><strong>販売中</strong></p>
             <% else %>

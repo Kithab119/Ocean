@@ -1,7 +1,10 @@
-<h2>退会しますか？</h2>
+<div class="container">
+  <h2 class="text-center text-danger mt-5 mb-3">退会しますか？</h2>
 
-<p>退会すると今までご利用いただいた情報は閲覧できなくなりますが、<br>
-本当によろしいでしょうか？</p>
+  <p class="text-center mb-5"><strong>退会すると今までご利用いただいた情報は閲覧できなくなりますが、<br>
+  本当によろしいでしょうか？</strong></p>
 
-<div><%= link_to "いいえ", creator_creators_path %></div>
-<div><%= link_to "はい", creator_creators_out_check_path, method: :patch, "data_confirm" => "退会します" %></div>
+  <div class="text-center">
+    <span class="mr-2"><%= link_to "いいえ", creator_creators_path, class: "btn btn-outline-info" %></span>
+    <span><%= link_to "はい", creator_creators_out_check_path, method: :patch, data: { confirm: "本当に退会しますか？" }, class: "btn btn-outline-danger" %></span>
+  </div>

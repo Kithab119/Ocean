@@ -1,40 +1,53 @@
 <div class="container">
-  <div class="row">
-    <div class="col">
-      <h2 class="text-info mt-5 mb-3">マイページ</h2>
-      <div class="row">
-        <div class="col-3">
-          <table>
-            <tr>
-              <th>名前</th>
-              <td><%= @creator.name %></td>
-            </tr>
-            <tr>
-              <th>プロフィール</th>
-              <td><%= @creator.profile %></td>
-            </tr>
-            <tr>
-              <th>郵便番号</th>
-              <td><%= @creator.postal_code %></td>
-            </tr>
-            <tr>
-              <th>住所</th>
-              <td><%= @creator.address %></td>
-            </tr>
-            <tr>
-              <th>電話番号</th>
-              <td><%= @creator.telephone_number %></td>
-            </tr>
-            <tr>
-              <th>メールアドレス</th>
-              <td><%= @creator.email %></td>
-            </tr>
-          </table>
-          <div><%= link_to "編集する", edit_creator_creators_path %></div>
-          <div><%= link_to "個展情報を載せる", new_creator_gallery_path %></div>
-          <div><%= link_to "退会する", creator_creators_out_path %></div>
-        </div>
-      </div>
+  <h2 class="text-info mt-5 mb-3">マイページ</h2>
+
+  <div class="col-4"><%= image_tag @creator.get_profile_image(300, 300) %></div>
+
+  <div class="row mb-3">
+    <div class="col-2">
+      <p>名前</p>
+    </div>
+    <div class="col-10">
+      <p class="text-info"><strong><%= @creator.name %></strong></p>
+    </div>
+
+    <div class="col-2">
+      <p>プロフィール</p>
+    </div>
+    <div class="col-10">
+      <p class="text-info"><strong><%= @creator.profile %></strong></p>
+    </div>
+
+    <div class="col-2">
+      <p>郵便番号</p>
+    </div>
+    <div class="col-10">
+      <p class="text-info"><strong>〒<%= @creator.postal_code.insert(3, "-") %></strong></p>
+    </div>
+
+    <div class="col-2">
+      <p>住所</p>
+    </div>
+    <div class="col-10">
+      <p class="text-info"><strong><%= @creator.address %></strong></p>
+    </div>
+
+    <div class="col-2">
+      <p>電話番号</p>
+    </div>
+    <div class="col-10">
+      <p class="text-info"><strong><%= @creator.telephone_number.insert(3, "-").insert(8, "-") %></strong></p>
+    </div>
+
+    <div class="col-2">
+      <p>メールアドレス</p>
+    </div>
+    <div class="col-10">
+      <p class="text-info"><strong><%= @creator.email %></strong></p>
     </div>
   </div>
+
+  <div class="mb-2"><%= link_to "編集する", edit_creator_creators_path, class: "btn btn-outline-info" %></div>
+  <div class="mb-5"><%= link_to "個展情報を載せる", new_creator_gallery_path, class: "btn btn-outline-success" %></div>
+  <div><%= link_to "退会する", creator_creators_out_path, class: "btn btn-outline-danger" %></div>
 </div>
