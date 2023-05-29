@@ -1,26 +1,52 @@
 <div class="container">
   <h2 class="text-info mt-5 mb-3">レビュー</h2>
 
-  <%= form_with model: @review, url: creator_reviews_path, method: :post do |f| %>
-    <div id="star">
-      <%= f.label :star, "評価" %>
-      <%= f.hidden_field :star, id: :review_star %>
-  　</div>
-    <script>
-  　　$('#star').empty();
-      $('#star').raty({
-        size     : 36,
-        starOff:  '<%= asset_path('star-off.png') %>',
-        starOn : '<%= asset_path('star-on.png') %>',
-        scoreName : 'review[star]',
-        half: false
-      });
-    </script>
-    <table>
-      <tr>
-        <th>コメントを書く</th>
-        <td><%= f.text_area :comment %></td>
-      </tr>
-    </table>
-    <%= f.submit "評価する" %>
-  <% end %>
+  <div class="row">
+    <div class="col-4">
+      <%= form_with model: @review, url: creator_reviews_path, method: :post do |f| %>
+        <div class="ml-2 mb-3", id="star">
+          <%= f.hidden_field :star, id: :review_star %>
+      　</div>
+        <script>
+      　　$('#star').empty();
+          $('#star').raty({
+            size     : 36,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            scoreName : 'review[star]',
+            half: false
+          });
+        </script>
+
+        <p class="mb-1 ml-3"><strong>コメントを書く</strong></p>
+        <p class="ml-3"><%= f.text_area :comment %></p>
+
+        <div class="ml-3"><%= f.submit "評価する", class: "btn btn-outline-info" %></div>
+      <% end %>
+    </div>
+
+    <div class="col-8">
+      <% @reviews.each do |review| %>
+        <div class="border border-info mb-5">
+          <p class="text-info mt-2 ml-2 mb-1"><%= review.customer.last_name %> <%= review.customer.first_name %></p>
+
+          <div class="ml-3 mb-3", id="star-rate<%= review.id %>"></div>
+          <script>
+            $('#star-rate<%= review.id %>').empty();
+            $('#star-rate<%= review.id %>').raty({
+              size      : 36,
+              starOff   : '<%= asset_path('star-off.png') %>',
+              starOn    : '<%= asset_path('star-on.png') %>',
+              starHalf: '<%= asset_path('star-half.png') %>',
+              half      : true,
+              readOnly: true,
+              score: <%= review.star %>
+            });
+          </script>
+
+          <p class="mx-3"><strong><%= review.comment %></strong></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

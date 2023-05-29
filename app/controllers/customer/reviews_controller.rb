@@ -2,6 +2,7 @@ class Customer::ReviewsController < ApplicationController
 
   def new
     @review = Review.new
+    @reviews = Review.all.order(created_at: :desc).limit(5)
   end
 
   def create
