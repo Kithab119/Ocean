@@ -9,6 +9,7 @@
         <th class="text-info font-weight-lighter">希望価格</th>
         <th class="text-info font-weight-lighter">制作状況</th>
         <th></th>
+        <th>DM</th>
       </tr>
     </thead>
     <tbody>
@@ -19,6 +20,11 @@
           <td><strong>¥<%= (making.price * 1.1).floor.to_s(:delimited) %></strong></td>
           <td><strong><%= making.is_product_i18n %></strong></td>
           <td><%= link_to "詳細へ", making_path(making.id), class: "btn btn-outline-info" %></td>
+          <td>
+            <%= link_to rooms_path(making_id: making.id), method: :post do %>
+              <i class="far fa-envelope fa-lg"></i>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>

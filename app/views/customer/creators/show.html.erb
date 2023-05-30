@@ -33,6 +33,7 @@
             score: <%= @creator.reviews.average(:star).to_f.round(1) %>
           });
         </script>
+
         <div class="mb-5"><%= link_to "評価/コメント", new_creator_review_path(@creator.id), class: "text-info" %></div>
 
         <div class="border mb-5">

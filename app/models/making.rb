@@ -1,5 +1,7 @@
 class Making < ApplicationRecord
 
+  has_one :room
+
   belongs_to :customer
   belongs_to :creator
   belongs_to :order, optional: true

@@ -11,6 +11,7 @@ class Customer < ApplicationRecord
   has_many :makings
   has_many :reviews
   has_many :follows
+  has_many :messages
 
   def self.guest
     find_or_create_by!(email: "guest@example.com") do |customer|

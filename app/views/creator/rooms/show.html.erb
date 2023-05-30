@@ -1,0 +1,15 @@
+<h2>DM</h2>
+
+<% @room.messages.each do |message| %>
+  <%= message.letter %>
+  
+  <% if message.creator_id == current_creator.id %>
+    <%= link_to "削除", creator_message_path(message.id), method: :delete %>
+  <% end %>
+<% end %>
+
+<%= form_with model: @message, url: creator_messages_path, method: :post do |f| %>
+  <%= f.text_area :letter %>
+  <%= f.hidden_field :room_id, :value => @room.id %>
+  <%= f.submit "送信" %>
+<% end %>
