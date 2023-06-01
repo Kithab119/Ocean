@@ -1,15 +1,26 @@
-<h2>DM</h2>
+<div class="container">
+  <h2 class="text-info mt-5 mb-3">DM</h2>
 
-<% @room.messages.each do |message| %>
-  <%= message.letter %>
-  
-  <% if message.customer_id == current_customer.id %>
-    <%= link_to "削除", message_path(message.id), method: :delete %>
+  <% @room.messages.each do |message| %>
+    <% if message.customer_id == current_customer.id %>
+      <p class="mb-1"><strong><%= message.customer.last_name %> <%= message.customer.first_name %></strong></p>
+    <% else %>
+      <p class="mb-1"><strong><%= message.creator.name %></strong></p>
+    <% end %>
+
+    <div class="border rounded-pill bg-info mb-3">
+      <p class="text-light mx-2 mt-1 mb-1"><%= message.letter %></p>
+    </div>
+
+    <% if message.customer_id == current_customer.id %>
+      <span><%= link_to "削除", message_path(message.id), method: :delete, class: "btn btn-outline-danger" %></span>
+    <% end %>
   <% end %>
-<% end %>
 
-<%= form_with model: @message, url: messages_path, method: :post do |f| %>
-  <%= f.text_area :letter %>
-  <%= f.hidden_field :room_id, :value => @room.id %>
-  <%= f.submit "送信" %>
-<% end %>
+  <%= form_with model: @message, url: messages_path, method: :post do |f| %>
+    <div class="mt-5"><%= f.text_area :letter %></div>
+    <%= f.hidden_field :room_id, :value => @room.id %>
+    <%= f.hidden_field :creator_id, :value => @room.making.creator_id %>
+    <div><%= f.submit "送信", class: "btn btn-outline-info" %></div>
+  <% end %>
+</div>

@@ -4,6 +4,7 @@ class Creator::MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.creator_id = current_creator.id
     @message.save
+    Notification.create(customer_id: @message.customer_id, creator_id: current_creator.id, room_id: @message.room.id)
     redirect_to creator_room_path(@message.room.id)
   end
 
@@ -16,7 +17,7 @@ class Creator::MessagesController < ApplicationController
 
 private
   def message_params
-    params.require(:message).permit(:letter, :room_id)
+    params.require(:message).permit(:letter, :room_id, :customer_id)
   end
 
 end
