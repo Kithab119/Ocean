@@ -34,9 +34,9 @@ class Customer::OrdersController < ApplicationController
     unless params[:order][:making_id] == ""
       @making = Making.find(params[:order][:making_id])
       if @making.is_product == "approved"
-        @making.update(order_id: @order.id, is_product: "product_waiting")
         @order.creator_id = @making.creator_id
         @order.save
+        @making.update(order_id: @order.id, is_product: "product_waiting")
       end
     else
       @cart_items = current_customer.cart_items

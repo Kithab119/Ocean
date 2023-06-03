@@ -2,7 +2,7 @@
   <h2 class="text-info mt-5 mb-3">DM</h2>
 
   <% @room.messages.each do |message| %>
-    <% if message.customer_id == current_customer.id %>
+    <% if message.send_by_customer %>
       <p class="mb-1"><strong><%= message.customer.last_name %> <%= message.customer.first_name %></strong></p>
     <% else %>
       <p class="mb-1"><strong><%= message.creator.name %></strong></p>
@@ -12,7 +12,7 @@
       <p class="text-light mx-2 mt-1 mb-1"><%= message.letter %></p>
     </div>
 
-    <% if message.customer_id == current_customer.id %>
+    <% if message.send_by_customer %>
       <span><%= link_to "削除", message_path(message.id), method: :delete, class: "btn btn-outline-danger" %></span>
     <% end %>
   <% end %>
@@ -20,7 +20,6 @@
   <%= form_with model: @message, url: messages_path, method: :post do |f| %>
     <div class="mt-5"><%= f.text_area :letter %></div>
     <%= f.hidden_field :room_id, :value => @room.id %>
-    <%= f.hidden_field :creator_id, :value => @room.making.creator_id %>
     <div><%= f.submit "送信", class: "btn btn-outline-info" %></div>
   <% end %>
 </div>

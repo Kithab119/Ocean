@@ -1,6 +1,6 @@
 class Making < ApplicationRecord
 
-  has_one :room
+  has_one :room, dependent: :destroy
 
   belongs_to :customer
   belongs_to :creator

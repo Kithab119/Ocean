@@ -3,7 +3,7 @@
 <% @room.messages.each do |message| %>
   <%= message.letter %>
 
-  <% if message.creator_id == current_creator.id %>
+  <% if message.send_by_creator %>
     <%= link_to "削除", creator_message_path(message.id), method: :delete %>
   <% end %>
 <% end %>
@@ -11,6 +11,5 @@
 <%= form_with model: @message, url: creator_messages_path, method: :post do |f| %>
   <%= f.text_area :letter %>
   <%= f.hidden_field :room_id, :value => @room.id %>
-  <%= f.hidden_field :customer_id, :value => @room.making.customer_id %>
   <%= f.submit "送信" %>
 <% end %>

@@ -167,8 +167,7 @@ ActiveRecord::Schema.define(version: 2023_05_31_132127) do
 
   create_table "messages", force: :cascade do |t|
     t.integer "room_id", null: false
-    t.integer "customer_id"
-    t.integer "creator_id"
+    t.string "sender", null: false
     t.text "letter"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

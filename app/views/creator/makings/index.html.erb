@@ -22,7 +22,7 @@
         <td><%= link_to "詳細へ", creator_making_path(making.id), class: "btn btn-outline-info" %></td>
         <td>
           <%= link_to creator_rooms_path(making_id: making.id), method: :post do %>
-            <% if Notification.where(room_id: making.room.id, checked: false).present? %>
+            <% if Notification.exists?(room_id: making&.room&.id, checked: false).present? %>
               new
             <% else %>
               <i class="far fa-envelope fa-lg"></i>
