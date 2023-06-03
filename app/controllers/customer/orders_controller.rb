@@ -31,15 +31,18 @@ class Customer::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.postage = 800
-    @order.save
     unless params[:order][:making_id] == ""
       @making = Making.find(params[:order][:making_id])
       if @making.is_product == "approved"
         @making.update(order_id: @order.id, is_product: "product_waiting")
+        @order.creator_id = @making.creator_id
+        @order.save
       end
     else
       @cart_items = current_customer.cart_items
       @cart_items.each do |cart_item|
+        @order.creator_id = cart_item.item.creator.id
+        @order.save
         @order_detail = OrderDetail.new
         @order_detail.item_id = cart_item.item_id
         @order_detail.order_id = @order.id

@@ -50,6 +50,7 @@ Rails.application.routes.draw do
     resource :creators, only: [:show, :edit, :update]
     get "/makings" => "makings#index", as: "creators_makings"
     resources :makings, only: [:show, :update]
+    resources :orders, only: [:index, :show, :update]
     resources :galleries, only: [:new, :create, :index, :show, :destroy]
     resources :rooms, only: [:create, :show]
     resources :messages, only: [:create, :destroy]
