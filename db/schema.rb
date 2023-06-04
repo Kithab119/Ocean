@@ -174,16 +174,16 @@ ActiveRecord::Schema.define(version: 2023_05_31_132127) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.integer "customer_id", null: false
-    t.integer "creator_id", null: false
+    t.integer "target_id", null: false
+    t.integer "order_id"
     t.integer "room_id"
     t.string "action", default: "", null: false
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["creator_id"], name: "index_notifications_on_creator_id"
-    t.index ["customer_id"], name: "index_notifications_on_customer_id"
+    t.index ["order_id"], name: "index_notifications_on_order_id"
     t.index ["room_id"], name: "index_notifications_on_room_id"
+    t.index ["target_id"], name: "index_notifications_on_target_id"
   end
 
   create_table "order_details", force: :cascade do |t|

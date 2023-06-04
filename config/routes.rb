@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     resources :galleries, only: [:index, :show]
     resources :rooms, only: [:create, :show]
     resources :messages, only: [:create, :destroy]
+    resources :notifications, only: [:index]
   end
 
   namespace :creator do
@@ -54,6 +55,7 @@ Rails.application.routes.draw do
     resources :galleries, only: [:new, :create, :index, :show, :destroy]
     resources :rooms, only: [:create, :show]
     resources :messages, only: [:create, :destroy]
+    resources :notifications, only: [:index]
   end
 
   namespace :admin do

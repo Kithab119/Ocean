@@ -4,7 +4,7 @@ class Customer::MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.sender = Customer.name
     @message.save
-    #Notification.create(customer_id: current_customer.id, creator_id: @message.creator_id, room_id: @message.room.id)
+    Notification.create(target_id: @message.creator.id, room_id: @message.room.id, action: "Room")
     redirect_to room_path(@message.room.id)
   end
 
