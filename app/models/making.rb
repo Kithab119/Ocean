@@ -1,5 +1,6 @@
 class Making < ApplicationRecord
 
+  has_many :notifications, dependent: :destroy
   has_one :room, dependent: :destroy
 
   belongs_to :customer

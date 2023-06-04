@@ -3,6 +3,7 @@ class Order < ApplicationRecord
   belongs_to :customer
   belongs_to :creator
 
+  has_many :notifications, dependent: :destroy
   has_many :order_details, dependent: :destroy
   has_one :making, dependent: :destroy
 

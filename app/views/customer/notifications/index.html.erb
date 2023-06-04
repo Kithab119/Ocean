@@ -1,0 +1,7 @@
+<h2>通知</h2>
+
+<% @notifications.each do |notification| %>
+  <% if notification.action == "Room" %>
+    <p><%= notification.creator.name %>さんからメッセージが届きました</p>
+  <% end %>
+<% end %>

@@ -175,6 +175,7 @@ ActiveRecord::Schema.define(version: 2023_05_31_132127) do
 
   create_table "notifications", force: :cascade do |t|
     t.integer "target_id", null: false
+    t.integer "making_id"
     t.integer "order_id"
     t.integer "room_id"
     t.string "action", default: "", null: false

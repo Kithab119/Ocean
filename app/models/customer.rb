@@ -12,7 +12,6 @@ class Customer < ApplicationRecord
   has_many :reviews
   has_many :follows
   has_many :messages
-  has_many :notifications, dependent: :destroy
 
   def self.guest
     find_or_create_by!(email: "guest@example.com") do |customer|

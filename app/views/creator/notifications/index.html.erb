@@ -1,0 +1,26 @@
+<h2>通知</h2>
+
+<% @notifications.each do |notification| %>
+  <% if notification.checked == false %>
+    NEW
+  <% end %>
+
+  <% if notification.action == "Room" %>
+    <p><%= notification.room.making.customer.last_name %> <%= notification.room.making.customer.first_name %>さんからメッセージが届きました</p>
+
+  <% elsif notification.action == "Request" %>
+    <p><%= notification.making.customer.last_name %> <%= notification.making.customer.first_name %>さんからリクエストが届きました</p>
+
+  <% elsif notification.action == "Making" %>
+    <%= link_to creator_creators_makings_path do %>
+      <p><%= notification.order.customer.last_name %> <%= notification.order.customer.first_name %>さんからリクエストが注文されました</p>
+    <% end %>
+
+  <% elsif notification.action == "Item" %>
+    <% notification.order.order_details.each do |order_detail| %>
+      <% if order_detail.item.creator == current_creator %>
+        <p><%= notification.order.customer.last_name %> <%= notification.order.customer.first_name %>さんから「<%= order_detail.item.name %>」が注文されました</p>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

@@ -2,6 +2,7 @@ class CreateNotifications < ActiveRecord::Migration[6.1]
   def change
     create_table :notifications do |t|
       t.integer :target_id, null: false
+      t.integer :making_id
       t.integer :order_id
       t.integer :room_id
       t.string :action, default: "", null: false
@@ -10,6 +11,7 @@ class CreateNotifications < ActiveRecord::Migration[6.1]
     end
 
     add_index :notifications, :target_id
+    add_index :notifications, :making_id
     add_index :notifications, :order_id
     add_index :notifications, :room_id
   end
