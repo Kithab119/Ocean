@@ -1,0 +1,101 @@
+<div class="container">
+  <div class="row">
+    <h2 class="text-info mt-5 mb-5">注文詳細</h2>
+  </div>
+
+  <div class="row">
+    <h3 class="text-info ml-2 mb-3">注文内容</h3>
+  </div>
+
+  <% if @order.making.present? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="font-weight-lighter">カラー</th>
+        <th class="font-weight-lighter">サイズ</th>
+        <th class="font-weight-lighter">ジャンル</th>
+        <th class="font-weight-lighter">スタイル</th>
+        <th class="font-weight-lighter">要望</th>
+        <th class="font-weight-lighter">希望価格</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="text-info"><strong><%= @order.making.color %></strong></td>
+        <td class="text-info"><strong><%= @order.making.size %></strong></td>
+        <td class="text-info"><strong><%= @order.making.genre %></strong></td>
+        <td class="text-info"><strong><%= @order.making.style %></strong></td>
+        <td><strong><%= @order.making.request %></strong></td>
+        <td><strong>¥<%= @order.making.price.to_s(:delimited) %></strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="col-12 w-25 ml-auto border border-info mt-5">
+    <div class="w-50 mt-2 border-bottom">
+      <span>送料</span>
+      <span><strong>¥800</strong></span>
+    </div>
+
+    <div class="w-75 ml-auto">
+      <div class="text-info mt-3">合計金額（税込）</div>
+      <div class="mb-2"><strong>¥<%= (@order.making.price * 1.1 + 800).floor.to_s(:delimited) %></strong></div>
+    </div>
+  </div>
+  <% else %>
+    <div class="col-12 row">
+      <% @order.order_details.each do |order_detail| %>
+        <div class="col-4 h-50">
+          <% if order_detail.item.creator.id == current_creator.id %>
+            <div><%= image_tag order_detail.item.get_image, class: "mw-100 mh-100" %></div>
+
+            <div class="col-12 mt-3">
+              <span>作品名</span>
+              <span class="text-info">「<strong><%= order_detail.item.name %></strong>」</span>
+            </div>
+
+            <div class="col-12 border mt-3">
+              <div class="text-info mt-2">-作品情報-</div>
+              <div class="mt-2 mb-2"><strong><%= order_detail.item.introduction %></strong></div>
+            </div>
+
+            <div class="col-6 mt-3 border-bottom">
+              <span class="mr-2">価格</span>
+              <span><strong>¥<%= (order_detail.purchase * 1.1).floor.to_s(:delimited) %></strong><span>
+            </div>
+            <% @sum += order_detail.purchase %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="col-12 w-25 ml-auto border border-info mt-5">
+      <div class="w-50 mt-2 border-bottom">
+        <span>送料</span>
+        <span><strong>¥800</strong></span>
+      </div>
+
+      <div class="w-50 ml-auto">
+        <div class="text-info mt-3">合計金額</div>
+        <div class="mb-2"><strong>¥<%= (@sum * 1.1 + 800).floor.to_s(:delimited) %></strong></div>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="col-6 border mt-5">
+    <p class="ml-2 mt-2 mb-2">配送先住所</p>
+    <p class="ml-2">
+      <strong>〒<%= @order.shipping_postal_code %><br>
+      <%= @order.shipping_address %></strong>
+    </p>
+
+    <p class="ml-2 mb-2">宛名</p>
+    <p class="ml-2"><strong><%= @order.shipping_name %></strong></p>
+
+    <p class="ml-2 mb-2">支払方法</p>
+    <p class="text-info ml-2"><strong><%= @order.payment_i18n %></strong></p>
+
+    <p class="ml-2 mb-2">注文状況</p>
+    <p class="text-info ml-2"><strong><%= @order.is_receive_i18n %></strong></p>
+  </div>
+</div>
