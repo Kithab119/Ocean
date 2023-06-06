@@ -14,13 +14,11 @@
   <% elsif notification.action == "Making" %>
     <%= link_to creator_creators_makings_path do %>
       <p><%= notification.order.customer.last_name %> <%= notification.order.customer.first_name %>さんからリクエストが注文されました</p>
+      <p><%= link_to "確認", creator_notifications_check_path(notification_id: notification.id) %></p>
     <% end %>
 
   <% elsif notification.action == "Item" %>
-    <% notification.order.order_details.each do |order_detail| %>
-      <% if order_detail.item.creator == current_creator %>
-        <p><%= notification.order.customer.last_name %> <%= notification.order.customer.first_name %>さんから「<%= order_detail.item.name %>」が注文されました</p>
-      <% end %>
-    <% end %>
+    <p><%= notification.order.customer.last_name %> <%= notification.order.customer.first_name %>さんから「<%= order_detail.item.name %>」が注文されました</p>
+    <p><%= link_to "確認", creator_notifications_check_path(notification_id: notification.id) %></p>
   <% end %>
 <% end %>

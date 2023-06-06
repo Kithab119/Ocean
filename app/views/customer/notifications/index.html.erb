@@ -2,6 +2,6 @@
 
 <% @notifications.each do |notification| %>
   <% if notification.action == "Room" %>
-    <p><%= notification.creator.name %>さんからメッセージが届きました</p>
+    <p><%= notification.room.making.creator.name %>さんからメッセージが届きました</p>
   <% end %>
 <% end %>
