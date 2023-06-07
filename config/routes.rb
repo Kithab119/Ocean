@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     resources :galleries, only: [:index, :show]
     resources :rooms, only: [:create, :show]
     resources :messages, only: [:create, :destroy]
+    get "/notification_check" => "notifications#check", as: "notifications_check"
     resources :notifications, only: [:index]
   end
 
