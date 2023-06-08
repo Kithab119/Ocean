@@ -1,24 +1,124 @@
-<h2>通知</h2>
+<div class="container">
+  <h2 class="text-info mt-5 mb-3">通知</h2>
 
-<% @notifications.each do |notification| %>
-  <% if notification.checked == false %>
-    NEW
-  <% end %>
+  <% @notifications.each do |notification| %>
 
-  <% if notification.action == "Room" %>
-    <p><%= notification.room.making.customer.last_name %> <%= notification.room.making.customer.first_name %>さんからメッセージが届きました</p>
+    <% if notification.action == "Room" %>
+      <div class="row mt-3">
+        <% if notification.checked == false %>
+          <div class="col-1 text-danger">
+            new!
+          </div>
+          <div class="col-6">
+            <strong><%= notification.room.making.customer.last_name %> <%= notification.room.making.customer.first_name %>さんからメッセージが届きました!</strong>
+          </div>
+          <div class="col-3 text-info">
+            <%= notification.created_at.strftime("%y/%m/%d %H:%M:%S") %>
+          </div>
+          <div class="col-2">
+            <%= link_to "確認", creator_notifications_check_path(notification_id: notification.id), class: "btn btn-outline-info" %>
+          </div>
+        <% else %>
+          <div class="col-1"></div>
+          <div class="col-6">
+            <strong><%= notification.room.making.customer.last_name %> <%= notification.room.making.customer.first_name %>さんからメッセージが届きました!</strong>
+          </div>
+          <div class="col-3 text-info">
+            <%= notification.created_at.strftime("%y/%m/%d %H:%M:%S") %>
+          </div>
+          <div class="col-2">
+            <%= link_to "確認", creator_room_path(notification.room.id), class: "btn btn-outline-info" %>
+          </div>
+        <% end %>
+      </div>
 
-  <% elsif notification.action == "Request" %>
-    <p><%= notification.making.customer.last_name %> <%= notification.making.customer.first_name %>さんからリクエストが届きました</p>
+    <% elsif notification.action == "Request" %>
+      <div class="row mt-3">
+        <% if notification.checked == false %>
+          <div class="col-1 text-danger">
+            new!
+          </div>
+          <div class="col-6">
+            <strong><%= notification.making.customer.last_name %> <%= notification.making.customer.first_name %>さんからリクエストが届きました!</strong>
+          </div>
+          <div class="col-3 text-info">
+            <%= notification.created_at.strftime("%y/%m/%d %H:%M:%S") %>
+          </div>
+          <div class="col-2">
+            <%= link_to "確認", creator_notifications_check_path(notification_id: notification.id), class: "btn btn-outline-info" %>
+          </div>
+        <% else %>
+          <div class="col-1"></div>
+          <div class="col-6">
+            <strong><%= notification.making.customer.last_name %> <%= notification.making.customer.first_name %>さんからリクエストが届きました!</strong>
+          </div>
+          <div class="col-3 text-info">
+            <%= notification.created_at.strftime("%y/%m/%d %H:%M:%S") %>
+          </div>
+          <div class="col-2">
+            <%= link_to "確認", creator_making_path(notification.making.id), class: "btn btn-outline-info" %>
+          </div>
+        <% end %>
+      </div>
 
-  <% elsif notification.action == "Making" %>
-    <%= link_to creator_creators_makings_path do %>
-      <p><%= notification.order.customer.last_name %> <%= notification.order.customer.first_name %>さんからリクエストが注文されました</p>
-      <p><%= link_to "確認", creator_notifications_check_path(notification_id: notification.id) %></p>
+    <% elsif notification.action == "Making" %>
+      <div class="row mt-3">
+        <% if notification.checked == false %>
+          <div class="col-1 text-danger">
+            new!
+          </div>
+          <div class="col-6">
+            <strong><%= notification.order.customer.last_name %> <%= notification.order.customer.first_name %>さんから注文が届きました!</strong>
+          </div>
+          <div class="col-3 text-info">
+            <%= notification.created_at.strftime("%y/%m/%d %H:%M:%S") %>
+          </div>
+          <div class="col-2">
+            <%= link_to "確認", creator_notifications_check_path(notification_id: notification.id), class: "btn btn-outline-info" %>
+          </div>
+        <% else %>
+          <div class="col-1"></div>
+          <div class="col-6">
+            <strong><%= notification.order.customer.last_name %> <%= notification.order.customer.first_name %>さんから注文が届きました!</strong>
+          </div>
+          <div class="col-3 text-info">
+            <%= notification.created_at.strftime("%y/%m/%d %H:%M:%S") %>
+          </div>
+          <div class="col-2">
+            <%= link_to "確認", creator_order_path(notification.order.id), class: "btn btn-outline-info" %>
+          </div>
+        <% end %>
+      </div>
+
+    <% elsif notification.action == "Item" %>
+      <div class="row mt-3">
+        <% if notification.checked == false %>
+          <div class="col-1 text-danger">
+            new!
+          </div>
+          <div class="col-6">
+            <strong><%= notification.order.customer.last_name %> <%= notification.order.customer.first_name %>さんから注文が届きました!</strong>
+          </div>
+          <div class="col-3 text-info">
+            <%= notification.created_at.strftime("%y/%m/%d %H:%M:%S") %>
+          </div>
+          <div class="col-2">
+            <%= link_to "確認", creator_notifications_check_path(notification_id: notification.id), class: "btn btn-outline-info" %>
+          </div>
+        <% else %>
+          <div class="col-1"></div>
+          <div class="col-6">
+            <strong><%= notification.order.customer.last_name %> <%= notification.order.customer.first_name %>さんから注文が届きました!</strong>
+          </div>
+          <div class="col-3 text-info">
+            <%= notification.created_at.strftime("%y/%m/%d %H:%M:%S") %>
+          </div>
+          <div class="col-2">
+            <%= link_to "確認", creator_order_path(notification.order.id), class: "btn btn-outline-info" %>
+          </div>
+        <% end %>
+      </div>
+
     <% end %>
-
-  <% elsif notification.action == "Item" %>
-    <p><%= notification.order.customer.last_name %> <%= notification.order.customer.first_name %>さんから「<%= order_detail.item.name %>」が注文されました</p>
-    <p><%= link_to "確認", creator_notifications_check_path(notification_id: notification.id) %></p>
   <% end %>
-<% end %>
+</div>

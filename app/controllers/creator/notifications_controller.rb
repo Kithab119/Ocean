@@ -6,18 +6,23 @@ class Creator::NotificationsController < ApplicationController
 
   def check
     notification = Notification.find_by(id: params[:notification_id])
-    if notification.present? && notification.action == "Item"
-      if notitication.target_id == current_createtor.id
-    # if notification.present? && notification.action == "Item"
-    #   order_detail = OrderDetail.find_by(id: params[:order_detail_id])
-    #   if order_detail.present? &&
-    #     notification.order.order_details.ids.include?(order_detail.id) &&
-    #     order_detail.item.creator_id == current_creator.id
-        ## notification.order.order_details.find_by(id: order_detail.id)&.item&.creator_id == current_creator.id
-        ## notification.order.order_details.find(order_detail.id).item.creator_id == current_creator.id
-        @notification.update(checked: true)
+    if notification.present? && notitication.target_id == current_creator.id
+      if notitication.action == "Room"
+        notification.update(checked: true)
+        redirect_to creator_room_path(notification.room.id)
+
+      elsif notitication.action == "Request"
+        notification.update(checked: true)
+        redirect_to creator_making_path(notification.making.id)
+
+      elsif notitication.action == "Making"
+        notification.update(checked: true)
+        redirect_to creator_order_path(notification.order.id)
+
+      elsif notitication.action == "Item"
+        notification.update(checked: true)
+        redirect_to creator_order_path(notification.order.id)
       end
-      redirect_to creator_order_path(@notification.order_id)
     end
   end
 

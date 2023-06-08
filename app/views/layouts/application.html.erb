@@ -31,7 +31,7 @@
             <li class="nav-item"><%= link_to "Ocean", creator_root_path, class: "nav-link btn btn-light btn-lg" %></li>
           </ul>
           <ul class="navbar-nav list-group-horizontal">
-            <% if %>
+            <% if Notification.find_by(target_id: current_creator.id, checked: false) %>
               <li class="nav-item"><%= link_to "通知", creator_notifications_path, class: "text-danger" %></li>
             <% else %>
               <li class="nav-item"><%= link_to "通知", creator_notifications_path, class: "nav-link btn btn-light" %></li>
