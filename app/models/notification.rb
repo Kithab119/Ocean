@@ -4,6 +4,7 @@ class Notification < ApplicationRecord
 
   belongs_to :making, optional: true
   belongs_to :order, optional: true
+  belongs_to :item, optional: true
   belongs_to :room, optional: true
 
 end

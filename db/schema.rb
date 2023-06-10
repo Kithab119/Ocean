@@ -178,6 +178,7 @@ ActiveRecord::Schema.define(version: 2023_05_31_132127) do
     t.string "sender", null: false
     t.integer "making_id"
     t.integer "order_id"
+    t.integer "item_id"
     t.integer "room_id"
     t.string "action", default: "", null: false
     t.boolean "checked", default: false, null: false

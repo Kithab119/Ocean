@@ -22,6 +22,10 @@ class Creator::NotificationsController < ApplicationController
       elsif notification.action == "Item"
         notification.update(checked: true)
         redirect_to creator_order_path(notification.order.id)
+
+      elsif notification.action == "Payment"
+        notification.update(checked: true)
+        redirect_to creator_order_path(notification.order.id)
       end
     end
   end

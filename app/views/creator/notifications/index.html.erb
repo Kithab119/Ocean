@@ -117,6 +117,34 @@
             <%= link_to "確認", creator_order_path(notification.order.id), class: "btn btn-outline-info" %>
           </div>
         <% end %>
+
+    <% elsif notification.action == "Payment" %>
+      <div class="row mt-3">
+        <% if notification.checked == false %>
+          <div class="col-1 text-danger">
+            new!
+          </div>
+          <div class="col-6">
+            <strong>入金されました!</strong>
+          </div>
+          <div class="col-3 text-info">
+            <%= notification.created_at.strftime("%y/%m/%d %H:%M:%S") %>
+          </div>
+          <div class="col-2">
+            <%= link_to "確認", creator_notifications_check_path(notification_id: notification.id), class: "btn btn-outline-info" %>
+          </div>
+        <% else %>
+          <div class="col-1"></div>
+          <div class="col-6">
+            <strong>入金されました!</strong>
+          </div>
+          <div class="col-3 text-info">
+            <%= notification.created_at.strftime("%y/%m/%d %H:%M:%S") %>
+          </div>
+          <div class="col-2">
+            <%= link_to "確認", creator_order_path(notification.order.id), class: "btn btn-outline-info" %>
+          </div>
+        <% end %>
       </div>
 
     <% end %>
