@@ -28,6 +28,14 @@ class Customer::OrdersController < ApplicationController
   end
 
   def create
+    @cart_items = current_customer.cart_items
+    if params[:order][:making_id] == ""
+      @cart_items.each do |cart_item|
+        if cart_item.item.is_active == false
+          return
+        end
+      end
+    end
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.postage = 800
@@ -39,8 +47,8 @@ class Customer::OrdersController < ApplicationController
         Notification.create(target_id: @making.creator_id, sender: "Creator", order_id: @order.id, action: "Making")
       end
     else
-      @cart_items = current_customer.cart_items
       @cart_items.each do |cart_item|
+        cart_item.item.update(is_active: false)
         @order_detail = OrderDetail.new
         @order_detail.item_id = cart_item.item_id
         @order_detail.order_id = @order.id
