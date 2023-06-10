@@ -22,11 +22,7 @@
           <td><%= link_to "詳細へ", making_path(making.id), class: "btn btn-outline-info" %></td>
           <td>
             <%= link_to rooms_path(making_id: making.id), method: :post do %>
-              <% if Notification.exists?(room_id: making&.room&.id, checked: false) %>
-                new
-              <% else %>
-                <i class="far fa-envelope fa-lg"></i>
-              <% end %>
+              <i class="far fa-envelope fa-lg"></i>
             <% end %>
           </td>
         </tr>

@@ -53,6 +53,7 @@ Rails.application.routes.draw do
     get "/makings" => "makings#index", as: "creators_makings"
     resources :makings, only: [:show, :update]
     resources :orders, only: [:index, :show, :update]
+    resources :order_details, only: [:update]
     resources :galleries, only: [:new, :create, :index, :show, :destroy]
     resources :rooms, only: [:create, :show]
     resources :messages, only: [:create, :destroy]
@@ -68,7 +69,7 @@ Rails.application.routes.draw do
     resources :sizes, only: [:create, :index, :destroy]
     resources :genres, only: [:create, :index, :destroy]
     resources :styles, only: [:create, :index, :destroy]
-    resources :orders , only: [:index, :show]
+    resources :orders , only: [:index, :show, :update]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

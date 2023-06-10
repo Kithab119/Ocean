@@ -175,6 +175,7 @@ ActiveRecord::Schema.define(version: 2023_05_31_132127) do
 
   create_table "notifications", force: :cascade do |t|
     t.integer "target_id", null: false
+    t.string "sender", null: false
     t.integer "making_id"
     t.integer "order_id"
     t.integer "room_id"
@@ -182,6 +183,7 @@ ActiveRecord::Schema.define(version: 2023_05_31_132127) do
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["making_id"], name: "index_notifications_on_making_id"
     t.index ["order_id"], name: "index_notifications_on_order_id"
     t.index ["room_id"], name: "index_notifications_on_room_id"
     t.index ["target_id"], name: "index_notifications_on_target_id"
@@ -191,6 +193,7 @@ ActiveRecord::Schema.define(version: 2023_05_31_132127) do
     t.integer "item_id", null: false
     t.integer "order_id", null: false
     t.integer "purchase", null: false
+    t.integer "is_sent", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

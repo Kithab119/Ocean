@@ -2,6 +2,7 @@ class CreateNotifications < ActiveRecord::Migration[6.1]
   def change
     create_table :notifications do |t|
       t.integer :target_id, null: false
+      t.string :sender, null: false
       t.integer :making_id
       t.integer :order_id
       t.integer :room_id

@@ -1,0 +1,2 @@
+module Creator::OrderDetailsHelper
+end

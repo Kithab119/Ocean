@@ -36,7 +36,7 @@ class Customer::OrdersController < ApplicationController
       @making = Making.find(params[:order][:making_id])
       if @making.is_product == "approved"
         @making.update(order_id: @order.id, is_product: "product_waiting")
-        Notification.create(target_id: @making.creator_id, order_id: @order.id, action: "Making")
+        Notification.create(target_id: @making.creator_id, sender: "Creator", order_id: @order.id, action: "Making")
       end
     else
       @cart_items = current_customer.cart_items
@@ -46,7 +46,7 @@ class Customer::OrdersController < ApplicationController
         @order_detail.order_id = @order.id
         @order_detail.purchase = cart_item.item.price
         @order_detail.save
-        Notification.create(target_id: @order_detail.item.creator.id, order_id: @order.id, action: "Item")
+        Notification.create(target_id: @order_detail.item.creator.id, sender: "Creator", order_id: @order.id, action: "Item")
       end
       @cart_items.destroy_all
     end

@@ -1,7 +1,7 @@
 class Customer::NotificationsController < ApplicationController
 
   def index
-    @notifications = Notification.where(target_id: current_customer.id)
+    @notifications = Notification.where(target_id: current_customer.id, sender: "Customer")
   end
 
   def check

@@ -94,6 +94,8 @@
     <p class="text-info ml-2"><strong><%= @order.payment_i18n %></strong></p>
 
     <p class="ml-2 mb-2">注文状況</p>
-    <p class="text-info ml-2"><strong><%= @order.is_receive_i18n %></strong></p>
+    <%= form_with model: @order, url: admin_order_path(@order.id), method: :patch do |f| %>
+      <p class="ml-2"><%= f.select :is_receive, [["入金待ち", "waiting_payment"], ["入金確認", "check_payment"]] %><span class="ml-3"><%= f.submit "更新する", data: { confirm: "更新しますか？" }, class: "btn btn-outline-info" %></span></p>
+    <% end %>
   </div>
 </div>

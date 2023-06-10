@@ -13,7 +13,7 @@
   <body>
     <header class="sticky-top">
       <% if admin_signed_in? %>
-        <nav class="navbar navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <ul class="navbar-nav list-group-horizontal ml-auto">
             <li class="nav-item"><%= link_to "作家一覧", admin_root_path, class: "nav-link btn btn-light" %></li>
             <li class="nav-item ml-3"><%= link_to "顧客一覧", admin_customers_path, class: "nav-link btn btn-light" %></li>
@@ -31,8 +31,8 @@
             <li class="nav-item"><%= link_to "Ocean", creator_root_path, class: "nav-link btn btn-light btn-lg" %></li>
           </ul>
           <ul class="navbar-nav list-group-horizontal">
-            <% if Notification.find_by(target_id: current_creator.id, checked: false) %>
-              <li class="nav-item"><%= link_to "通知", creator_notifications_path, class: "text-danger" %></li>
+            <% if Notification.find_by(target_id: current_creator.id, sender: "Creator", checked: false) %>
+              <li class="nav-item"><%= link_to "通知", creator_notifications_path, class: "nav-link text-danger" %></li>
             <% else %>
               <li class="nav-item"><%= link_to "通知", creator_notifications_path, class: "nav-link btn btn-light" %></li>
             <% end %>
@@ -46,12 +46,19 @@
           </ul>
         </nav>
       <% elsif customer_signed_in? %>
-        <nav class="navbar navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item"><%= link_to "Ocean", root_path, class: "nav-link btn btn-light btn-lg" %></li>
           </ul>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
           <ul class="navbar-nav list-group-horizontal">
-            <% if Notification.find_by(target_id: current_customer.id, checked: false) %>
+            <% if Notification.find_by(target_id: current_customer.id, sender: "Customer", checked: false) %>
               <li class="nav-item"><%= link_to "通知", notifications_path, class: "nav-link btn text-danger" %></li>
             <% else %>
               <li class="nav-item"><%= link_to "通知", notifications_path, class: "nav-link btn btn-light" %></li>
@@ -67,6 +74,9 @@
             <li class="nav-item ml-3"><%= link_to "オーダーメイド", makings_path, class: "nav-link btn btn-light" %></li>
             <li class="nav-item ml-3"><%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "nav-link btn btn-light" %></li>
           </ul>
+
+          </div>
+
         </nav>
       <% else %>
         <nav class="navbar navbar-light bg-light">

@@ -64,6 +64,13 @@
               <span><strong>¥<%= (order_detail.purchase * 1.1).floor.to_s(:delimited) %></strong><span>
             </div>
             <% @sum += order_detail.purchase %>
+
+            <div class="mt-5 text-center border border-success">
+              <%= form_with model: order_detail, url: creator_order_detail_path(order_detail.id), method: :patch do |f| %>
+                <p class="mt-2 text-info"><strong>-配送確認-</strong></p>
+                <p><%= f.select :is_sent, [["発送準備中", "preparation"], ["発送済み", "shipping"]] %><span class="ml-3"><%= f.submit "更新する", data: { confirm: "更新しますか？" }, class: "btn btn-outline-success" %></span></p>
+              <% end %>
+            </div>
           <% end %>
         </div>
       <% end %>

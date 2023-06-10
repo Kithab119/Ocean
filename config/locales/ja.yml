@@ -190,6 +190,9 @@ ja:
       is_receive:
         waiting_payment: "入金待ち"
         check_payment: "入金確認"
+
+    order_detail:
+      is_sent:
         preparation: "発送準備中"
         shipping: "発送済み"
 

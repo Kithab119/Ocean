@@ -16,7 +16,7 @@ class Customer::MakingsController < ApplicationController
       @making.size = "#{params[:making][:size_y]}x#{params[:making][:size_x]}(mm)"
     end
     @making.save
-    Notification.create(target_id: @making.customer.id, making_id: @making.id, action: "Request")
+    Notification.create(target_id: @making.creator.id, sender: "Creator", making_id: @making.id, action: "Request")
     redirect_to makings_path
   end
 

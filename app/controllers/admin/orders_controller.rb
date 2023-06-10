@@ -11,4 +11,16 @@ class Admin::OrdersController < ApplicationController
     @sum = 0
   end
 
+  def update
+    @order = Order.find(params[:id])
+    @order.update(order_params)
+    redirect_to admin_order_path(@order.id)
+  end
+
+
+  private
+    def order_params
+      params.require(:order).permit(:is_receive)
+    end
+
 end

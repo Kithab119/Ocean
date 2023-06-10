@@ -1,11 +1,16 @@
 <div class="container">
-  <div class="row">
-    <div class="col text-center">
-      <h2 class="mt-5">管理者ログイン</h2>
+  <h2 class="text-center text-info mt-5 mb-3">管理者ログイン</h2>
 
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="field mt-3 mb-3">
-          メールアドレス　<%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="row ">
+      <div class="col-6">
+        メールアドレス
+      </div>
+      <div class="col-6">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+    </div>
+
         </div>
 
         <div class="field mb-3">
@@ -27,6 +32,4 @@
       <div class="mt-5">
         <%= render "admin/shared/links" %>
       </div>
-    </div>
-  </div>
 </div>

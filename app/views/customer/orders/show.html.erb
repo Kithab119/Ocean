@@ -63,6 +63,10 @@
             <span><strong>¥<%= (order_detail.purchase * 1.1).floor.to_s(:delimited) %></strong><span>
           </div>
           <% @sum += order_detail.purchase %>
+
+          <div class="mt-3 text-center text-success border-bottom">
+            <strong><%= order_detail.is_sent_i18n %></strong>
+          </div>
         </div>
       <% end %>
     </div>
