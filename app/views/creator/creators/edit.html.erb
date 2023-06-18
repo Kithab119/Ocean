@@ -1,6 +1,14 @@
 <div class="container">
   <h2 class="text-info mt-5 mb-5">マイページ編集</h2>
 
+  <% if @creator.errors.any? %>
+    <ul>
+      <% @creator.errors.full_messages.each do |message| %>
+        <li class="text-danger"><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
   <%= form_with model: @creator, url: creator_creators_path, method: :patch do |f| %>
     <div class="row">
       <div class="col-2">

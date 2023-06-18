@@ -14,36 +14,50 @@
     <header class="sticky-top">
       <% if admin_signed_in? %>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <ul class="navbar-nav list-group-horizontal ml-auto">
-            <li class="nav-item"><%= link_to "作家一覧", admin_root_path, class: "nav-link btn btn-light" %></li>
-            <li class="nav-item ml-3"><%= link_to "顧客一覧", admin_customers_path, class: "nav-link btn btn-light" %></li>
-            <li class="nav-item ml-3"><%= link_to "カラー", admin_colors_path, class: "nav-link btn btn-light" %></li>
-            <li class="nav-item ml-3"><%= link_to "サイズ", admin_sizes_path, class: "nav-link btn btn-light" %></li>
-            <li class="nav-item ml-3"><%= link_to "ジャンル", admin_genres_path, class: "nav-link btn btn-light" %></li>
-            <li class="nav-item ml-3"><%= link_to "スタイル", admin_styles_path, class: "nav-link btn btn-light" %></li>
-            <li class="nav-item ml-3"><%= link_to "注文一覧", admin_orders_path, class: "nav-link btn btn-light" %></li>
-            <li class="nav-item ml-3"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link btn btn-light"  %></li>
-          </ul>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav list-group-horizontal ml-auto">
+              <li class="nav-item"><%= link_to "作家一覧", admin_root_path, class: "nav-link btn btn-light" %></li>
+              <li class="nav-item ml-3"><%= link_to "顧客一覧", admin_customers_path, class: "nav-link btn btn-light" %></li>
+              <li class="nav-item ml-3"><%= link_to "カラー", admin_colors_path, class: "nav-link btn btn-light" %></li>
+              <li class="nav-item ml-3"><%= link_to "サイズ", admin_sizes_path, class: "nav-link btn btn-light" %></li>
+              <li class="nav-item ml-3"><%= link_to "ジャンル", admin_genres_path, class: "nav-link btn btn-light" %></li>
+              <li class="nav-item ml-3"><%= link_to "スタイル", admin_styles_path, class: "nav-link btn btn-light" %></li>
+              <li class="nav-item ml-3"><%= link_to "注文一覧", admin_orders_path, class: "nav-link btn btn-light" %></li>
+              <li class="nav-item ml-3"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link btn btn-light"  %></li>
+            </ul>
+          </div>
         </nav>
       <% elsif creator_signed_in? %>
         <nav class="navbar navbar-light bg-light">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item"><%= link_to "Ocean", creator_root_path, class: "nav-link btn btn-light btn-lg" %></li>
           </ul>
-          <ul class="navbar-nav list-group-horizontal">
-            <% if Notification.find_by(target_id: current_creator.id, sender: "Creator", checked: false) %>
-              <li class="nav-item"><%= link_to "通知", creator_notifications_path, class: "nav-link text-danger" %></li>
-            <% else %>
-              <li class="nav-item"><%= link_to "通知", creator_notifications_path, class: "nav-link btn btn-light" %></li>
-            <% end %>
-            <li class="nav-item ml-3"><%= link_to "About", about_path, class: "nav-link btn btn-light" %></li>
-            <li class="nav-item ml-3"><%= link_to "作品一覧", creator_items_path, class: "nav-link btn btn-light" %></li>
-            <li class="nav-item ml-3"><%= link_to "マイページ", creator_creators_path, class: "nav-link btn btn-light" %></li>
-            <li class="nav-item ml-3"><%= link_to "個展情報", creator_galleries_path, class: "nav-link btn btn-light" %></li>
-            <li class="nav-item ml-3"><%= link_to "オーダー情報", creator_creators_makings_path, class: "nav-link btn btn-light" %></li>
-            <li class="nav-item ml-3"><%= link_to "注文一覧", creator_orders_path, class: "nav-link btn btn-light" %></li>
-            <li class="nav-item ml-3"><%= link_to "ログアウト", destroy_creator_session_path, method: :delete, class: "nav-link btn btn-light" %></li>
-          </ul>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav list-group-horizontal">
+              <% if Notification.find_by(target_id: current_creator.id, sender: "Creator", checked: false) %>
+                <li class="nav-item"><%= link_to "通知", creator_notifications_path, class: "nav-link text-danger" %></li>
+              <% else %>
+                <li class="nav-item"><%= link_to "通知", creator_notifications_path, class: "nav-link btn btn-light" %></li>
+              <% end %>
+              <li class="nav-item ml-3"><%= link_to "About", about_path, class: "nav-link btn btn-light" %></li>
+              <li class="nav-item ml-3"><%= link_to "作品一覧", creator_items_path, class: "nav-link btn btn-light" %></li>
+              <li class="nav-item ml-3"><%= link_to "マイページ", creator_creators_path, class: "nav-link btn btn-light" %></li>
+              <li class="nav-item ml-3"><%= link_to "個展情報", creator_galleries_path, class: "nav-link btn btn-light" %></li>
+              <li class="nav-item ml-3"><%= link_to "オーダー情報", creator_creators_makings_path, class: "nav-link btn btn-light" %></li>
+              <li class="nav-item ml-3"><%= link_to "注文一覧", creator_orders_path, class: "nav-link btn btn-light" %></li>
+              <li class="nav-item ml-3"><%= link_to "ログアウト", destroy_creator_session_path, method: :delete, class: "nav-link btn btn-light" %></li>
+            </ul>
+          </div>
         </nav>
       <% elsif customer_signed_in? %>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -80,14 +94,21 @@
           <ul class="navbar-nav mr-auto">
             <li class="nav-item"><%= link_to "Ocean", root_path, class: "nav-link btn btn-light btn-lg" %></li>
           </ul>
-          <ul class="navbar-nav">
-            <li class="nav-item"><%= link_to "About", about_path, class: "nav-link btn btn-light" %></li>
-            <li class="nav-item ml-3"><%= link_to "ログイン", new_customer_session_path, class: "nav-link btn btn-light" %></li>
-            <li class="nav-item ml-3"><%= link_to "新規登録", new_customer_registration_path, class: "nav-link btn btn-light" %></li>
-            <li class="nav-item ml-3"><%= link_to "作家ログイン", new_creator_session_path, class: "nav-link btn btn-light" %></li>
-            <li class="nav-item ml-3"><%= link_to "作家登録", new_creator_registration_path, class: "nav-link btn btn-light" %></li>
-            <li class="nav-item ml-3"><%= link_to "ゲストログイン", customer_guest_sign_in_path, method: :post, class: "nav-link btn btn-info text-light" %></li>
-          </ul>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item"><%= link_to "About", about_path, class: "nav-link btn btn-light" %></li>
+              <li class="nav-item ml-3"><%= link_to "ログイン", new_customer_session_path, class: "nav-link btn btn-light" %></li>
+              <li class="nav-item ml-3"><%= link_to "新規登録", new_customer_registration_path, class: "nav-link btn btn-light" %></li>
+              <li class="nav-item ml-3"><%= link_to "作家ログイン", new_creator_session_path, class: "nav-link btn btn-light" %></li>
+              <li class="nav-item ml-3"><%= link_to "作家登録", new_creator_registration_path, class: "nav-link btn btn-light" %></li>
+              <li class="nav-item ml-3"><%= link_to "ゲストログイン", customer_guest_sign_in_path, method: :post, class: "nav-link btn btn-info text-light" %></li>
+            </ul>
+          </div>
         </nav>
       <% end %>
     </header>

@@ -1,5 +1,7 @@
 class Creator::GalleriesController < ApplicationController
 
+  before_action :authenticate_creator!
+
   def new
     @gallery = Gallery.new
   end

@@ -1,4 +1,6 @@
 class Customer::FollowsController < ApplicationController
+  
+  before_action :authenticate_customer!
 
   def create
     @follow = Follow.new

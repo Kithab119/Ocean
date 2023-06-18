@@ -1,5 +1,7 @@
 class Customer::MessagesController < ApplicationController
 
+  before_action :authenticate_customer!
+
   def create
     @message = Message.new(message_params)
     @message.sender = Customer.name

@@ -1,5 +1,7 @@
 class Customer::RoomsController < ApplicationController
 
+  before_action :authenticate_customer!
+
   def create
     @making = Making.find(params[:making_id])
     @room = Room.find_or_create_by(making: @making)

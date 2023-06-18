@@ -1,5 +1,7 @@
 class Creator::NotificationsController < ApplicationController
 
+  before_action :authenticate_creator!
+
   def index
     @notifications = Notification.where(target_id: current_creator.id, sender: "Creator")
   end

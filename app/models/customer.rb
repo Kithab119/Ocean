@@ -13,6 +13,16 @@ class Customer < ApplicationRecord
   has_many :follows
   has_many :messages
 
+  validates :last_name, presence: true
+  validates :first_name, presence: true
+  validates :last_name_kana, presence: true
+  validates :first_name_kana, presence: true
+  VALID_POSTAL_CODE_REGIX = /\A\d{7}\z/
+  validates :postal_code, format: { with: VALID_POSTAL_CODE_REGIX }
+  validates :address, presence: true
+  VALID_TELEPHONE_NUMBER_REGIX = /\A\d{11}\z/
+  validates :telephone_number, format: { with: VALID_TELEPHONE_NUMBER_REGIX }
+
   def self.guest
     find_or_create_by!(email: "guest@example.com") do |customer|
       customer.password = SecureRandom.urlsafe_base64

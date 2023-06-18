@@ -1,4 +1,13 @@
 <div class="container">
+
+  <% if @address.errors.any? %>
+    <ul>
+      <% @address.errors.full_messages.each do |message| %>
+        <li class="text-danger"><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
   <div class="row">
     <div class="col">
       <h2 class="text-center text-info mt-5 mb-5">配送先編集</h2>

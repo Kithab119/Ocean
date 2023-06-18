@@ -14,6 +14,14 @@ class Creator < ApplicationRecord
 
   has_one_attached :profile_image
 
+  validates :name, length: { minimum: 1, maximum: 20 }
+  validates :profile, length: { minimum: 1, maximum: 300 }
+  VALID_POSTAL_CODE_REGIX = /\A\d{7}\z/
+  validates :postal_code, format: { with: VALID_POSTAL_CODE_REGIX }
+  validates :address, presence: true
+  VALID_TELEPHONE_NUMBER_REGIX = /\A\d{11}\z/
+  validates :telephone_number, format: { with: VALID_TELEPHONE_NUMBER_REGIX }
+
 
   def get_profile_image(width, height)
     unless profile_image.attached?

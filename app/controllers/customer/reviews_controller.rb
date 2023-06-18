@@ -1,5 +1,7 @@
 class Customer::ReviewsController < ApplicationController
 
+  before_action :authenticate_customer!
+
   def new
     @review = Review.new
     @reviews = Review.all.order(created_at: :desc).limit(5)

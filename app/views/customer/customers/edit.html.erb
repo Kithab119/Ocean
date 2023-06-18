@@ -3,6 +3,14 @@
     <div class="col">
       <h2 class="text-info mt-5 mb-5">マイページ編集</h2>
 
+      <% if @customer.errors.any? %>
+        <ul>
+          <% @customer.errors.full_messages.each do |message| %>
+            <li class="text-danger"><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
       <%= form_with model: @customer, url: customers_path, method: :patch do |f| %>
         <table>
           <tr>

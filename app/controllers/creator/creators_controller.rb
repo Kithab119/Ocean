@@ -12,8 +12,11 @@ class Creator::CreatorsController < ApplicationController
 
   def update
     @creator = current_creator
-    @creator.update(creator_params)
-    redirect_to creator_creators_path
+    if @creator.update(creator_params)
+      redirect_to creator_creators_path
+    else
+      render :edit
+    end
   end
 
   def out
