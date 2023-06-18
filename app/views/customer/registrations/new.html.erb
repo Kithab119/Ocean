@@ -1,51 +1,44 @@
-<div class="container">
-  <div class="row">
-    <div class="col text-center">
-      <h2 class="text-info mt-5">新規登録</h2>
-
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= render "customer/shared/error_messages", resource: resource %>
-
-        <div class="field mt-3 mb-3">
-          名前　<%= f.text_field :last_name, autofocus: true %>　<%= f.text_field :first_name, autofocus: true %>
-        </div>
-
-        <div class="field mb-3">
-          カナ　<%= f.text_field :last_name_kana, autofocus: true %>　<%= f.text_field :first_name_kana, autofocus: true %>
-        </div>
-
-        <div class="field mb-3">
-          郵便番号（ハイフンなし）　<%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %>
-        </div>
-
-        <div class="field mb-3">
-          住所　<%= f.text_field :address, autofocus: true, autocomplete: "address" %>
-        </div>
-
-        <div class="field mb-3">
-          電話番号（ハイフンなし）　<%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number" %>
-        </div>
-
-        <div class="field mb-3">
-          メールアドレス　<%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-        </div>
-
-        <div class="field mb-3">
-          パスワード（６文字以上）　<%= f.password_field :password, autocomplete: "new-password" %>
-        </div>
-
-        <div class="field mb-3">
-          パスワード（再入力）　<%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-        </div>
-
-        <div class="actions">
-          <%= f.submit "新規登録", class: "btn btn-outline-info" %>
-        </div>
-      <% end %>
-
-      <div class="mt-5">
-        <%= render "customer/shared/links" %>
+<div class="row justify-content-center pl-3 pr-3">
+  <div class="col-sm-8">
+    <h1 class="text-center text-info mt-5" style="font-size: 32px;">新規登録</h1>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "customer/shared/error_messages", resource: resource %>
+      <div class="row mt-5">
+        <div class="col-sm-2 col-12">名前</div>
+        <div class="col-sm-5 col-6"><%= f.text_field :last_name, autofocus: true, class: "w-100" %></div>
+        <div class="col-sm-5 col-6"><%= f.text_field :first_name, autofocus: true, class: "w-100" %></div>
       </div>
-    </div>
+      <div class="row mt-3">
+        <div class="col-sm-2 col-12">カナ</div>
+        <div class="col-sm-5 col-6"><%= f.text_field :last_name_kana, autofocus: true, class: "w-100" %></div>
+        <div class="col-sm-5 col-6"><%= f.text_field :first_name_kana, autofocus: true, class: "w-100" %></div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-sm-6">郵便番号<span style="font-size: 0.6em;">（ハイフンなし）</span></div>
+        <div class="col-sm-6"><%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", class: "w-100" %></div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-sm-2 col-12">住所</div>
+        <div class="col-sm-10 col-12"><%= f.text_field :address, autofocus: true, autocomplete: "address", class: "w-100" %></div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-sm-6 col-12">携帯番号<span style="font-size: 0.6em;">（ハイフンなし）</span></div>
+        <div class="col-sm-6 col-12"><%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number", class: "w-100" %></div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-sm-6 col-12">メールアドレス</div>
+        <div class="col-sm-6 col-12"><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-100" %></div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-sm-6 col-12">パスワード<span style="font-size: 0.6em;">（６文字以上）</span></div>
+        <div class="col-sm-6 col-12"><%= f.password_field :password, autocomplete: "new-password", class: "w-100" %></div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-sm-6 col-12">パスワード<span style="font-size: 0.8em;">（再入力）</span></div>
+        <div class="col-sm-6 col-12"><%= f.password_field :password_confirmation, autocomplete: "new-password", class: "w-100" %></div>
+      </div>
+      <div class="text-center mt-5"><%= f.submit "新規登録", class: "btn btn-outline-info" %></div>
+    <% end %>
+    <div class="text-center mt-5"><%= render "customer/shared/links" %></div>
   </div>
 </div>
