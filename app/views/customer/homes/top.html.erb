@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row" style="place-content: center">
     <div class="col-12">
-      <h2 class="text-info mt-5 mb-3">Welcome to Ocean</h2>
+      <h1 class="text-info mt-5 mb-3">Welcome to Ocean</h1>
     </div>
 
     <div class="col-md-3 col-sm-12"><%= render 'customer/items/serch' %></div>
@@ -30,7 +30,7 @@
 
     <div class="col-9 row">
       <div class="col-12 mb-3">
-        <h3 class="text-info">作家<span class="text-danger">New!</span></h3>
+        <h2 class="text-info">作家<span class="text-danger">New!</span></h2>
       </div>
       <% @creators.each do |creator| %>
         <div class="col-4 mb-3">
@@ -50,7 +50,7 @@
                 });
               </script>
             <div class="card-body">
-              <h5 class="card-title"><strong><%= link_to creator.name, creator_path(creator.id), class: "text-info" %></strong></h5>
+              <h3 class="card-title"><strong><%= link_to creator.name, creator_path(creator.id), class: "text-info" %></strong></h3>
               <p class="card-text"><%= creator.profile.truncate(10) %></p>
             </div>
           </div>

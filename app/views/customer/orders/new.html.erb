@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h2 class="text-center text-info mt-5 mb-5">注文情報入力</h2>
+      <h1 class="text-center text-info mt-5 mb-5">注文情報入力</h1>
     </div>
 
     <div class="col-12">
       <%= form_with model: @order, url: orders_order_check_path, method: :post do |f| %>
         <div class="w-50 mx-auto mb-5">
-          <h4>支払い方法</h4>
+          <p><strong>支払い方法</strong></p>
           <div>
             <%= f.radio_button :payment, "credit_card" %> <%= f.label :payment_credit_card, "クレジットカード" %><br>
             <%= f.radio_button :payment, "transfer" %> <%= f.label :payment_transfer, "銀行振込" %>
@@ -15,7 +15,7 @@
         </div>
 
         <div class="w-50 mx-auto">
-          <h4>お届け先</h4>
+          <p><strong>お届け先</strong></p>
           <div class="border mb-3 p-3">
             <%= f.radio_button :select_address, "0", checked: true %> <%= f.label :select_address_0, "ご自身の住所" %>
             <div class="row">

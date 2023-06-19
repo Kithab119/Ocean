@@ -1,8 +1,8 @@
 <div class="container">
-<h2 class="text-info mt-5 mb-3">オーダー情報詳細</h2>
+<h1 class="text-info mt-5 mb-3">オーダー情報詳細</h1>
 
 <div class="mb-5">
-  <h4 class="text-info mb-2">制作状況</h4>
+  <h2 class="text-info mb-2">制作状況</h2>
   <% if @making.is_product == "confirm" || @making.is_product == "approved" %>
     <%= form_with model: @making, url: creator_making_path, method: :patch  do |f| %>
       <span class="mr-3"><%= f.select :is_product, [["承認待ち", "confirm"], ["承認済み", "approved"]] %></span>

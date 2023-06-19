@@ -1,5 +1,5 @@
 <div class="container">
-  <h2 class="text-info mt-5 mb-3"><%= @customer.last_name %> <%= @customer.first_name %>さんの顧客情報編集</h2>
+  <h1 class="text-info mt-5 mb-3"><%= @customer.last_name %> <%= @customer.first_name %>さんの顧客情報編集</h1>
 
   <%= form_with model: @customer, url: admin_customer_path(@customer.id), method: :patch do |f| %>
     <table class="table">

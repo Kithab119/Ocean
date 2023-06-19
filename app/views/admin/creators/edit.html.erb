@@ -1,5 +1,5 @@
 <div class="container">
-  <h2 class="text-info mt-5 mb-3"><%= @creator.name %>さんの作家情報編集</h2>
+  <h1 class="text-info mt-5 mb-3"><%= @creator.name %>さんの作家情報編集</h1>
 
   <%= form_with model: @creator, url: admin_creator_path(@creator.id), method: :patch do |f| %>
     <table class="table">

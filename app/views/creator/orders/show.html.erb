@@ -1,13 +1,14 @@
 <div class="container">
   <div class="row">
-    <h2 class="text-info mt-5 mb-5">注文詳細</h2>
+    <h1 class="text-info mt-5 mb-5">注文詳細</h1>
   </div>
 
   <div class="row">
-    <h3 class="text-info ml-2 mb-3">注文内容</h3>
+    <h2 class="text-info ml-2 mb-3">注文内容</h2>
   </div>
 
   <% if @order.making.present? %>
+
   <table class="table">
     <thead>
       <tr>
@@ -30,6 +31,8 @@
       </tr>
     </tbody>
   </table>
+
+  <div class="mb-5"><%= link_to "オーダー詳細へ", creator_making_path(@order.making.id), class: "btn btn-outline-success" %></div>
 
   <div class="col-12 w-25 ml-auto border border-info mt-5">
     <div class="w-50 mt-2 border-bottom">
