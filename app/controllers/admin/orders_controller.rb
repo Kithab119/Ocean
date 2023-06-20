@@ -19,7 +19,7 @@ class Admin::OrdersController < ApplicationController
         Notification.create(target_id: order_detail.item.creator.id, sender: "Creator", order_id: @order.id, action: "Payment")
       end
     else
-      Notification.create(target_id: order_detail.item.creator.id, sender: "Creator", order_id: @order.id, action: "Payment")
+      Notification.create(target_id: @order.making.creator.id, sender: "Creator", order_id: @order.id, action: "Payment")
     end
     redirect_to admin_order_path(@order.id)
   end
