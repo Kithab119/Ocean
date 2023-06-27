@@ -1,30 +1,30 @@
 <div class="border">
   <p class="text-center mt-2"><strong>作品検索</strong></p>
-  <%= form_with url: items_path, method: :get do |f| %>
-    <div class="ml-2"><%= f.text_field :word %> <%= f.submit "検索", class: "btn btn-info btn-sm" %></div>
-  <% end %>
-
+  <div class="row">
+    <div class="col-12">
+      <%= form_with url: items_path, method: :get do |f| %>
+        <div class="mx-2"><%= f.text_field :word, class: "w-75" %><%= f.submit "検索", class: "btn btn-info btn-sm w-25" %></div>
+      <% end %>
+    </div>
+  </div>
   <p class="text-center mt-5"><strong>カラー</strong></p>
-  <div class="mx-auto w-75">
+  <div>
     <% @colors.each do |color| %>
       <span><%= link_to color.name, items_path(color_id: color.id), class: "text-info mx-2" %></span>
     <% end %>
   </div>
-
   <p class="text-center mt-5"><strong>サイズ</strong></p>
-  <div class="mx-auto w-75">
+  <div>
     <% @sizes.each do |size| %>
       <span><%= link_to size.large, items_path(size_id: size.id), class: "text-info mx-2" %></span>
     <% end %>
   </div>
-
   <p class="text-center mt-5"><strong>ジャンル</strong></p>
   <div class="mx-auto w-75">
     <% @genres.each do |genre| %>
       <p class="text-center"><%= link_to genre.theme, items_path(genre_id: genre.id), class: "text-info mx-2" %></p>
     <% end %>
   </div>
-
   <p class="text-center mt-5"><strong>スタイル</strong></p>
   <div class="mx-auto w-75">
     <% @styles.each do |style| %>

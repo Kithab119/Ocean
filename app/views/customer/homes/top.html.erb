@@ -1,19 +1,14 @@
 <div class="container">
-  <div class="row" style="place-content: center">
-    <div class="col-12">
-      <h1 class="text-info mt-5 mb-3">Welcome to Ocean</h1>
-    </div>
-
-    <div class="col-md-3 col-sm-12"><%= render 'customer/items/serch' %></div>
-
-    <div class="col-9 row">
+  <h1 class="text-info mt-5 mb-3">Welcome to Ocean</h1>
+  <div class="row justify-content-center">
+    <div class="col-md-4 col-12"><%= render 'customer/items/serch' %></div>
+    <div class="col-md-8 col-12 row">
       <% @items.each do |item| %>
-        <div class="col-md-4 col-sm-12 h-50 mb-3">
+        <div class="col-md-4 col-12 mt-3">
           <%= link_to item_path(item.id) do %>
-            <%= image_tag item.get_image, class: "mw-100 mh-100 mb-3" %>
+            <%= image_tag item.get_image, class: "mw-100 mh-100" %>
           <% end %>
-
-          <p class="mb-1">作品名<span>「<strong><%= link_to item.name, item_path(item.id), class: "text-info" %></strong>」</span></p>
+          <p class="mb-1">作品名<span><strong>「<%= link_to item.name.truncate(9), item_path(item.id), class: "text-info" %>」</strong></span></p>
           <p class="mb-1">価格<span class="ml-2"><strong>¥<%= (item.price * 1.1).floor.to_s(:delimited) %></strong></span></p>
           <% if item.is_active == true %>
             <p class="text-info"><strong>販売中</strong></p>
@@ -24,38 +19,31 @@
       <% end %>
     </div>
   </div>
-
-  <div class="row mt-5">
-    <div class="col-3"></div>
-
-    <div class="col-9 row">
-      <div class="col-12 mb-3">
-        <h2 class="text-info">作家<span class="text-danger">New!</span></h2>
-      </div>
-      <% @creators.each do |creator| %>
-        <div class="col-4 mb-3">
-          <div class="card">
-            <div class="mb-2"><%= image_tag creator.get_profile_image(100, 100) %></div>
-            <div id="star-rate<%= creator.id %>", class="ml-2"></div>
-              <script>
-                $('#star-rate<%= creator.id %>').empty();
-                $('#star-rate<%= creator.id %>').raty({
-                  size      : 36,
-                  starOff   : '<%= asset_path('star-off.png') %>',
-                  starOn    : '<%= asset_path('star-on.png') %>',
-                  starHalf: '<%= asset_path('star-half.png') %>',
-                  half      : true,
-                  readOnly: true,
-                  score: <%= creator.reviews.average(:star).to_f.round(1) %>
-                });
-              </script>
-            <div class="card-body">
-              <h3 class="card-title"><strong><%= link_to creator.name, creator_path(creator.id), class: "text-info" %></strong></h3>
-              <p class="card-text"><%= creator.profile.truncate(10) %></p>
-            </div>
+  <h2 class="text-info mt-5">作家<span class="text-danger">New!</span></h2>
+  <div class="row">
+    <% @creators.each do |creator| %>
+      <div class="col-md-4 col-12 mt-3">
+        <div class="card">
+          <div class="mb-2"><%= image_tag creator.get_profile_image(100, 100) %></div>
+          <div id="star-rate<%= creator.id %>", class="ml-2"></div>
+            <script>
+              $('#star-rate<%= creator.id %>').empty();
+              $('#star-rate<%= creator.id %>').raty({
+                size      : 36,
+                starOff   : '<%= asset_path('star-off.png') %>',
+                starOn    : '<%= asset_path('star-on.png') %>',
+                starHalf: '<%= asset_path('star-half.png') %>',
+                half      : true,
+                readOnly: true,
+                score: <%= creator.reviews.average(:star).to_f.round(1) %>
+              });
+            </script>
+          <div class="card-body">
+            <h3 class="card-title"><strong><%= link_to creator.name.truncate(5), creator_path(creator.id), class: "text-info" %></strong></h3>
+            <p class="card-text"><%= creator.profile.truncate(10) %></p>
           </div>
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
 </div>
