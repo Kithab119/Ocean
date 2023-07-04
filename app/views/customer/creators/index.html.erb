@@ -1,11 +1,8 @@
 <div class="container">
-  <div class="row">
-    <h1 class="text-center text-info mt-5 mb-3">作家一覧</h1>
-  </div>
-
+  <h1 class="text-center text-info mt-5 mb-5">作家一覧</h1>
   <div class="row">
     <% @creators.each do |creator| %>
-      <div class="col-4 mb-3">
+      <div class="col-md-4 col-12 mb-3">
         <div class="card">
           <div class="mb-2"><%= image_tag creator.get_profile_image(100, 100) %></div>
           <div id="star-rate<%= creator.id %>", class="ml-2"></div>
@@ -22,7 +19,7 @@
               });
             </script>
           <div class="card-body">
-            <h5 class="card-title"><strong><%= link_to creator.name, creator_path(creator.id), class: "text-info" %></strong></h5>
+            <h5 class="card-title"><strong><%= link_to creator.name.truncate(8), creator_path(creator.id), class: "text-info" %></strong></h5>
             <p class="card-text"><%= creator.profile.truncate(20) %></p>
           </div>
         </div>

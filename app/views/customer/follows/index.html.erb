@@ -1,16 +1,11 @@
 <div class="container">
-  <div class="row">
-    <h1 class="text-center text-info mt-5 mb-3">フォロー作家一覧</h1>
-  </div>
-
+  <h1 class="text-center text-info mt-5 mb-5">フォロー一覧</h1>
   <div class="row">
     <% @follows.each do |follow| %>
-      <div class="col-4">
+      <div class="col-md-4 col-12 mb-3">
         <div class="card">
-          <div class="row">
-            <div class="col-4 mb-2"><%= image_tag follow.creator.get_profile_image(100, 100) %></div>
-            <div class="col-7 mt-5 text-right"><%= link_to "フォロー解除", follow_path(follow.id), method: :delete, data: { confirm: "フォローを解除しますか?" }, class: "btn btn-outline-danger" %></div>
-          </div>
+          <div><%= image_tag follow.creator.get_profile_image(100, 100) %></div>
+          <div class="mr-2 text-right mb-2"><%= link_to "フォロー解除", follow_path(follow.id), method: :delete, data: { confirm: "フォローを解除しますか?" }, class: "btn btn-outline-danger" %></div>
           <div id="star-rate<%= follow.creator.id %>", class="ml-2"></div>
             <script>
               $('#star-rate<%= follow.creator.id %>').empty();
@@ -25,7 +20,7 @@
               });
             </script>
           <div class="card-body">
-            <h5 class="card-title"><strong><%= link_to follow.creator.name, creator_path(follow.creator.id), class: "text-info" %></strong></h5>
+            <h5 class="card-title"><strong><%= link_to follow.creator.name.truncate(8), creator_path(follow.creator.id), class: "text-info" %></strong></h5>
             <p class="card-text"><%= follow.creator.profile.truncate(20) %></p>
           </div>
         </div>
