@@ -1,37 +1,27 @@
 <div class="container">
-
+  <h1 class="mt-5 mb-3">「<strong class="text-info"><%= @item.name %></strong>」</h1>
   <div class="row">
-    <div class="col">
-      <h1 class="text-info mt-5 mb-3">「<strong><%= @item.name %></strong>」</h1>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-6">
-      <div class="mb-3"><%= image_tag @item.get_image, class: "w-50 mh-100" %></div>
-      <div class="border w-50">
+    <div class="col-md-4 col-12">
+      <div class="mb-3"><%= image_tag @item.get_image, class: "w-100 mh-100" %></div>
+      <div class="border mb-3">
         <h2 class="text-info mx-3 mb-3">-Status-</h2>
-        <p class="ml-5">カラー　　<span class="text-info"><strong><%= @item.color.name %></strong></span></p>
-        <p class="ml-5">サイズ　　<span class="text-info"><strong><%= @item.size.large %></strong></span></p>
-        <p class="ml-5">ジャンル　<span class="text-info"><strong><%= @item.genre.theme %></strong></span></p>
-        <p class="ml-5">スタイル　<span class="text-info"><strong><%= @item.style.where %></strong></span></p>
+        <p class="ml-3">カラー　　<span class="text-info"><strong><%= @item.color.name %></strong></span></p>
+        <p class="ml-3">サイズ　　<span class="text-info"><strong><%= @item.size.large %></strong></span></p>
+        <p class="ml-3">ジャンル　<span class="text-info"><strong><%= @item.genre.theme %></strong></span></p>
+        <p class="ml-3">スタイル　<span class="text-info"><strong><%= @item.style.where %></strong></span></p>
       </div>
     </div>
-
-    <div class="col-6">
-      <div class="border mb-5">
-        <h3 class="text-info mx-3 mt-3">-introduction-</h3>
+    <div class="col-md-8 col-12">
+      <div class="border mb-3">
+        <h3 class="text-info mx-3 mb-3">-introduction-</h3>
         <p class="mx-3"><strong><%= @item.introduction %></strong></p>
-      </div>
-      <div>
-        <p>価格<span class="ml-2"><strong>¥<%= (@item.price * 1.1).floor.to_s(:delimited) %></strong></span></p>
+        <p class="border-bottom mx-3 w-50">価格<span class="ml-2"><strong>¥<%= (@item.price * 1.1).floor.to_s(:delimited) %></strong></span></p>
         <% if @item.is_active == true %>
-          <p class="text-info"><strong>販売中</strong></p>
+          <p class="text-info ml-3"><strong>販売中</strong></p>
         <% else %>
-          <p class="text-danger"><strong>未販売</strong></p>
+          <p class="text-danger ml-3"><strong>未販売</strong></p>
         <% end %>
       </div>
-
       <%= form_with model: @cart_item, url: cart_items_path(@cart_item.id), method: :post do |f| %>
         <%= f.hidden_field :customer_id, :value => current_customer.id %>
         <%= f.hidden_field :item_id, :value => @item.id %>

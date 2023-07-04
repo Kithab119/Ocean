@@ -1,19 +1,14 @@
 <div class="container">
-  <div class="row" style="place-content: center">
-    <div class="col-12">
-      <h1 class="text-center text-info mt-5 mb-5">作品一覧</h1>
-    </div>
-
-    <div class="col-md-3 col-sm-12"><%= render 'customer/items/serch' %></div>
-
-    <div class="col-9 row">
+  <h1 class="text-center text-info mt-5 mb-5">作品一覧</h1>
+  <div class="row justify-content-center">
+    <div class="col-md-4 col-12"><%= render 'customer/items/serch' %></div>
+    <div class="col-md-8 col-12 row">
       <% @items.each do |item| %>
-        <div class="col-md-4 col-sm-12 h-50 mb-3">
+        <div class="col-md-4 col-12 mt-3">
           <%= link_to item_path(item.id) do %>
-            <%= image_tag item.get_image, class: "mw-100 mh-100 mb-3" %>
+            <%= image_tag item.get_image, class: "mw-100 mh-100" %>
           <% end %>
-
-          <p class="mb-1">作品名<span>「<strong><%= link_to item.name, item_path(item.id), class: "text-info" %></strong>」</span></p>
+          <p class="mb-1">作品名<span>「<strong><%= link_to item.name.truncate(9), item_path(item.id), class: "text-info" %></strong>」</span></p>
           <p class="mb-1">価格<span class="ml-2"><strong>¥<%= (item.price * 1.1).floor.to_s(:delimited) %></strong></span></p>
           <% if item.is_active == true %>
             <p class="text-info"><strong>販売中</strong></p>
@@ -22,7 +17,6 @@
           <% end %>
         </div>
       <% end %>
-
       <div class="mx-auto">
         <%= paginate @items %>
       </div>
